@@ -1,0 +1,119 @@
+/* eGlobe UI Toasts */
+
+.eg-ui-toast-container {
+    position: fixed;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    pointer-events: none;
+    max-width: 350px;
+    width: 100%;
+    padding: 1rem;
+}
+
+/* Positions */
+.eg-ui-toast-container--top-left {
+    top: 0;
+    left: 0;
+}
+
+.eg-ui-toast-container--top-right {
+    top: 0;
+    right: 0;
+}
+
+.eg-ui-toast-container--top-center {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    align-items: center;
+}
+
+.eg-ui-toast-container--bottom-left {
+    bottom: 0;
+    left: 0;
+    flex-direction: column-reverse;
+}
+
+.eg-ui-toast-container--bottom-right {
+    bottom: 0;
+    right: 0;
+    flex-direction: column-reverse;
+}
+
+.eg-ui-toast-container--bottom-center {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    align-items: center;
+    flex-direction: column-reverse;
+}
+
+.eg-ui-toast {
+    pointer-events: auto;
+    background-color: var(--eg-ui-white);
+    border-radius: var(--eg-ui-radius-lg);
+    box-shadow: var(--eg-ui-shadow-lg);
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: var(--eg-ui-space-3);
+    font-family: var(--eg-ui-font-sans);
+    font-size: var(--eg-ui-text-sm);
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid var(--eg-ui-neutral-200);
+    opacity: 0;
+}
+
+/* Entry Animations based on container */
+.eg-ui-toast-container--top-right .eg-ui-toast,
+.eg-ui-toast-container--bottom-right .eg-ui-toast {
+    transform: translateX(100%);
+}
+
+.eg-ui-toast-container--top-left .eg-ui-toast,
+.eg-ui-toast-container--bottom-left .eg-ui-toast {
+    transform: translateX(-100%);
+}
+
+.eg-ui-toast-container--top-center .eg-ui-toast {
+    transform: translateY(-100%);
+}
+
+.eg-ui-toast-container--bottom-center .eg-ui-toast {
+    transform: translateY(100%);
+}
+
+/* Active State */
+.eg-ui-toast--show {
+    opacity: 1;
+    transform: translate(0, 0) !important;
+}
+
+/* Exit States are handled by removing --show and adding specific fade-out if needed, 
+   but just removing --show will trigger the transition back to initial state. */
+
+.eg-ui-toast--success {
+    border-left: 4px solid var(--eg-ui-success);
+    color: #065f46;
+    background-color: #d1fae5;
+}
+
+.eg-ui-toast--warning {
+    border-left: 4px solid var(--eg-ui-warning);
+    color: #92400e;
+    background-color: #fef3c7;
+}
+
+.eg-ui-toast--danger {
+    border-left: 4px solid var(--eg-ui-danger);
+    color: #b91c1c;
+    background-color: #fee2e2;
+}
+
+.eg-ui-toast--info {
+    border-left: 4px solid var(--eg-ui-info);
+    color: #1e40af;
+    background-color: #dbeafe;
+}

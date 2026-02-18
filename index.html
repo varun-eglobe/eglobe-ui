@@ -58,6 +58,7 @@
           Elements</a>
         <a href="#tables" class="eg-ui-text-muted hover:eg-ui-text-primary" style="text-decoration: none;">Tables</a>
         <a href="#modals" class="eg-ui-text-muted hover:eg-ui-text-primary" style="text-decoration: none;">Modals</a>
+        <a href="#toasts" class="eg-ui-text-muted hover:eg-ui-text-primary" style="text-decoration: none;">Toasts</a>
       </nav>
     </aside>
 
@@ -393,12 +394,55 @@
 
       </section>
 
+      <!-- Toast Section -->
+      <section id="toasts" class="demo-section eg-ui-mb-8">
+        <h2 class="eg-ui-mb-4">Toasts (Scripted)</h2>
+        <p class="eg-ui-text-muted eg-ui-mb-4">Toasts are dynamic notifications triggered via JavaScript using the
+          <code>egToast.show()</code> utility.
+        </p>
+
+        <div class="eg-ui-mb-4">
+          <button class="eg-ui-btn eg-ui-btn--success"
+            onclick="egToast.show({ message: 'Success! Action completed.', type: 'success' })">Success Toast</button>
+          <button class="eg-ui-btn eg-ui-btn--info"
+            onclick="egToast.show({ message: 'Info: New update available.', type: 'info' })">Info Toast</button>
+          <button class="eg-ui-btn eg-ui-btn--warning"
+            onclick="egToast.show({ message: 'Warning: Low disk space.', type: 'warning' })">Warning Toast</button>
+          <button class="eg-ui-btn eg-ui-btn--danger"
+            onclick="egToast.show({ message: 'Error: Failed to save changes.', type: 'danger' })">Danger Toast</button>
+        </div>
+
+        <div class="eg-ui-mb-4">
+          <button class="eg-ui-btn eg-ui-btn--primary"
+            onclick="egToast.show({ message: 'This toast lasts for 5 seconds.', duration: 5000 })">Long Toast
+            (5s)</button>
+        </div>
+
+        <h3 class="eg-ui-text-md eg-ui-mb-2">Positions</h3>
+        <p class="eg-ui-text-muted eg-ui-mb-4">Try different positions for the toast notifications.</p>
+        <div class="eg-ui-mb-4" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <button class="eg-ui-btn eg-ui-btn--ghost"
+            onclick="egToast.show({ message: 'Top Left Toast', position: 'top-left' })">Top Left</button>
+          <button class="eg-ui-btn eg-ui-btn--ghost"
+            onclick="egToast.show({ message: 'Top Center Toast', position: 'top-center' })">Top Center</button>
+          <button class="eg-ui-btn eg-ui-btn--ghost"
+            onclick="egToast.show({ message: 'Top Right Toast', position: 'top-right' })">Top Right</button>
+          <button class="eg-ui-btn eg-ui-btn--ghost"
+            onclick="egToast.show({ message: 'Bottom Left Toast', position: 'bottom-left' })">Bottom Left</button>
+          <button class="eg-ui-btn eg-ui-btn--ghost"
+            onclick="egToast.show({ message: 'Bottom Center Toast', position: 'bottom-center' })">Bottom Center</button>
+          <button class="eg-ui-btn eg-ui-btn--ghost"
+            onclick="egToast.show({ message: 'Bottom Right Toast', position: 'bottom-right' })">Bottom Right</button>
+        </div>
+      </section>
+
     </main>
 
   </div>
 
   <script src="js/eg-ui-modal.js"></script>
   <script src="js/eg-ui-tabs.js"></script>
+  <script src="js/eg-ui-toast.js"></script>
 </body>
 
 </html>
