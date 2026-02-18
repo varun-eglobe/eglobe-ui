@@ -1,0 +1,56 @@
+/* eGlobe UI Spinners */
+
+@keyframes eg-ui-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.eg-ui-spinner {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    vertical-align: text-bottom;
+    border: 0.25em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: eg-ui-spin 0.75s linear infinite;
+    color: var(--eg-ui-primary-600);
+}
+
+.eg-ui-spinner--sm {
+    width: 1rem;
+    height: 1rem;
+    border-width: 0.2em;
+}
+
+.eg-ui-spinner--lg {
+    width: 3rem;
+    height: 3rem;
+    border-width: 0.3em;
+}
+
+/* Spinner Colors */
+.eg-ui-spinner--white {
+    color: var(--eg-ui-white);
+}
+
+.eg-ui-spinner--primary {
+    color: var(--eg-ui-primary-600);
+}
+
+.eg-ui-spinner--secondary {
+    color: var(--eg-ui-neutral-600);
+}
+
+.eg-ui-spinner--success {
+    color: var(--eg-ui-success);
+}
+
+.eg-ui-spinner--danger {
+    color: var(--eg-ui-danger);
+}
+
+.eg-ui-spinner--warning {
+    color: var(--eg-ui-warning);
+}

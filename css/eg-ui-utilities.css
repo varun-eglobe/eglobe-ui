@@ -1,0 +1,146 @@
+/* eGlobe UI Utilities */
+
+/* Spacing */
+.eg-ui-mb-1 {
+    margin-bottom: var(--eg-ui-space-1) !important;
+}
+
+.eg-ui-mb-2 {
+    margin-bottom: var(--eg-ui-space-2) !important;
+}
+
+.eg-ui-mb-3 {
+    margin-bottom: var(--eg-ui-space-3) !important;
+}
+
+.eg-ui-mb-4 {
+    margin-bottom: var(--eg-ui-space-4) !important;
+}
+
+.eg-ui-mb-5 {
+    margin-bottom: var(--eg-ui-space-5) !important;
+}
+
+.eg-ui-mb-6 {
+    margin-bottom: var(--eg-ui-space-6) !important;
+}
+
+.eg-ui-mb-8 {
+    margin-bottom: var(--eg-ui-space-8) !important;
+}
+
+.eg-ui-mt-1 {
+    margin-top: var(--eg-ui-space-1);
+}
+
+.eg-ui-mt-2 {
+    margin-top: var(--eg-ui-space-2);
+}
+
+.eg-ui-mt-3 {
+    margin-top: var(--eg-ui-space-3);
+}
+
+.eg-ui-mt-4 {
+    margin-top: var(--eg-ui-space-4);
+}
+
+.eg-ui-p-0 {
+    padding: 0 !important;
+}
+
+.eg-ui-p-4 {
+    padding: var(--eg-ui-space-4);
+}
+
+/* Typography */
+.eg-ui-text-center {
+    text-align: center;
+}
+
+.eg-ui-text-left {
+    text-align: left;
+}
+
+.eg-ui-text-right {
+    text-align: right;
+}
+
+.eg-ui-text-sm {
+    font-size: var(--eg-ui-text-sm);
+}
+
+.eg-ui-text-md {
+    font-size: var(--eg-ui-text-base);
+}
+
+.eg-ui-text-lg {
+    font-size: var(--eg-ui-text-lg);
+}
+
+.eg-ui-font-bold {
+    font-weight: 700;
+}
+
+.eg-ui-font-medium {
+    font-weight: 500;
+}
+
+.eg-ui-text-muted {
+    color: var(--eg-ui-neutral-500);
+}
+
+/* Flexbox */
+.eg-ui-d-flex {
+    display: flex;
+}
+
+.eg-ui-align-center {
+    align-items: center;
+}
+
+.eg-ui-justify-between {
+    justify-content: space-between;
+}
+
+.eg-ui-justify-center {
+    justify-content: center;
+}
+
+.eg-ui-justify-end {
+    justify-content: flex-end;
+}
+
+.eg-ui-flex-col {
+    flex-direction: column;
+}
+
+.eg-ui-gap-2 {
+    gap: var(--eg-ui-space-2);
+}
+
+.eg-ui-gap-4 {
+    gap: var(--eg-ui-space-4);
+}
+
+/* Display */
+.eg-ui-d-none {
+    display: none;
+}
+
+.eg-ui-d-block {
+    display: block;
+}
+
+.eg-ui-d-inline-block {
+    display: inline-block;
+}
+
+/* Width */
+.eg-ui-w-100 {
+    width: 100%;
+}
+
+.eg-ui-w-auto {
+    width: auto;
+}

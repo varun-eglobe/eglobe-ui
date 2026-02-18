@@ -1,0 +1,96 @@
+/* eGlobe UI Navs & Tabs */
+
+.eg-ui-nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.eg-ui-nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: var(--eg-ui-neutral-600);
+    background: transparent;
+    border: 1px solid transparent;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+    cursor: pointer;
+}
+
+.eg-ui-nav-link:hover,
+.eg-ui-nav-link:focus {
+    color: var(--eg-ui-primary-600);
+    text-decoration: none;
+}
+
+.eg-ui-nav-link.active {
+    color: var(--eg-ui-primary-700);
+}
+
+.eg-ui-nav-link.disabled {
+    color: var(--eg-ui-neutral-400);
+    pointer-events: none;
+    cursor: default;
+}
+
+/* Tabs Variant */
+.eg-ui-nav-tabs {
+    border-bottom: 1px solid var(--eg-ui-neutral-200);
+}
+
+.eg-ui-nav-tabs .eg-ui-nav-item {
+    margin-bottom: -1px;
+}
+
+.eg-ui-nav-tabs .eg-ui-nav-link {
+    border-top-left-radius: var(--eg-ui-radius-md);
+    border-top-right-radius: var(--eg-ui-radius-md);
+}
+
+.eg-ui-nav-tabs .eg-ui-nav-link:hover,
+.eg-ui-nav-tabs .eg-ui-nav-link:focus {
+    border-color: var(--eg-ui-neutral-200) var(--eg-ui-neutral-200) var(--eg-ui-neutral-200);
+}
+
+.eg-ui-nav-tabs .eg-ui-nav-link.active {
+    color: var(--eg-ui-neutral-800);
+    background-color: #fff;
+    border-color: var(--eg-ui-neutral-200) var(--eg-ui-neutral-200) #fff;
+    font-weight: 500;
+}
+
+/* Pills Variant */
+.eg-ui-nav-pills .eg-ui-nav-link {
+    border-radius: var(--eg-ui-radius-md);
+}
+
+.eg-ui-nav-pills .eg-ui-nav-link.active {
+    color: #fff;
+    background-color: var(--eg-ui-primary-600);
+}
+
+/* Tab Content */
+.eg-ui-tab-content {
+    margin-top: var(--eg-ui-space-4);
+}
+
+.eg-ui-tab-pane {
+    display: none;
+}
+
+.eg-ui-tab-pane.active {
+    display: block;
+    animation: eg-ui-fade-in 0.2s ease-in-out;
+}
+
+@keyframes eg-ui-fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,99 @@
+/* eGlobe UI Design Tokens */
+.eg-ui-app {
+  /* Brand Colors - Premium Indigo */
+  --eg-ui-primary-50: #eef2ff;
+  --eg-ui-primary-100: #e0e7ff;
+  --eg-ui-primary-200: #c7d2fe;
+  --eg-ui-primary-300: #a5b4fc;
+  --eg-ui-primary-400: #818cf8;
+  --eg-ui-primary-500: #6366f1;
+  --eg-ui-primary-600: #4f46e5;
+  --eg-ui-primary-700: #4338ca;
+  --eg-ui-primary-800: #3730a3;
+  --eg-ui-primary-900: #312e81;
+
+  /* Neutral Colors - Slate */
+  --eg-ui-neutral-50: #f8fafc;
+  --eg-ui-neutral-100: #f1f5f9;
+  --eg-ui-neutral-200: #e2e8f0;
+  --eg-ui-neutral-300: #cbd5e1;
+  --eg-ui-neutral-400: #94a3b8;
+  --eg-ui-neutral-500: #64748b;
+  --eg-ui-neutral-600: #475569;
+  --eg-ui-neutral-700: #334155;
+  --eg-ui-neutral-800: #1e293b;
+  --eg-ui-neutral-900: #0f172a;
+  /* Base Colors */
+  --eg-ui-white: #ffffff;
+  --eg-ui-black: #000000;
+
+  /* Palette - Green */
+  --eg-ui-green-500: #10b981;
+
+  /* Palette - Amber */
+  --eg-ui-amber-500: #f59e0b;
+
+  /* Palette - Red */
+  --eg-ui-red-500: #ef4444;
+  --eg-ui-red-600: #dc2626;
+  --eg-ui-red-700: #b91c1c;
+
+  /* Palette - Blue */
+  --eg-ui-blue-500: #3b82f6;
+
+  /* Semantic Colors */
+  --eg-ui-success: var(--eg-ui-green-500);
+  --eg-ui-warning: var(--eg-ui-amber-500);
+  --eg-ui-danger: var(--eg-ui-red-500);
+  --eg-ui-info: var(--eg-ui-blue-500);
+
+  /* Spacing */
+  --eg-ui-space-1: 0.25rem;
+  --eg-ui-space-2: 0.5rem;
+  --eg-ui-space-3: 0.75rem;
+  --eg-ui-space-4: 1rem;
+  --eg-ui-space-5: 1.25rem;
+  --eg-ui-space-6: 1.5rem;
+  --eg-ui-space-8: 2rem;
+  --eg-ui-space-10: 2.5rem;
+  --eg-ui-space-12: 3rem;
+
+  /* Typography */
+  --eg-ui-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --eg-ui-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --eg-ui-text-xs: 0.75rem;
+  --eg-ui-text-sm: 0.875rem;
+  --eg-ui-text-base: 1rem;
+  --eg-ui-text-lg: 1.125rem;
+  --eg-ui-text-xl: 1.25rem;
+  --eg-ui-text-2xl: 1.5rem;
+  --eg-ui-text-3xl: 1.875rem;
+
+  --eg-ui-leading-tight: 1.25;
+  --eg-ui-leading-normal: 1.5;
+  --eg-ui-leading-relaxed: 1.625;
+
+  /* Border Radius */
+  --eg-ui-radius-sm: 0.25rem;
+  --eg-ui-radius-md: 0.375rem;
+  --eg-ui-radius-lg: 0.5rem;
+  --eg-ui-radius-xl: 0.75rem;
+  --eg-ui-radius-full: 9999px;
+
+  /* Shadows */
+  --eg-ui-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --eg-ui-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --eg-ui-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --eg-ui-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --eg-ui-shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+
+  /* Transitions */
+  --eg-ui-transition-colors: color 0.15s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1), text-decoration-color 0.15s cubic-bezier(0.4, 0, 0.2, 1), fill 0.15s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --eg-ui-transition-transform: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --eg-ui-transition-all: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Z-Index */
+  --eg-ui-z-modal: 9999;
+  --eg-ui-z-overlay: 9998;
+}

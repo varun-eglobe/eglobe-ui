@@ -1,0 +1,127 @@
+/* eGlobe UI Buttons */
+
+.eg-ui-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1.25rem;
+  gap: var(--eg-ui-space-2);
+  /* 10px 20px */
+  font-family: var(--eg-ui-font-sans);
+  font-size: var(--eg-ui-text-sm);
+  font-weight: 500;
+  line-height: var(--eg-ui-leading-normal);
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--eg-ui-radius-md);
+  transition: var(--eg-ui-transition-all);
+  margin-right: var(--eg-ui-space-2);
+  margin-bottom: var(--eg-ui-space-2);
+}
+
+.eg-ui-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--eg-ui-neutral-50), 0 0 0 4px var(--eg-ui-primary-400);
+}
+
+.eg-ui-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Primary Button */
+.eg-ui-btn--primary {
+  color: #ffffff;
+  background-color: var(--eg-ui-primary-600);
+  border-color: transparent;
+  box-shadow: var(--eg-ui-shadow-sm);
+}
+
+.eg-ui-btn--primary:hover {
+  background-color: var(--eg-ui-primary-700);
+  transform: translateY(-1px);
+  box-shadow: var(--eg-ui-shadow-md);
+}
+
+.eg-ui-btn--primary:active {
+  background-color: var(--eg-ui-primary-800);
+  transform: translateY(0);
+}
+
+/* Secondary Button */
+.eg-ui-btn--secondary {
+  color: var(--eg-ui-neutral-700);
+  background-color: var(--eg-ui-neutral-50);
+  border-color: var(--eg-ui-neutral-300);
+  box-shadow: var(--eg-ui-shadow-sm);
+}
+
+.eg-ui-btn--secondary:hover {
+  color: var(--eg-ui-neutral-900);
+  background-color: var(--eg-ui-neutral-100);
+  border-color: var(--eg-ui-neutral-400);
+  transform: translateY(-1px);
+}
+
+.eg-ui-btn--secondary:active {
+  background-color: var(--eg-ui-neutral-200);
+  transform: translateY(0);
+}
+
+/* Danger Button */
+.eg-ui-btn--danger {
+  color: #ffffff;
+  background-color: var(--eg-ui-danger);
+  border-color: transparent;
+  box-shadow: var(--eg-ui-shadow-sm);
+}
+
+.eg-ui-btn--danger:focus {
+  box-shadow: 0 0 0 2px var(--eg-ui-neutral-50), 0 0 0 4px #f87171;
+}
+
+.eg-ui-btn--danger:hover {
+  background-color: #dc2626;
+  /* darker red */
+  transform: translateY(-1px);
+  box-shadow: var(--eg-ui-shadow-md);
+}
+
+.eg-ui-btn--danger:active {
+  background-color: #b91c1c;
+  transform: translateY(0);
+}
+
+/* Ghost Button (New) */
+.eg-ui-btn--ghost {
+  color: var(--eg-ui-neutral-600);
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.eg-ui-btn--ghost:hover {
+  background-color: var(--eg-ui-primary-50);
+}
+
+/* Loading State */
+/* Loading State */
+.eg-ui-btn--loading {
+  opacity: 0.75;
+  cursor: no-drop;
+}
+
+/* Hide spinner by default inside buttons */
+.eg-ui-btn .eg-ui-spinner {
+  display: none;
+}
+
+/* Show spinner when button is in loading state */
+.eg-ui-btn--loading .eg-ui-spinner {
+  display: inline-block;
+}

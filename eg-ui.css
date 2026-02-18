@@ -1,0 +1,21 @@
+/* eGlobe UI Main Entry File */
+
+/* Design Tokens */
+@import url('css/eg-ui-tokens.css');
+
+/* Base & Reset */
+@import url('css/eg-ui-base.css');
+
+/* Utilities */
+@import url('css/eg-ui-utilities.css');
+
+/* Components */
+@import url('css/eg-ui-buttons.css');
+@import url('css/eg-ui-forms.css');
+@import url('css/eg-ui-modal.css');
+@import url('css/eg-ui-tables.css');
+@import url('css/eg-ui-alerts.css');
+@import url('css/eg-ui-cards.css');
+@import url('css/eg-ui-badges.css');
+@import url('css/eg-ui-navs.css');
+@import url('css/eg-ui-spinners.css');

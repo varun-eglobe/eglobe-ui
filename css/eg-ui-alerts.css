@@ -1,0 +1,46 @@
+/* eGlobe UI Alerts */
+
+.eg-ui-alert {
+    position: relative;
+    padding: 0.75rem 1rem;
+    /* Compact padding */
+    margin-bottom: var(--eg-ui-space-4);
+    border: 1px solid transparent;
+    border-radius: var(--eg-ui-radius-lg);
+    /* More rounded */
+    font-family: var(--eg-ui-font-sans);
+    font-size: var(--eg-ui-text-sm);
+    /* Smaller text */
+    line-height: var(--eg-ui-leading-normal);
+    display: flex;
+    align-items: center;
+    gap: var(--eg-ui-space-3);
+}
+
+/* Success Alert */
+.eg-ui-alert--success {
+    color: #065f46;
+    background-color: #d1fae5;
+    border-color: #a7f3d0;
+}
+
+/* Warning Alert */
+.eg-ui-alert--warning {
+    color: #92400e;
+    background-color: #fef3c7;
+    border-color: #fde68a;
+}
+
+/* Danger Alert */
+.eg-ui-alert--danger {
+    color: #b91c1c;
+    background-color: #fee2e2;
+    border-color: #fecaca;
+}
+
+/* Info Alert */
+.eg-ui-alert--info {
+    color: #1e40af;
+    background-color: #dbeafe;
+    border-color: #bfdbfe;
+}

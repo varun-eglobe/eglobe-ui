@@ -1,0 +1,57 @@
+/* eGlobe UI Tables */
+
+.eg-ui-table {
+    width: 100%;
+    margin-bottom: var(--eg-ui-space-4);
+    color: var(--eg-ui-neutral-900);
+    vertical-align: top;
+    border-collapse: collapse;
+}
+
+.eg-ui-table th,
+.eg-ui-table td {
+    padding: 0.75rem 1rem;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--eg-ui-neutral-200);
+    text-align: left;
+}
+
+.eg-ui-table th {
+    font-weight: 600;
+    color: var(--eg-ui-neutral-700);
+    background-color: var(--eg-ui-neutral-50);
+    border-bottom-width: 2px;
+}
+
+.eg-ui-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Striped Variant */
+.eg-ui-table--striped tbody tr:nth-of-type(odd) {
+    background-color: var(--eg-ui-neutral-50);
+}
+
+/* Hover Variant */
+.eg-ui-table--hover tbody tr:hover {
+    background-color: var(--eg-ui-neutral-100);
+}
+
+/* Bordered Variant */
+.eg-ui-table--bordered {
+    border: 1px solid var(--eg-ui-neutral-200);
+}
+
+.eg-ui-table--bordered th,
+.eg-ui-table--bordered td {
+    border: 1px solid var(--eg-ui-neutral-200);
+}
+
+/* Table Cover Wrapper */
+.eg-ui-table-cover {
+    background-color: var(--eg-ui-white);
+    padding: var(--eg-ui-space-6);
+    border-radius: var(--eg-ui-radius-lg);
+    box-shadow: var(--eg-ui-shadow-sm);
+    margin-bottom: var(--eg-ui-space-4);
+}

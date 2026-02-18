@@ -1,0 +1,39 @@
+/* eGlobe UI Cards */
+
+.eg-ui-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #ffffff;
+    background-clip: border-box;
+    border: 1px solid var(--eg-ui-neutral-200);
+    border-radius: var(--eg-ui-radius-lg);
+    box-shadow: var(--eg-ui-shadow-sm);
+}
+
+.eg-ui-card__header {
+    padding: var(--eg-ui-space-4) var(--eg-ui-space-5);
+    margin-bottom: 0;
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--eg-ui-neutral-100);
+    border-top-left-radius: var(--eg-ui-radius-lg);
+    border-top-right-radius: var(--eg-ui-radius-lg);
+    font-weight: 600;
+    font-size: var(--eg-ui-text-lg);
+    color: var(--eg-ui-neutral-900);
+}
+
+.eg-ui-card__body {
+    flex: 1 1 auto;
+    padding: var(--eg-ui-space-5);
+}
+
+.eg-ui-card__footer {
+    padding: var(--eg-ui-space-4) var(--eg-ui-space-5);
+    background-color: var(--eg-ui-neutral-50);
+    border-top: 1px solid var(--eg-ui-neutral-100);
+    border-bottom-right-radius: var(--eg-ui-radius-lg);
+    border-bottom-left-radius: var(--eg-ui-radius-lg);
+}
