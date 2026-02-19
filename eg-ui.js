@@ -113,6 +113,9 @@ const egToast = {
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Add library class to body
+    document.body.classList.add('eg-ui-app');
+
     // --- Modals ---
     const modals = document.querySelectorAll('.eg-ui-modal');
     modals.forEach(modal => {
