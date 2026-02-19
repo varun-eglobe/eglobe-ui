@@ -2,6 +2,6 @@
   "name": "eglobe-ui",
   "version": "1.0.0",
   "scripts": {
-    "dev": "npx serve ."
+    "dev": "node -e \"const fs = require('fs'); const p = 'index.html'; fs.writeFileSync(p, fs.readFileSync(p, 'utf8').replace(/eg-ui\\.css\\?v=\\d+/, 'eg-ui.css?v=' + Date.now()));\" && npx serve ."
   }
 }

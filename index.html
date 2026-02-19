@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>eGlobe UI Library Demo</title>
 
-  <!-- CSS Library -->
-  <link rel="stylesheet" href="eg-ui.css">
+  <!-- CSS Library (Timestamp updated automatically via 'npm run dev') -->
+  <link rel="stylesheet" href="eg-ui.css?v=1771474263629">
 
   <!-- Demo-specific styles (just for presentation layout) -->
   <style>
@@ -214,6 +214,7 @@
 
       <nav style="display: flex; flex-direction: column; gap: 0.25rem;">
         <a href="#intro" class="sidebar-link active">Introduction</a>
+        <a href="#getting-started" class="sidebar-link">Getting Started</a>
         <a href="#alerts" class="sidebar-link">Alerts</a>
         <a href="#spinners" class="sidebar-link">Spinners</a>
         <a href="#buttons" class="sidebar-link">Buttons & Badges</a>
@@ -242,6 +243,37 @@
           apply correctly.
         </div>
       </div>
+
+      <!-- Getting Started Section -->
+      <section id="getting-started" class="demo-section">
+        <h2 class="eg-ui-mb-1">Getting Started</h2>
+        <p class="eg-ui-text-muted eg-ui-mb-6">Follow these simple steps to integrate eGlobe UI into your project.</p>
+
+        <div class="example-card">
+          <span class="example-title">1. Link CSS Library</span>
+          <p class="eg-ui-mb-4">Include the main entry CSS file in your <code>&lt;head&gt;</code>.</p>
+          <pre
+            style="background: #1e293b; color: #f8fafc; padding: 1.25rem; border-radius: 12px; font-size: 0.875rem; overflow-x: auto;"><code>&lt;link rel="stylesheet" href="path/to/eg-ui.css"&gt;</code></pre>
+        </div>
+
+        <div class="example-card">
+          <span class="example-title">2. Use the App Wrapper</span>
+          <p class="eg-ui-mb-4">All eGlobe UI components must reside within a <code>.eg-ui-app</code> container.</p>
+          <pre
+            style="background: #1e293b; color: #f8fafc; padding: 1.25rem; border-radius: 12px; font-size: 0.875rem; overflow-x: auto;"><code>&lt;body&gt;
+  &lt;div class="eg-ui-app"&gt;
+    &lt;!-- Your components here --&gt;
+  &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+        </div>
+
+        <div class="example-card">
+          <span class="example-title">3. Interactive Components</span>
+          <p class="eg-ui-mb-4">For interactive features like Modals, Tabs, or Toasts, include the library JS file.</p>
+          <pre
+            style="background: #1e293b; color: #f8fafc; padding: 1.25rem; border-radius: 12px; font-size: 0.875rem; overflow-x: auto;"><code>&lt;script src="path/to/eg-ui.js"&gt;&lt;/script&gt;</code></pre>
+        </div>
+      </section>
 
       <!-- Alerts Section -->
       <section id="alerts" class="demo-section">
@@ -667,9 +699,7 @@
 
   </div>
 
-  <script src="js/eg-ui-modal.js"></script>
-  <script src="js/eg-ui-tabs.js"></script>
-  <script src="js/eg-ui-toast.js"></script>
+  <script src="eg-ui.js"></script>
 
   <script>
     // Mobile menu logic
