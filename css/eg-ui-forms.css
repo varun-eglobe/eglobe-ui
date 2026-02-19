@@ -77,6 +77,89 @@
   color: var(--eg-ui-danger);
 }
 
-.eg-ui-is-invalid ~ .eg-ui-invalid-feedback {
+.eg-ui-is-invalid~.eg-ui-invalid-feedback {
   display: block;
+}
+
+/* Checkboxes & Radio Buttons */
+.eg-ui-check {
+  display: flex;
+  align-items: center;
+  gap: var(--eg-ui-space-2);
+  min-height: 1.5rem;
+  padding-left: 0;
+  margin-bottom: var(--eg-ui-space-2);
+  cursor: pointer;
+}
+
+.eg-ui-check-input {
+  appearance: none;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin: 0;
+  background-color: #fff;
+  border: 1px solid var(--eg-ui-neutral-300);
+  border-radius: var(--eg-ui-radius-sm);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.eg-ui-check-input[type="radio"] {
+  border-radius: var(--eg-ui-radius-full);
+}
+
+.eg-ui-check-input:checked {
+  background-color: var(--eg-ui-primary-500);
+  border-color: var(--eg-ui-primary-500);
+}
+
+.eg-ui-check-input:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.eg-ui-check-input[type="checkbox"]:checked::after {
+  width: 5px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: translate(-50%, -65%) rotate(45deg);
+}
+
+.eg-ui-check-input[type="radio"]:checked::after {
+  width: 6px;
+  height: 6px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.eg-ui-check-input:focus {
+  outline: 0;
+  box-shadow: 0 0 0 3px var(--eg-ui-primary-100);
+  border-color: var(--eg-ui-primary-500);
+}
+
+.eg-ui-check-input:disabled {
+  background-color: var(--eg-ui-neutral-100);
+  border-color: var(--eg-ui-neutral-200);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.eg-ui-check-input:disabled~.eg-ui-check-label {
+  color: var(--eg-ui-neutral-400);
+  cursor: not-allowed;
+}
+
+.eg-ui-check-label {
+  font-size: var(--eg-ui-text-sm);
+  color: var(--eg-ui-neutral-700);
+  cursor: pointer;
+  user-select: none;
+  line-height: var(--eg-ui-leading-tight);
 }

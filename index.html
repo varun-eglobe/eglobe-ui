@@ -13,64 +13,228 @@
   <style>
     body {
       margin: 0;
-      background-color: #f3f4f6;
+      background-color: #f8fafc;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #1e293b;
     }
 
     .demo-wrapper {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 40px auto;
-      padding: 20px;
-      border-radius: 12px;
+      padding: 0;
+      border-radius: 16px;
       background: white;
-      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+      overflow: hidden;
     }
 
     .demo-section {
-      padding: 30px;
-      border-bottom: 1px solid #e5e7eb;
+      padding: 3rem;
+      border-bottom: 1px solid #f1f5f9;
     }
 
     .demo-section:last-child {
       border-bottom: none;
+    }
+
+    .example-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-top: 1.5rem;
+      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+    }
+
+    .example-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748b;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      padding: 0.625rem 1rem;
+      color: #64748b;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.2s;
+      font-size: 0.9375rem;
+      font-weight: 500;
+    }
+
+    .sidebar-link:hover {
+      background-color: #f1f5f9;
+      color: #4f46e5;
+    }
+
+    .sidebar-link.active {
+      background-color: #eef2ff;
+      color: #4f46e5;
+    }
+
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* Responsive Transitions */
+    aside,
+    main {
+      transition: all 0.3s ease;
+    }
+
+    /* Mobile Header */
+    .mobile-header {
+      display: none;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #fff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 0.75rem 1.5rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .menu-toggle {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: #0f172a;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      margin-right: -0.5rem;
+    }
+
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1001;
+      backdrop-filter: blur(2px);
+    }
+
+    @media (max-width: 991px) {
+      .mobile-header {
+        display: flex;
+      }
+
+      .eg-ui-app {
+        flex-direction: column;
+      }
+
+      aside {
+        position: fixed !important;
+        left: -260px;
+        z-index: 1002;
+        box-shadow: 10px 0 15px -3px rgba(0, 0, 0, 0.1);
+      }
+
+      aside.active {
+        left: 0;
+      }
+
+      .sidebar-overlay.active {
+        display: block;
+      }
+
+      main {
+        padding: 1.5rem 1.5rem !important;
+      }
+
+      .demo-section {
+        padding: 2rem 0 !important;
+      }
+
+      .component-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .example-card {
+        padding: 1.5rem;
+      }
+    }
+
+    code {
+      background: #f1f5f9;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      color: #ef4444;
     }
   </style>
 </head>
 
 <body>
 
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <header class="mobile-header">
+    <div style="display: flex; align-items: center; gap: 0.75rem;">
+      <div
+        style="width: 28px; height: 28px; background: #6366f1; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1rem;">
+        Q</div>
+      <h2 style="font-size: 1.1rem; font-weight: 700; margin: 0; color: #0f172a; letter-spacing: -0.01em;">eGlobe UI
+      </h2>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+  </header>
+
   <div class="eg-ui-app" style="display: flex; min-height: 100vh;">
 
     <!-- Sidebar Navigation -->
-    <aside
-      style="width: 250px; background: #fff; border-right: 1px solid #e2e8f0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 2rem 1.5rem; flex-shrink: 0;">
-      <h2 class="eg-ui-mb-4 eg-ui-text-lg eg-ui-font-bold">eGlobe UI</h2>
-      <nav style="display: flex; flex-direction: column; gap: 0.5rem;">
-        <a href="#intro" class="eg-ui-text-muted hover:eg-ui-text-primary"
-          style="text-decoration: none;">Introduction</a>
-        <a href="#alerts" class="eg-ui-text-muted hover:eg-ui-text-primary" style="text-decoration: none;">Alerts</a>
-        <a href="#spinners" class="eg-ui-text-muted hover:eg-ui-text-primary"
-          style="text-decoration: none;">Spinners</a>
-        <a href="#buttons" class="eg-ui-text-muted hover:eg-ui-text-primary" style="text-decoration: none;">Buttons &
-          Badges</a>
-        <a href="#cards" class="eg-ui-text-muted hover:eg-ui-text-primary" style="text-decoration: none;">Cards</a>
-        <a href="#navs" class="eg-ui-text-muted hover:eg-ui-text-primary" style="text-decoration: none;">Navs & Tabs</a>
-        <a href="#forms" class="eg-ui-text-muted hover:eg-ui-text-primary" style="text-decoration: none;">Form
-          Elements</a>
-        <a href="#tables" class="eg-ui-text-muted hover:eg-ui-text-primary" style="text-decoration: none;">Tables</a>
-        <a href="#modals" class="eg-ui-text-muted hover:eg-ui-text-primary" style="text-decoration: none;">Modals</a>
-        <a href="#toasts" class="eg-ui-text-muted hover:eg-ui-text-primary" style="text-decoration: none;">Toasts</a>
+    <aside id="sidebarNav"
+      style="width: 260px; background: #fff; border-right: 1px solid #e2e8f0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 2.5rem 1.5rem; flex-shrink: 0;">
+      <div class="sidebar-desktop-header"
+        style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2.5rem;">
+        <div
+          style="width: 32px; height: 32px; background: #6366f1; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem;">
+          Q</div>
+        <h2 style="font-size: 1.25rem; font-weight: 700; margin: 0; color: #0f172a; letter-spacing: -0.02em;">eGlobe UI
+        </h2>
+      </div>
+
+      <nav style="display: flex; flex-direction: column; gap: 0.25rem;">
+        <a href="#intro" class="sidebar-link active">Introduction</a>
+        <a href="#alerts" class="sidebar-link">Alerts</a>
+        <a href="#spinners" class="sidebar-link">Spinners</a>
+        <a href="#buttons" class="sidebar-link">Buttons & Badges</a>
+        <a href="#cards" class="sidebar-link">Cards</a>
+        <a href="#navs" class="sidebar-link">Navs & Tabs</a>
+        <a href="#forms" class="sidebar-link">Form Elements</a>
+        <a href="#tables" class="sidebar-link">Tables</a>
+        <a href="#modals" class="sidebar-link">Modals</a>
+        <a href="#toasts" class="sidebar-link">Toasts</a>
       </nav>
     </aside>
 
     <!-- Main Content -->
     <main style="flex: 1; padding: 2rem 3rem; overflow-y: auto; scroll-behavior: smooth;">
 
-      <div id="intro" class="demo-section eg-ui-mb-8">
+      <div id="intro" class="demo-section eg-ui-mb-8" style="padding-top: 0.5rem;">
         <h1 class="eg-ui-mb-2">eGlobe UI System</h1>
         <p class="eg-ui-text-muted eg-ui-text-lg">A theme-independent, shared UI library for all eGlobe Shopify Apps.
         </p>
-        <span class="eg-ui-badge eg-ui-badge--primary">v1.3.0</span>
-        <span class="eg-ui-badge eg-ui-badge--success eg-ui-badge--pill">Packaged</span>
+        <span class="eg-ui-badge eg-ui-badge--primary">v1.3.1</span>
+        <span class="eg-ui-badge eg-ui-badge--success eg-ui-badge--pill">Responsive</span>
 
         <div class="eg-ui-alert eg-ui-alert--warning eg-ui-mt-4">
           <strong>Important:</strong> You must wrap your content in a <strong>.eg-ui-app</strong> container for styles
@@ -80,87 +244,126 @@
       </div>
 
       <!-- Alerts Section -->
-      <section id="alerts" class="demo-section eg-ui-mb-8">
-        <h2 class="eg-ui-mb-4">Alerts</h2>
-        <div class="eg-ui-alert eg-ui-alert--success">
-          <strong>Success!</strong> Your settings have been saved.
-        </div>
-        <div class="eg-ui-alert eg-ui-alert--info">
-          <strong>Note:</strong> This feature is in beta.
-        </div>
-        <div class="eg-ui-alert eg-ui-alert--warning">
-          <strong>Warning:</strong> Your subscription is expiring soon.
-        </div>
-        <div class="eg-ui-alert eg-ui-alert--danger">
-          <strong>Error:</strong> Something went wrong.
+      <section id="alerts" class="demo-section">
+        <h2 class="eg-ui-mb-1">Alerts</h2>
+        <p class="eg-ui-text-muted eg-ui-mb-6">Provide contextual feedback messages for typical user actions.</p>
+
+        <div class="example-card">
+          <span class="example-title">Contextual Variants</span>
+          <div class="eg-ui-alert eg-ui-alert--success">
+            <strong>Success!</strong> Your settings have been saved.
+          </div>
+          <div class="eg-ui-alert eg-ui-alert--info">
+            <strong>Note:</strong> This feature is in beta.
+          </div>
+          <div class="eg-ui-alert eg-ui-alert--warning">
+            <strong>Warning:</strong> Your subscription is expiring soon.
+          </div>
+          <div class="eg-ui-alert eg-ui-alert--danger">
+            <strong>Error:</strong> Something went wrong.
+          </div>
         </div>
       </section>
 
       <!-- Buttons & Badges Section -->
-      <section id="buttons" class="demo-section eg-ui-mb-8">
-        <h2 class="eg-ui-mb-4">Buttons & Badges</h2>
-        <div class="eg-ui-mb-4">
-          <button class="eg-ui-btn eg-ui-btn--primary">
-            Notifications <span class="eg-ui-badge eg-ui-badge--secondary eg-ui-badge--pill">4</span>
-          </button>
-          <button class="eg-ui-btn eg-ui-btn--secondary">Secondary</button>
-          <button class="eg-ui-btn eg-ui-btn--ghost">Ghost</button>
-          <button class="eg-ui-btn eg-ui-btn--danger">Danger</button>
+      <section id="buttons" class="demo-section">
+        <h2 class="eg-ui-mb-1">Buttons & Badges</h2>
+        <p class="eg-ui-text-muted eg-ui-mb-6">Essential UI elements for actions and information labeling.</p>
+
+        <div class="example-card">
+          <span class="example-title">Button Variants</span>
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <button class="eg-ui-btn eg-ui-btn--primary">Primary</button>
+            <button class="eg-ui-btn eg-ui-btn--secondary">Secondary</button>
+            <button class="eg-ui-btn eg-ui-btn--success">Success</button>
+            <button class="eg-ui-btn eg-ui-btn--danger">Danger</button>
+            <button class="eg-ui-btn eg-ui-btn--outline">Outline</button>
+            <button class="eg-ui-btn eg-ui-btn--ghost">Ghost</button>
+            <button class="eg-ui-btn eg-ui-btn--primary" disabled>Disabled</button>
+          </div>
+        </div>
+
+        <div class="component-grid">
+          <div class="example-card">
+            <span class="example-title">With Badges</span>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+              <button class="eg-ui-btn eg-ui-btn--primary">
+                Notifications <span class="eg-ui-badge eg-ui-badge--secondary eg-ui-badge--pill">4</span>
+              </button>
+              <button class="eg-ui-btn eg-ui-btn--secondary">
+                Messages <span class="eg-ui-badge eg-ui-badge--danger eg-ui-badge--pill">99+</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="example-card">
+            <span class="example-title">Badge Variants</span>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="eg-ui-badge">Default</span>
+              <span class="eg-ui-badge eg-ui-badge--primary">Primary</span>
+              <span class="eg-ui-badge eg-ui-badge--success">Success</span>
+              <span class="eg-ui-badge eg-ui-badge--warning">Warning</span>
+              <span class="eg-ui-badge eg-ui-badge--danger">Danger</span>
+            </div>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem;">
+              <span class="eg-ui-badge eg-ui-badge--primary eg-ui-badge--pill">Pill Badge</span>
+              <span class="eg-ui-badge eg-ui-badge--success eg-ui-badge--pill">Active</span>
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- Spinners Section -->
-      <!-- Spinners Section -->
-      <section id="spinners" class="demo-section eg-ui-mb-8">
-        <h2 class="eg-ui-mb-4">Spinners & Loading</h2>
+      <section id="spinners" class="demo-section">
+        <h2 class="eg-ui-mb-1">Spinners & Loading</h2>
+        <p class="eg-ui-text-muted eg-ui-mb-6">Indicate a loading state for a component or page.</p>
 
-        <div class="eg-ui-mb-4">
-          <span class="eg-ui-spinner eg-ui-spinner--primary"></span>
-          <span class="eg-ui-spinner eg-ui-spinner--secondary"></span>
-          <span class="eg-ui-spinner eg-ui-spinner--success"></span>
-          <span class="eg-ui-spinner eg-ui-spinner--danger"></span>
-          <span class="eg-ui-spinner eg-ui-spinner--warning"></span>
-        </div>
+        <div class="component-grid">
+          <div class="example-card">
+            <span class="example-title">Spinner Variants</span>
+            <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
+              <span class="eg-ui-spinner eg-ui-spinner--sm eg-ui-spinner--primary"></span>
+              <span class="eg-ui-spinner eg-ui-spinner--primary"></span>
+              <span class="eg-ui-spinner eg-ui-spinner--lg eg-ui-spinner--primary"></span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 1.5rem;">
+              <span class="eg-ui-spinner eg-ui-spinner--secondary"></span>
+              <span class="eg-ui-spinner eg-ui-spinner--success"></span>
+              <span class="eg-ui-spinner eg-ui-spinner--danger"></span>
+            </div>
+          </div>
 
-        <div class="eg-ui-mb-4">
-          <span class="eg-ui-spinner eg-ui-spinner--sm eg-ui-spinner--primary"></span>
-          <span class="eg-ui-spinner eg-ui-spinner--lg eg-ui-spinner--primary"></span>
-        </div>
-
-        <h3 class="eg-ui-text-md eg-ui-mb-2">Buttons with Loading State</h3>
-        <p class="eg-ui-text-muted eg-ui-mb-4">Use a <code>.eg-ui-spinner</code> inside the button. Add
-          <code>.eg-ui-btn--loading</code> to disable clicks.
-        </p>
-
-        <div class="eg-ui-mb-4">
-          <!-- Button with Text & Spinner -->
-          <button class="eg-ui-btn eg-ui-btn--primary">
-            Notifications <span class="eg-ui-spinner eg-ui-spinner--sm eg-ui-spinner--white"></span>
-          </button>
-
-          <!-- Button with Spinner only -->
-          <button class="eg-ui-btn eg-ui-btn--primary eg-ui-btn--loading">
-            <span class="eg-ui-spinner eg-ui-spinner--sm eg-ui-spinner--white"></span>
-          </button>
-
-          <button class="eg-ui-btn eg-ui-btn--secondary">
-            Loading... <span class="eg-ui-spinner eg-ui-spinner--sm eg-ui-spinner--secondary"></span>
-          </button>
+          <div class="example-card">
+            <span class="example-title">Button Loading</span>
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              <button class="eg-ui-btn eg-ui-btn--primary">
+                Loading <span class="eg-ui-spinner eg-ui-spinner--sm eg-ui-spinner--white"></span>
+              </button>
+              <button class="eg-ui-btn eg-ui-btn--secondary eg-ui-btn--loading">
+                Please wait <span class="eg-ui-spinner eg-ui-spinner--sm eg-ui-spinner--secondary"></span>
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- Cards Section -->
-      <section id="cards" class="demo-section eg-ui-mb-8">
-        <h2 class="eg-ui-mb-4">Cards</h2>
-        <div class="eg-ui-card eg-ui-mb-4">
-          <div class="eg-ui-card__header">Featured Card</div>
-          <div class="eg-ui-card__body">
-            <h3 class="eg-ui-mb-2">Card Title</h3>
-            <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <button class="eg-ui-btn eg-ui-btn--primary">Go somewhere</button>
-          </div>
-          <div class="eg-ui-card__footer eg-ui-text-muted eg-ui-text-sm">
-            Last updated 3 mins ago
+      <section id="cards" class="demo-section">
+        <h2 class="eg-ui-mb-1">Cards</h2>
+        <p class="eg-ui-text-muted eg-ui-mb-6">Flexible content containers with header, body, and footer.</p>
+
+        <div class="example-card">
+          <span class="example-title">Standard Card</span>
+          <div class="eg-ui-card" style="max-width: 400px;">
+            <div class="eg-ui-card__header">Featured Offer</div>
+            <div class="eg-ui-card__body">
+              <h3 class="eg-ui-mb-2">Product Upgrade</h3>
+              <p class="eg-ui-mb-4">Unlock premium features and higher limits with our latest expansion pack.</p>
+              <button class="eg-ui-btn eg-ui-btn--primary">Activate Now</button>
+            </div>
+            <div class="eg-ui-card__footer eg-ui-text-muted eg-ui-text-sm">
+              Offer expires in 2 days
+            </div>
           </div>
         </div>
       </section>
@@ -172,269 +375,293 @@
         <h3 class="eg-ui-text-md eg-ui-mb-2">Basic Tabs</h3>
         <div class="eg-ui-mb-4">
           <ul class="eg-ui-nav eg-ui-nav-tabs">
-            <li class="eg-ui-nav-item">
-              <a class="eg-ui-nav-link active" href="#home" data-eg-ui-toggle="tab">Home</a>
-            </li>
-            <li class="eg-ui-nav-item">
-              <a class="eg-ui-nav-link" href="#profile" data-eg-ui-toggle="tab">Profile</a>
-            </li>
-            <li class="eg-ui-nav-item">
-              <a class="eg-ui-nav-link" href="#contact" data-eg-ui-toggle="tab">Contact</a>
-            </li>
-          </ul>
-          <div class="eg-ui-tab-content">
-            <div class="eg-ui-tab-pane active" id="home">
-              <p class="eg-ui-p-4 eg-ui-text-muted">Home content goes here. Use tabs to organize related content without
-                cluttering the page.</p>
-            </div>
-            <div class="eg-ui-tab-pane" id="profile">
-              <p class="eg-ui-p-4 eg-ui-text-muted">Profile content is hidden by default and shown when the tab is
-                clicked.</p>
-            </div>
-            <div class="eg-ui-tab-pane" id="contact">
-              <p class="eg-ui-p-4 eg-ui-text-muted">Contact details can be placed here.</p>
-            </div>
-          </div>
-        </div>
+            <!-- Navs & Tabs Section -->
+            <section id="navs" class="demo-section">
+              <h2 class="eg-ui-mb-1">Navs & Tabs</h2>
+              <p class="eg-ui-text-muted eg-ui-mb-6">Navigation components for switching between views or sections.</p>
 
-        <h3 class="eg-ui-text-md eg-ui-mb-2">Pills</h3>
-        <ul class="eg-ui-nav eg-ui-nav-pills">
-          <li class="eg-ui-nav-item">
-            <a class="eg-ui-nav-link active" href="#" onclick="return false;">Active</a>
-          </li>
-          <li class="eg-ui-nav-item">
-            <a class="eg-ui-nav-link" href="#" onclick="return false;">Link</a>
-          </li>
-          <li class="eg-ui-nav-item">
-            <a class="eg-ui-nav-link disabled" href="#">Disabled</a>
-          </li>
-        </ul>
-      </section>
+              <div class="component-grid">
+                <div class="example-card">
+                  <span class="example-title">Tabbed Navigation</span>
+                  <ul class="eg-ui-nav eg-ui-nav-tabs">
+                    <li class="eg-ui-nav-item"><a class="eg-ui-nav-link active" href="#tab1"
+                        data-eg-ui-toggle="tab">Home</a></li>
+                    <li class="eg-ui-nav-item"><a class="eg-ui-nav-link" href="#tab2"
+                        data-eg-ui-toggle="tab">Profile</a></li>
+                  </ul>
+                  <div class="eg-ui-tab-content eg-ui-mt-4">
+                    <div class="eg-ui-tab-pane active" id="tab1">
+                      <p class="eg-ui-text-muted">Home content area.</p>
+                    </div>
+                    <div class="eg-ui-tab-pane" id="tab2">
+                      <p class="eg-ui-text-muted">Profile content area.</p>
+                    </div>
+                  </div>
+                </div>
 
-      <!-- Forms Section -->
-      <section id="forms" class="demo-section eg-ui-mb-8">
-        <h2 class="eg-ui-mb-4">Form Elements</h2>
-        <div class="eg-ui-form-group">
-          <label class="eg-ui-label">Quote Title</label>
-          <input type="text" class="eg-ui-input" placeholder="e.g. Summer Sale Quote">
-        </div>
-        <div class="eg-ui-form-group">
-          <label class="eg-ui-label">Status</label>
-          <select class="eg-ui-select">
-            <option>Draft</option>
-            <option>Active</option>
-          </select>
-        </div>
-      </section>
-
-      <!-- Tables Section -->
-      <section id="tables" class="demo-section eg-ui-mb-8">
-        <h2 class="eg-ui-mb-4">Tables</h2>
-        <div class="eg-ui-table-cover">
-          <table class="eg-ui-table eg-ui-table--striped eg-ui-table--hover">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Role</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>#101</td>
-                <td>John Doe</td>
-                <td>Admin</td>
-                <td><span class="eg-ui-badge eg-ui-badge--success">Active</span></td>
-              </tr>
-              <tr>
-                <td>#102</td>
-                <td>Jane Smith</td>
-                <td>Editor</td>
-                <td><span class="eg-ui-badge eg-ui-badge--warning">Pending</span></td>
-              </tr>
-              <tr>
-                <td>#103</td>
-                <td>Bob Johnson</td>
-                <td>Viewer</td>
-                <td><span class="eg-ui-badge eg-ui-badge--danger">Inactive</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- Modal Section -->
-      <section id="modals" class="demo-section eg-ui-mb-8">
-        <h2 class="eg-ui-mb-4">Modals</h2>
-        <div class="eg-ui-mb-4">
-          <button class="eg-ui-btn eg-ui-btn--primary" onclick="openModal('modalSm')">Small Modal</button>
-          <button class="eg-ui-btn eg-ui-btn--primary" onclick="openModal('modalMd')">Default Modal</button>
-          <button class="eg-ui-btn eg-ui-btn--primary" onclick="openModal('modalLg')">Large Modal</button>
-          <button class="eg-ui-btn eg-ui-btn--secondary" onclick="openModal('modalXl')">Extra Large Modal</button>
-          <button class="eg-ui-btn eg-ui-btn--danger" onclick="openModal('modalFull')">Full Screen Modal</button>
-        </div>
-
-        <!-- Small Modal -->
-        <div class="eg-ui-modal eg-ui-modal--sm" id="modalSm">
-          <div class="eg-ui-modal__overlay"></div>
-          <div class="eg-ui-modal__content">
-            <div class="eg-ui-modal__header">
-              <h3 class="eg-ui-modal__title">Small Modal</h3>
-              <button class="eg-ui-modal__close" onclick="closeModal('modalSm')">&times;</button>
-            </div>
-            <div class="eg-ui-modal__body">
-              <p>This is a small modal.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Default Modal -->
-        <div class="eg-ui-modal" id="modalMd">
-          <div class="eg-ui-modal__overlay"></div>
-          <div class="eg-ui-modal__content">
-            <div class="eg-ui-modal__header">
-              <h3 class="eg-ui-modal__title">Default Modal</h3>
-              <button class="eg-ui-modal__close" onclick="closeModal('modalMd')">&times;</button>
-            </div>
-            <div class="eg-ui-modal__body">
-              <p>This is the default size modal.</p>
-            </div>
-            <div class="eg-ui-modal__footer">
-              <button class="eg-ui-btn eg-ui-btn--ghost" onclick="closeModal('modalMd')">Cancel</button>
-              <button class="eg-ui-btn eg-ui-btn--primary">Confirm</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Large Modal -->
-        <div class="eg-ui-modal eg-ui-modal--lg" id="modalLg">
-          <div class="eg-ui-modal__overlay"></div>
-          <div class="eg-ui-modal__content">
-            <div class="eg-ui-modal__header">
-              <h3 class="eg-ui-modal__title">Large Modal</h3>
-              <button class="eg-ui-modal__close" onclick="closeModal('modalLg')">&times;</button>
-            </div>
-            <div class="eg-ui-modal__body">
-              <p>This is a large modal suitable for more content.</p>
-              <div class="eg-ui-alert eg-ui-alert--info">
-                You can put anything here, including grids or forms!
+                <div class="example-card">
+                  <span class="example-title">Pill Navigation</span>
+                  <ul class="eg-ui-nav eg-ui-nav-pills">
+                    <li class="eg-ui-nav-item"><a class="eg-ui-nav-link active" href="#">Active</a></li>
+                    <li class="eg-ui-nav-item"><a class="eg-ui-nav-link" href="#">Link</a></li>
+                  </ul>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
+            </section>
 
-        <!-- Extra Large Modal -->
-        <div class="eg-ui-modal eg-ui-modal--xl" id="modalXl">
-          <div class="eg-ui-modal__overlay"></div>
-          <div class="eg-ui-modal__content">
-            <div class="eg-ui-modal__header">
-              <h3 class="eg-ui-modal__title">Extra Large Modal</h3>
-              <button class="eg-ui-modal__close" onclick="closeModal('modalXl')">&times;</button>
-            </div>
-            <div class="eg-ui-modal__body">
-              <p>This modal is extra large, great for data tables or complex layouts.</p>
-              <table class="eg-ui-table eg-ui-table--striped">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Data</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Sample Data Row 1</td>
-                    <td>Active</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Sample Data Row 2</td>
-                    <td>Active</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Sample Data Row 3</td>
-                    <td>Pending</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="eg-ui-modal__footer">
-              <button class="eg-ui-btn eg-ui-btn--primary" onclick="closeModal('modalXl')">Close</button>
-            </div>
-          </div>
-        </div>
+            <!-- Forms Section -->
+            <section id="forms" class="demo-section">
+              <h2 class="eg-ui-mb-1">Form Elements</h2>
+              <p class="eg-ui-text-muted eg-ui-mb-6">Standardized form controls with consistent styling and focus
+                states.</p>
 
-        <!-- Full Screen Modal -->
-        <div class="eg-ui-modal eg-ui-modal--full" id="modalFull">
-          <div class="eg-ui-modal__overlay"></div>
-          <div class="eg-ui-modal__content">
-            <div class="eg-ui-modal__header">
-              <h3 class="eg-ui-modal__title">Full Screen Modal</h3>
-              <button class="eg-ui-modal__close" onclick="closeModal('modalFull')">&times;</button>
-            </div>
-            <div class="eg-ui-modal__body">
-              <div class="eg-ui-app" style="max-width: 800px; margin: 0 auto; padding-top: 2rem;">
-                <h2 class="eg-ui-mb-4">Full Screen Content</h2>
-                <p class="eg-ui-mb-4">This modal takes up the entire screen, useful for immersive tasks like document
-                  editing or detailed reports.</p>
-                <div class="eg-ui-card eg-ui-mb-4">
-                  <div class="eg-ui-card__body">
-                    <p>Content inside full screen modal.</p>
-                    <button class="eg-ui-btn eg-ui-btn--secondary" onclick="closeModal('modalFull')">Close Full
-                      Screen</button>
+              <div class="example-card">
+                <span class="example-title">Input & Select</span>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                  <div class="eg-ui-form-group">
+                    <label class="eg-ui-label">Quote Title</label>
+                    <input type="text" class="eg-ui-input" placeholder="e.g. Summer Sale Quote">
+                  </div>
+                  <div class="eg-ui-form-group">
+                    <label class="eg-ui-label">Status</label>
+                    <select class="eg-ui-select">
+                      <option>Draft</option>
+                      <option>Active</option>
+                    </select>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
 
-      </section>
+              <div class="example-card">
+                <span class="example-title">Checkboxes & Radios</span>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                  <div>
+                    <label class="eg-ui-label">Selection Choices</label>
+                    <div class="eg-ui-check">
+                      <input type="checkbox" class="eg-ui-check-input" id="check1" checked>
+                      <label class="eg-ui-check-label" for="check1">Default Checked</label>
+                    </div>
+                    <div class="eg-ui-check">
+                      <input type="checkbox" class="eg-ui-check-input" id="check2">
+                      <label class="eg-ui-check-label" for="check2">Unchecked Option</label>
+                    </div>
+                    <div class="eg-ui-check">
+                      <input type="checkbox" class="eg-ui-check-input" id="check3" disabled checked>
+                      <label class="eg-ui-check-label" for="check3">Disabled Checked</label>
+                    </div>
+                  </div>
+                  <div>
+                    <label class="eg-ui-label">Single Choice</label>
+                    <div class="eg-ui-check">
+                      <input type="radio" class="eg-ui-check-input" name="radioGroup" id="radio1" checked>
+                      <label class="eg-ui-check-label" for="radio1">Option One</label>
+                    </div>
+                    <div class="eg-ui-check">
+                      <input type="radio" class="eg-ui-check-input" name="radioGroup" id="radio2">
+                      <label class="eg-ui-check-label" for="radio2">Option Two</label>
+                    </div>
+                    <div class="eg-ui-check">
+                      <input type="radio" class="eg-ui-check-input" name="radioGroup" id="radio3" disabled>
+                      <label class="eg-ui-check-label" for="radio3">Disabled Option</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
 
-      <!-- Toast Section -->
-      <section id="toasts" class="demo-section eg-ui-mb-8">
-        <h2 class="eg-ui-mb-4">Toasts (Scripted)</h2>
-        <p class="eg-ui-text-muted eg-ui-mb-4">Toasts are dynamic notifications triggered via JavaScript using the
-          <code>egToast.show()</code> utility.
-        </p>
+            <!-- Tables Section -->
+            <section id="tables" class="demo-section">
+              <h2 class="eg-ui-mb-1">Tables</h2>
+              <p class="eg-ui-text-muted eg-ui-mb-6">Responsive, clean table designs for displaying structured data.</p>
 
-        <div class="eg-ui-mb-4">
-          <button class="eg-ui-btn eg-ui-btn--success"
-            onclick="egToast.show({ message: 'Success! Action completed.', type: 'success' })">Success Toast</button>
-          <button class="eg-ui-btn eg-ui-btn--info"
-            onclick="egToast.show({ message: 'Info: New update available.', type: 'info' })">Info Toast</button>
-          <button class="eg-ui-btn eg-ui-btn--warning"
-            onclick="egToast.show({ message: 'Warning: Low disk space.', type: 'warning' })">Warning Toast</button>
-          <button class="eg-ui-btn eg-ui-btn--danger"
-            onclick="egToast.show({ message: 'Error: Failed to save changes.', type: 'danger' })">Danger Toast</button>
-        </div>
+              <div class="example-card" style="padding: 0; overflow: hidden;">
+                <div class="eg-ui-table-cover">
+                  <table class="eg-ui-table eg-ui-table--striped eg-ui-table--hover">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>#101</td>
+                        <td>John Doe</td>
+                        <td>Admin</td>
+                        <td><span class="eg-ui-badge eg-ui-badge--success">Active</span></td>
+                      </tr>
+                      <tr>
+                        <td>#102</td>
+                        <td>Jane Smith</td>
+                        <td>Editor</td>
+                        <td><span class="eg-ui-badge eg-ui-badge--warning">Pending</span></td>
+                      </tr>
+                      <tr>
+                        <td>#103</td>
+                        <td>Bob Johnson</td>
+                        <td>Viewer</td>
+                        <td><span class="eg-ui-badge eg-ui-badge--danger">Inactive</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
 
-        <div class="eg-ui-mb-4">
-          <button class="eg-ui-btn eg-ui-btn--primary"
-            onclick="egToast.show({ message: 'This toast lasts for 5 seconds.', duration: 5000 })">Long Toast
-            (5s)</button>
-        </div>
+            <!-- Modal Section -->
+            <section id="modals" class="demo-section">
+              <h2 class="eg-ui-mb-1">Modals</h2>
+              <p class="eg-ui-text-muted eg-ui-mb-6">Dialog prompts for critical information or complex interactions.
+              </p>
 
-        <h3 class="eg-ui-text-md eg-ui-mb-2">Positions</h3>
-        <p class="eg-ui-text-muted eg-ui-mb-4">Try different positions for the toast notifications.</p>
-        <div class="eg-ui-mb-4" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-          <button class="eg-ui-btn eg-ui-btn--ghost"
-            onclick="egToast.show({ message: 'Top Left Toast', position: 'top-left' })">Top Left</button>
-          <button class="eg-ui-btn eg-ui-btn--ghost"
-            onclick="egToast.show({ message: 'Top Center Toast', position: 'top-center' })">Top Center</button>
-          <button class="eg-ui-btn eg-ui-btn--ghost"
-            onclick="egToast.show({ message: 'Top Right Toast', position: 'top-right' })">Top Right</button>
-          <button class="eg-ui-btn eg-ui-btn--ghost"
-            onclick="egToast.show({ message: 'Bottom Left Toast', position: 'bottom-left' })">Bottom Left</button>
-          <button class="eg-ui-btn eg-ui-btn--ghost"
-            onclick="egToast.show({ message: 'Bottom Center Toast', position: 'bottom-center' })">Bottom Center</button>
-          <button class="eg-ui-btn eg-ui-btn--ghost"
-            onclick="egToast.show({ message: 'Bottom Right Toast', position: 'bottom-right' })">Bottom Right</button>
-        </div>
-      </section>
+              <div class="example-card">
+                <span class="example-title">Modal Trigger Points</span>
+                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                  <button class="eg-ui-btn eg-ui-btn--primary" onclick="openModal('modalSm')">Small</button>
+                  <button class="eg-ui-btn eg-ui-btn--primary" onclick="openModal('modalMd')">Default</button>
+                  <button class="eg-ui-btn eg-ui-btn--primary" onclick="openModal('modalLg')">Large</button>
+                  <button class="eg-ui-btn eg-ui-btn--secondary" onclick="openModal('modalXl')">Extra Large</button>
+                  <button class="eg-ui-btn eg-ui-btn--danger" onclick="openModal('modalFull')">Full Screen</button>
+                </div>
+              </div>
+
+              <!-- Modals Markup (kept outside cards for z-index safety) -->
+              <div class="eg-ui-modal eg-ui-modal--sm" id="modalSm">
+                <div class="eg-ui-modal__overlay"></div>
+                <div class="eg-ui-modal__content">
+                  <div class="eg-ui-modal__header">
+                    <h3 class="eg-ui-modal__title">Small Modal</h3>
+                    <button class="eg-ui-modal__close" onclick="closeModal('modalSm')">&times;</button>
+                  </div>
+                  <div class="eg-ui-modal__body">
+                    <p>This is a compact dialog.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="eg-ui-modal" id="modalMd">
+                <div class="eg-ui-modal__overlay"></div>
+                <div class="eg-ui-modal__content">
+                  <div class="eg-ui-modal__header">
+                    <h3 class="eg-ui-modal__title">Default Modal</h3>
+                    <button class="eg-ui-modal__close" onclick="closeModal('modalMd')">&times;</button>
+                  </div>
+                  <div class="eg-ui-modal__body">
+                    <p>Standard modal dimensions for general content.</p>
+                  </div>
+                  <div class="eg-ui-modal__footer">
+                    <button class="eg-ui-btn eg-ui-btn--ghost" onclick="closeModal('modalMd')">Cancel</button>
+                    <button class="eg-ui-btn eg-ui-btn--primary">Confirm</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="eg-ui-modal eg-ui-modal--lg" id="modalLg">
+                <div class="eg-ui-modal__overlay"></div>
+                <div class="eg-ui-modal__content">
+                  <div class="eg-ui-modal__header">
+                    <h3 class="eg-ui-modal__title">Large Modal</h3>
+                    <button class="eg-ui-modal__close" onclick="closeModal('modalLg')">&times;</button>
+                  </div>
+                  <div class="eg-ui-modal__body">
+                    <p>Suitable for media or data displays.</p>
+                    <div class="eg-ui-alert eg-ui-alert--info eg-ui-mt-4">Rich content can be nested here.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="eg-ui-modal eg-ui-modal--xl" id="modalXl">
+                <div class="eg-ui-modal__overlay"></div>
+                <div class="eg-ui-modal__content">
+                  <div class="eg-ui-modal__header">
+                    <h3 class="eg-ui-modal__title">Extra Large</h3>
+                    <button class="eg-ui-modal__close" onclick="closeModal('modalXl')">&times;</button>
+                  </div>
+                  <div class="eg-ui-modal__body">
+                    <p class="eg-ui-mb-4">Great for complex table views.</p>
+                    <table class="eg-ui-table eg-ui-table--striped">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>User</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>#001</td>
+                          <td>Alice</td>
+                          <td>Active</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="eg-ui-modal__footer"><button class="eg-ui-btn eg-ui-btn--primary"
+                      onclick="closeModal('modalXl')">Close</button></div>
+                </div>
+              </div>
+
+              <div class="eg-ui-modal eg-ui-modal--full" id="modalFull">
+                <div class="eg-ui-modal__overlay"></div>
+                <div class="eg-ui-modal__content">
+                  <div class="eg-ui-modal__header">
+                    <h3 class="eg-ui-modal__title">Full Screen View</h3>
+                    <button class="eg-ui-modal__close" onclick="closeModal('modalFull')">&times;</button>
+                  </div>
+                  <div class="eg-ui-modal__body">
+                    <div style="max-width: 800px; margin: 4rem auto;">
+                      <h2 class="eg-ui-mb-4">Immersive Experience</h2>
+                      <p class="eg-ui-text-muted">Fullscreen modals are perfect for focussed tasks.</p>
+                      <button class="eg-ui-btn eg-ui-btn--secondary eg-ui-mt-4" onclick="closeModal('modalFull')">Exit
+                        Focus</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Toast Section -->
+            <section id="toasts" class="demo-section">
+              <h2 class="eg-ui-mb-1">Toasts</h2>
+              <p class="eg-ui-text-muted eg-ui-mb-6">Temporary notifications that slide into view.</p>
+
+              <div class="example-card">
+                <span class="example-title">Manual Interactions</span>
+                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                  <button class="eg-ui-btn eg-ui-btn--success"
+                    onclick="egToast.show({ message: 'Saved!', type: 'success' })">Success</button>
+                  <button class="eg-ui-btn eg-ui-btn--info"
+                    onclick="egToast.show({ message: 'Update available.', type: 'info' })">Info</button>
+                  <button class="eg-ui-btn eg-ui-btn--warning"
+                    onclick="egToast.show({ message: 'Low space.', type: 'warning' })">Warning</button>
+                  <button class="eg-ui-btn eg-ui-btn--danger"
+                    onclick="egToast.show({ message: 'Error!', type: 'danger' })">Danger</button>
+                  <button class="eg-ui-btn eg-ui-btn--primary"
+                    onclick="egToast.show({ message: 'Stay here', type: 'info', showClose: true })">Manual
+                    Close</button>
+                </div>
+              </div>
+
+              <div class="example-card">
+                <span class="example-title">Positioning</span>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; max-width: 450px;">
+                  <button class="eg-ui-btn eg-ui-btn--outline"
+                    onclick="egToast.show({ message: 'Top Left', position: 'top-left' })">TL</button>
+                  <button class="eg-ui-btn eg-ui-btn--outline"
+                    onclick="egToast.show({ message: 'Top Center', position: 'top-center' })">TC</button>
+                  <button class="eg-ui-btn eg-ui-btn--outline"
+                    onclick="egToast.show({ message: 'Top Right', position: 'top-right' })">TR</button>
+                  <button class="eg-ui-btn eg-ui-btn--outline"
+                    onclick="egToast.show({ message: 'Bottom Left', position: 'bottom-left' })">BL</button>
+                  <button class="eg-ui-btn eg-ui-btn--outline"
+                    onclick="egToast.show({ message: 'Bottom Center', position: 'bottom-center' })">BC</button>
+                  <button class="eg-ui-btn eg-ui-btn--outline"
+                    onclick="egToast.show({ message: 'Bottom Right', position: 'bottom-right' })">BR</button>
+                </div>
+              </div>
+            </section>
 
     </main>
 
@@ -443,6 +670,53 @@
   <script src="js/eg-ui-modal.js"></script>
   <script src="js/eg-ui-tabs.js"></script>
   <script src="js/eg-ui-toast.js"></script>
+
+  <script>
+    // Mobile menu logic
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebarNav = document.getElementById('sidebarNav');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    const sidebarLinks = document.querySelectorAll('.sidebar-link');
+
+    function toggleMenu() {
+      sidebarNav.classList.toggle('active');
+      sidebarOverlay.classList.toggle('active');
+      document.body.style.overflow = sidebarNav.classList.contains('active') ? 'hidden' : '';
+    }
+
+    menuToggle.addEventListener('click', toggleMenu);
+    sidebarOverlay.addEventListener('click', toggleMenu);
+
+    sidebarLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 991) {
+          toggleMenu();
+        }
+      });
+    });
+
+    // Sidebar active state logic
+    const sections = document.querySelectorAll('section, div.demo-section[id]');
+    const navLinks = document.querySelectorAll('.sidebar-link');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= (sectionTop - 150)) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').includes(current)) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>

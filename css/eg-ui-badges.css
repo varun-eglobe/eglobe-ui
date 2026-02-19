@@ -10,7 +10,8 @@
     white-space: nowrap;
     vertical-align: baseline;
     border-radius: var(--eg-ui-radius-sm);
-    color: #fff;
+    background-color: var(--eg-ui-neutral-100);
+    color: var(--eg-ui-neutral-700);
 }
 
 .eg-ui-badge--primary {

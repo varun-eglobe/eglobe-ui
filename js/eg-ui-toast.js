@@ -29,8 +29,9 @@ const egToast = {
      * @param {string} options.type - 'success', 'info', 'warning', 'danger' (default: 'info')
      * @param {string} options.position - 'top-right', 'top-left', 'top-center', 'bottom-right', 'bottom-left', 'bottom-center' (default: 'top-right')
      * @param {number} options.duration - Duration in ms (default: 3000)
+     * @param {boolean} options.showClose - Whether to show a close button and disable auto-hide (default: false)
      */
-    show({ message = '', type = 'info', position = 'top-right', duration = 3000 }) {
+    show({ message = '', type = 'info', position = 'top-right', duration = 3000, showClose = false }) {
         const container = this._initContainer(position);
 
         const toast = document.createElement('div');
@@ -44,9 +45,17 @@ const egToast = {
             case 'info': icon = 'ℹ'; break;
         }
 
+        let closeBtnHtml = '';
+        if (showClose) {
+            closeBtnHtml = `<button class="eg-ui-toast__close" aria-label="Close">&times;</button>`;
+        }
+
         toast.innerHTML = `
-      <span class="eg-ui-toast__icon" style="font-weight: bold;">${icon}</span>
-      <span class="eg-ui-toast__message">${message}</span>
+      <div class="eg-ui-toast__inner">
+        <span class="eg-ui-toast__icon">${icon}</span>
+        <span class="eg-ui-toast__message">${message}</span>
+      </div>
+      ${closeBtnHtml}
     `;
 
         container.appendChild(toast);
@@ -56,10 +65,16 @@ const egToast = {
             toast.classList.add('eg-ui-toast--show');
         });
 
-        // Auto-remove after duration
-        setTimeout(() => {
-            this.hide(toast);
-        }, duration);
+        // If showClose is enabled, add click listener and skip auto-hide
+        if (showClose) {
+            const closeBtn = toast.querySelector('.eg-ui-toast__close');
+            closeBtn.addEventListener('click', () => this.hide(toast));
+        } else {
+            // Auto-remove after duration
+            setTimeout(() => {
+                this.hide(toast);
+            }, duration);
+        }
     },
 
     /**
