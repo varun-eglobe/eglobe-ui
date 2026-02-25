@@ -7,7 +7,7 @@
   <title>eGlobe UI Library Demo</title>
 
   <!-- CSS Library (Timestamp updated automatically via 'npm run dev') -->
-  <link rel="stylesheet" href="eg-ui.css?v=1771992723720">
+  <link rel="stylesheet" href="eg-ui.css?v=1772022411461">
 
   <!-- Demo-specific styles (just for presentation layout) -->
   <style>
@@ -82,6 +82,12 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 24px;
+    }
+
+    @media (min-width: 992px) {
+      .component-grid--2col {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
     }
 
     /* Responsive Transitions */
@@ -293,7 +299,9 @@
             <button class="eg-ui-btn eg-ui-btn--primary">Primary</button>
             <button class="eg-ui-btn eg-ui-btn--secondary">Secondary</button>
             <button class="eg-ui-btn eg-ui-btn--success">Success</button>
+            <button class="eg-ui-btn eg-ui-btn--warning">Warning</button>
             <button class="eg-ui-btn eg-ui-btn--danger">Danger</button>
+            <button class="eg-ui-btn eg-ui-btn--info">Info</button>
             <button class="eg-ui-btn eg-ui-btn--outline">Outline</button>
             <button class="eg-ui-btn eg-ui-btn--ghost">Ghost</button>
             <button class="eg-ui-btn eg-ui-btn--primary" disabled>Disabled</button>
@@ -386,299 +394,339 @@
       </section>
 
       <!-- Navs & Tabs Section -->
-      <section id="navs" class="demo-section eg-ui-mb-8">
-        <h2 class="eg-ui-mb-4">Navs & Tabs</h2>
+      <section id="navs" class="demo-section">
+        <h2 class="eg-ui-mb-1">Navs & Tabs</h2>
+        <p class="eg-ui-text-muted eg-ui-mb-6">Navigation components for switching between views or sections.</p>
 
-        <h3 class="eg-ui-text-md eg-ui-mb-2">Basic Tabs</h3>
-        <div class="eg-ui-mb-4">
-          <ul class="eg-ui-nav eg-ui-nav-tabs">
-            <!-- Navs & Tabs Section -->
-            <section id="navs" class="demo-section">
-              <h2 class="eg-ui-mb-1">Navs & Tabs</h2>
-              <p class="eg-ui-text-muted eg-ui-mb-6">Navigation components for switching between views or sections.</p>
+        <div class="component-grid component-grid--2col">
+          <div class="example-card">
+            <span class="example-title">Tabbed Navigation</span>
+            <ul class="eg-ui-nav eg-ui-nav-tabs">
+              <li class="eg-ui-nav-item"><a class="eg-ui-nav-link active" href="#tab1" data-eg-ui-toggle="tab">Home</a>
+              </li>
+              <li class="eg-ui-nav-item"><a class="eg-ui-nav-link" href="#tab2" data-eg-ui-toggle="tab">Profile</a></li>
+            </ul>
+            <div class="eg-ui-tab-content eg-ui-mt-4">
+              <div class="eg-ui-tab-pane active" id="tab1">
+                <p class="eg-ui-text-muted">Home content area.</p>
+              </div>
+              <div class="eg-ui-tab-pane" id="tab2">
+                <p class="eg-ui-text-muted">Profile content area.</p>
+              </div>
+            </div>
+          </div>
 
-              <div class="component-grid">
-                <div class="example-card">
-                  <span class="example-title">Tabbed Navigation</span>
-                  <ul class="eg-ui-nav eg-ui-nav-tabs">
-                    <li class="eg-ui-nav-item"><a class="eg-ui-nav-link active" href="#tab1"
-                        data-eg-ui-toggle="tab">Home</a></li>
-                    <li class="eg-ui-nav-item"><a class="eg-ui-nav-link" href="#tab2"
-                        data-eg-ui-toggle="tab">Profile</a></li>
-                  </ul>
-                  <div class="eg-ui-tab-content eg-ui-mt-4">
-                    <div class="eg-ui-tab-pane active" id="tab1">
-                      <p class="eg-ui-text-muted">Home content area.</p>
-                    </div>
-                    <div class="eg-ui-tab-pane" id="tab2">
-                      <p class="eg-ui-text-muted">Profile content area.</p>
-                    </div>
-                  </div>
+          <div class="example-card">
+            <span class="example-title">Capsule Tabs</span>
+            <ul class="eg-ui-nav eg-ui-nav-tabs eg-ui-nav-capsule">
+              <li class="eg-ui-nav-item"><a class="eg-ui-nav-link active" href="#cap1"
+                  data-eg-ui-toggle="tab">Overview</a></li>
+              <li class="eg-ui-nav-item"><a class="eg-ui-nav-link" href="#cap2" data-eg-ui-toggle="tab">Settings</a>
+              </li>
+              <li class="eg-ui-nav-item"><a class="eg-ui-nav-link" href="#cap3" data-eg-ui-toggle="tab">Logs</a></li>
+            </ul>
+            <div class="eg-ui-tab-content eg-ui-mt-4">
+              <div class="eg-ui-tab-pane active" id="cap1">
+                <p class="eg-ui-text-muted">Overview content area with capsule style.</p>
+              </div>
+              <div class="eg-ui-tab-pane" id="cap2">
+                <p class="eg-ui-text-muted">Settings content area with capsule style.</p>
+              </div>
+              <div class="eg-ui-tab-pane" id="cap3">
+                <p class="eg-ui-text-muted">Logs content area with capsule style.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="example-card">
+            <span class="example-title">Vertical Tabs</span>
+            <div style="display: flex; gap: 2rem; align-items: flex-start;">
+              <ul class="eg-ui-nav eg-ui-nav-tabs eg-ui-nav-vertical" style="width: 150px;">
+                <li class="eg-ui-nav-item"><a class="eg-ui-nav-link active" href="#vtab1"
+                    data-eg-ui-toggle="tab">General</a></li>
+                <li class="eg-ui-nav-item"><a class="eg-ui-nav-link" href="#vtab2" data-eg-ui-toggle="tab">Security</a>
+                </li>
+                <li class="eg-ui-nav-item"><a class="eg-ui-nav-link" href="#vtab3" data-eg-ui-toggle="tab">Billing</a>
+                </li>
+              </ul>
+              <div class="eg-ui-tab-content"
+                style="flex: 1; margin-top: 0; padding: 1rem; border: 1px solid var(--eg-ui-neutral-200); border-radius: 0 var(--eg-ui-radius-md) var(--eg-ui-radius-md) 0; margin-left: -1px;">
+                <div class="eg-ui-tab-pane active" id="vtab1">
+                  <p class="eg-ui-text-muted">General settings content area.</p>
                 </div>
-
-                <div class="example-card">
-                  <span class="example-title">Pill Navigation</span>
-                  <ul class="eg-ui-nav eg-ui-nav-pills">
-                    <li class="eg-ui-nav-item"><a class="eg-ui-nav-link active" href="#">Active</a></li>
-                    <li class="eg-ui-nav-item"><a class="eg-ui-nav-link" href="#">Link</a></li>
-                  </ul>
+                <div class="eg-ui-tab-pane" id="vtab2">
+                  <p class="eg-ui-text-muted">Security options for your account.</p>
+                </div>
+                <div class="eg-ui-tab-pane" id="vtab3">
+                  <p class="eg-ui-text-muted">Subscription and billing history.</p>
                 </div>
               </div>
-            </section>
+            </div>
+          </div>
 
-            <!-- Forms Section -->
-            <section id="forms" class="demo-section">
-              <h2 class="eg-ui-mb-1">Form Elements</h2>
-              <p class="eg-ui-text-muted eg-ui-mb-6">Standardized form controls with consistent styling and focus
-                states.</p>
+          <div class="example-card">
+            <span class="example-title">Pill Navigation</span>
+            <ul class="eg-ui-nav eg-ui-nav-pills">
+              <li class="eg-ui-nav-item"><a class="eg-ui-nav-link active" href="#">Active</a></li>
+              <li class="eg-ui-nav-item"><a class="eg-ui-nav-link" href="#">Link</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-              <div class="example-card">
-                <span class="example-title">Input & Select</span>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-                  <div class="eg-ui-form-group">
-                    <label class="eg-ui-label">Quote Title</label>
-                    <input type="text" class="eg-ui-input" placeholder="e.g. Summer Sale Quote">
-                  </div>
-                  <div class="eg-ui-form-group">
-                    <label class="eg-ui-label">Status</label>
-                    <select class="eg-ui-select">
-                      <option>Draft</option>
-                      <option>Active</option>
-                    </select>
-                  </div>
-                </div>
+      <!-- Forms Section -->
+      <section id="forms" class="demo-section">
+        <h2 class="eg-ui-mb-1">Form Elements</h2>
+        <p class="eg-ui-text-muted eg-ui-mb-6">Standardized form controls with consistent styling and focus
+          states.</p>
+
+        <div class="example-card">
+          <span class="example-title">Input & Select</span>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+            <div class="eg-ui-form-group">
+              <label class="eg-ui-label">Quote Title</label>
+              <input type="text" class="eg-ui-input" placeholder="e.g. Summer Sale Quote">
+            </div>
+            <div class="eg-ui-form-group">
+              <label class="eg-ui-label">Status</label>
+              <select class="eg-ui-select">
+                <option>Draft</option>
+                <option>Active</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-card">
+          <span class="example-title">Checkboxes & Radios</span>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+            <div>
+              <label class="eg-ui-label">Selection Choices</label>
+              <div class="eg-ui-check">
+                <input type="checkbox" class="eg-ui-check-input" id="check1" checked>
+                <label class="eg-ui-check-label" for="check1">Default Checked</label>
               </div>
-
-              <div class="example-card">
-                <span class="example-title">Checkboxes & Radios</span>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-                  <div>
-                    <label class="eg-ui-label">Selection Choices</label>
-                    <div class="eg-ui-check">
-                      <input type="checkbox" class="eg-ui-check-input" id="check1" checked>
-                      <label class="eg-ui-check-label" for="check1">Default Checked</label>
-                    </div>
-                    <div class="eg-ui-check">
-                      <input type="checkbox" class="eg-ui-check-input" id="check2">
-                      <label class="eg-ui-check-label" for="check2">Unchecked Option</label>
-                    </div>
-                    <div class="eg-ui-check">
-                      <input type="checkbox" class="eg-ui-check-input" id="check3" disabled checked>
-                      <label class="eg-ui-check-label" for="check3">Disabled Checked</label>
-                    </div>
-                  </div>
-                  <div>
-                    <label class="eg-ui-label">Single Choice</label>
-                    <div class="eg-ui-check">
-                      <input type="radio" class="eg-ui-check-input" name="radioGroup" id="radio1" checked>
-                      <label class="eg-ui-check-label" for="radio1">Option One</label>
-                    </div>
-                    <div class="eg-ui-check">
-                      <input type="radio" class="eg-ui-check-input" name="radioGroup" id="radio2">
-                      <label class="eg-ui-check-label" for="radio2">Option Two</label>
-                    </div>
-                    <div class="eg-ui-check">
-                      <input type="radio" class="eg-ui-check-input" name="radioGroup" id="radio3" disabled>
-                      <label class="eg-ui-check-label" for="radio3">Disabled Option</label>
-                    </div>
-                  </div>
-                </div>
+              <div class="eg-ui-check">
+                <input type="checkbox" class="eg-ui-check-input" id="check2">
+                <label class="eg-ui-check-label" for="check2">Unchecked Option</label>
               </div>
-            </section>
-
-            <!-- Tables Section -->
-            <section id="tables" class="demo-section">
-              <h2 class="eg-ui-mb-1">Tables</h2>
-              <p class="eg-ui-text-muted eg-ui-mb-6">Responsive, clean table designs for displaying structured data.</p>
-
-              <div class="example-card" style="padding: 0; overflow: hidden;">
-                <div class="eg-ui-table-cover">
-                  <table class="eg-ui-table eg-ui-table--striped eg-ui-table--hover">
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Role</th>
-                        <th>Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>#101</td>
-                        <td>John Doe</td>
-                        <td>Admin</td>
-                        <td><span class="eg-ui-badge eg-ui-badge--success">Active</span></td>
-                      </tr>
-                      <tr>
-                        <td>#102</td>
-                        <td>Jane Smith</td>
-                        <td>Editor</td>
-                        <td><span class="eg-ui-badge eg-ui-badge--warning">Pending</span></td>
-                      </tr>
-                      <tr>
-                        <td>#103</td>
-                        <td>Bob Johnson</td>
-                        <td>Viewer</td>
-                        <td><span class="eg-ui-badge eg-ui-badge--danger">Inactive</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+              <div class="eg-ui-check">
+                <input type="checkbox" class="eg-ui-check-input" id="check3" disabled checked>
+                <label class="eg-ui-check-label" for="check3">Disabled Checked</label>
               </div>
-            </section>
-
-            <!-- Modal Section -->
-            <section id="modals" class="demo-section">
-              <h2 class="eg-ui-mb-1">Modals</h2>
-              <p class="eg-ui-text-muted eg-ui-mb-6">Dialog prompts for critical information or complex interactions.
-              </p>
-
-              <div class="example-card">
-                <span class="example-title">Modal Trigger Points</span>
-                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-                  <button class="eg-ui-btn eg-ui-btn--primary" onclick="openModal('modalSm')">Small</button>
-                  <button class="eg-ui-btn eg-ui-btn--primary" onclick="openModal('modalMd')">Default</button>
-                  <button class="eg-ui-btn eg-ui-btn--primary" onclick="openModal('modalLg')">Large</button>
-                  <button class="eg-ui-btn eg-ui-btn--secondary" onclick="openModal('modalXl')">Extra Large</button>
-                  <button class="eg-ui-btn eg-ui-btn--danger" onclick="openModal('modalFull')">Full Screen</button>
-                </div>
+            </div>
+            <div>
+              <label class="eg-ui-label">Single Choice</label>
+              <div class="eg-ui-check">
+                <input type="radio" class="eg-ui-check-input" name="radioGroup" id="radio1" checked>
+                <label class="eg-ui-check-label" for="radio1">Option One</label>
               </div>
-
-              <!-- Modals Markup (kept outside cards for z-index safety) -->
-              <div class="eg-ui-modal eg-ui-modal--sm" id="modalSm">
-                <div class="eg-ui-modal__overlay"></div>
-                <div class="eg-ui-modal__content">
-                  <div class="eg-ui-modal__header">
-                    <h3 class="eg-ui-modal__title">Small Modal</h3>
-                    <button class="eg-ui-modal__close" onclick="closeModal('modalSm')">&times;</button>
-                  </div>
-                  <div class="eg-ui-modal__body">
-                    <p>This is a compact dialog.</p>
-                  </div>
-                </div>
+              <div class="eg-ui-check">
+                <input type="radio" class="eg-ui-check-input" name="radioGroup" id="radio2">
+                <label class="eg-ui-check-label" for="radio2">Option Two</label>
               </div>
-
-              <div class="eg-ui-modal" id="modalMd">
-                <div class="eg-ui-modal__overlay"></div>
-                <div class="eg-ui-modal__content">
-                  <div class="eg-ui-modal__header">
-                    <h3 class="eg-ui-modal__title">Default Modal</h3>
-                    <button class="eg-ui-modal__close" onclick="closeModal('modalMd')">&times;</button>
-                  </div>
-                  <div class="eg-ui-modal__body">
-                    <p>Standard modal dimensions for general content.</p>
-                  </div>
-                  <div class="eg-ui-modal__footer">
-                    <button class="eg-ui-btn eg-ui-btn--ghost" onclick="closeModal('modalMd')">Cancel</button>
-                    <button class="eg-ui-btn eg-ui-btn--primary">Confirm</button>
-                  </div>
-                </div>
+              <div class="eg-ui-check">
+                <input type="radio" class="eg-ui-check-input" name="radioGroup" id="radio3" disabled>
+                <label class="eg-ui-check-label" for="radio3">Disabled Option</label>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-              <div class="eg-ui-modal eg-ui-modal--lg" id="modalLg">
-                <div class="eg-ui-modal__overlay"></div>
-                <div class="eg-ui-modal__content">
-                  <div class="eg-ui-modal__header">
-                    <h3 class="eg-ui-modal__title">Large Modal</h3>
-                    <button class="eg-ui-modal__close" onclick="closeModal('modalLg')">&times;</button>
-                  </div>
-                  <div class="eg-ui-modal__body">
-                    <p>Suitable for media or data displays.</p>
-                    <div class="eg-ui-alert eg-ui-alert--info eg-ui-mt-4">Rich content can be nested here.</div>
-                  </div>
-                </div>
+      <!-- Tables Section -->
+      <section id="tables" class="demo-section">
+        <h2 class="eg-ui-mb-1">Tables</h2>
+        <p class="eg-ui-text-muted eg-ui-mb-6">Responsive, clean table designs for displaying structured data.</p>
+
+        <div class="example-card" style="padding: 0; overflow: hidden;">
+          <div class="eg-ui-table-cover">
+            <table class="eg-ui-table eg-ui-table--striped eg-ui-table--hover">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#101</td>
+                  <td>John Doe</td>
+                  <td>Admin</td>
+                  <td><span class="eg-ui-badge eg-ui-badge--success">Active</span></td>
+                </tr>
+                <tr>
+                  <td>#102</td>
+                  <td>Jane Smith</td>
+                  <td>Editor</td>
+                  <td><span class="eg-ui-badge eg-ui-badge--warning">Pending</span></td>
+                </tr>
+                <tr>
+                  <td>#103</td>
+                  <td>Bob Johnson</td>
+                  <td>Viewer</td>
+                  <td><span class="eg-ui-badge eg-ui-badge--danger">Inactive</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Modal Section -->
+      <section id="modals" class="demo-section">
+        <h2 class="eg-ui-mb-1">Modals</h2>
+        <p class="eg-ui-text-muted eg-ui-mb-6">Dialog prompts for critical information or complex interactions.
+        </p>
+
+        <div class="example-card">
+          <span class="example-title">Modal Trigger Points</span>
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <button class="eg-ui-btn eg-ui-btn--primary" onclick="openModal('modalSm')">Small</button>
+            <button class="eg-ui-btn eg-ui-btn--primary" onclick="openModal('modalMd')">Default</button>
+            <button class="eg-ui-btn eg-ui-btn--primary" onclick="openModal('modalLg')">Large</button>
+            <button class="eg-ui-btn eg-ui-btn--secondary" onclick="openModal('modalXl')">Extra Large</button>
+            <button class="eg-ui-btn eg-ui-btn--danger" onclick="openModal('modalFull')">Full Screen</button>
+          </div>
+        </div>
+
+        <!-- Modals Markup (kept outside cards for z-index safety) -->
+        <div class="eg-ui-modal eg-ui-modal--sm" id="modalSm">
+          <div class="eg-ui-modal__overlay"></div>
+          <div class="eg-ui-modal__content">
+            <div class="eg-ui-modal__header">
+              <h3 class="eg-ui-modal__title">Small Modal</h3>
+              <button class="eg-ui-modal__close" onclick="closeModal('modalSm')">&times;</button>
+            </div>
+            <div class="eg-ui-modal__body">
+              <p>This is a compact dialog.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="eg-ui-modal" id="modalMd">
+          <div class="eg-ui-modal__overlay"></div>
+          <div class="eg-ui-modal__content">
+            <div class="eg-ui-modal__header">
+              <h3 class="eg-ui-modal__title">Default Modal</h3>
+              <button class="eg-ui-modal__close" onclick="closeModal('modalMd')">&times;</button>
+            </div>
+            <div class="eg-ui-modal__body">
+              <p>Standard modal dimensions for general content.</p>
+            </div>
+            <div class="eg-ui-modal__footer">
+              <button class="eg-ui-btn eg-ui-btn--ghost" onclick="closeModal('modalMd')">Cancel</button>
+              <button class="eg-ui-btn eg-ui-btn--primary">Confirm</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="eg-ui-modal eg-ui-modal--lg" id="modalLg">
+          <div class="eg-ui-modal__overlay"></div>
+          <div class="eg-ui-modal__content">
+            <div class="eg-ui-modal__header">
+              <h3 class="eg-ui-modal__title">Large Modal</h3>
+              <button class="eg-ui-modal__close" onclick="closeModal('modalLg')">&times;</button>
+            </div>
+            <div class="eg-ui-modal__body">
+              <p>Suitable for media or data displays.</p>
+              <div class="eg-ui-alert eg-ui-alert--info eg-ui-mt-4">Rich content can be nested here.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="eg-ui-modal eg-ui-modal--xl" id="modalXl">
+          <div class="eg-ui-modal__overlay"></div>
+          <div class="eg-ui-modal__content">
+            <div class="eg-ui-modal__header">
+              <h3 class="eg-ui-modal__title">Extra Large</h3>
+              <button class="eg-ui-modal__close" onclick="closeModal('modalXl')">&times;</button>
+            </div>
+            <div class="eg-ui-modal__body">
+              <p class="eg-ui-mb-4">Great for complex table views.</p>
+              <table class="eg-ui-table eg-ui-table--striped">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>#001</td>
+                    <td>Alice</td>
+                    <td>Active</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="eg-ui-modal__footer"><button class="eg-ui-btn eg-ui-btn--primary"
+                onclick="closeModal('modalXl')">Close</button></div>
+          </div>
+        </div>
+
+        <div class="eg-ui-modal eg-ui-modal--full" id="modalFull">
+          <div class="eg-ui-modal__overlay"></div>
+          <div class="eg-ui-modal__content">
+            <div class="eg-ui-modal__header">
+              <h3 class="eg-ui-modal__title">Full Screen View</h3>
+              <button class="eg-ui-modal__close" onclick="closeModal('modalFull')">&times;</button>
+            </div>
+            <div class="eg-ui-modal__body">
+              <div style="max-width: 800px; margin: 4rem auto;">
+                <h2 class="eg-ui-mb-4">Immersive Experience</h2>
+                <p class="eg-ui-text-muted">Fullscreen modals are perfect for focussed tasks.</p>
+                <button class="eg-ui-btn eg-ui-btn--secondary eg-ui-mt-4" onclick="closeModal('modalFull')">Exit
+                  Focus</button>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-              <div class="eg-ui-modal eg-ui-modal--xl" id="modalXl">
-                <div class="eg-ui-modal__overlay"></div>
-                <div class="eg-ui-modal__content">
-                  <div class="eg-ui-modal__header">
-                    <h3 class="eg-ui-modal__title">Extra Large</h3>
-                    <button class="eg-ui-modal__close" onclick="closeModal('modalXl')">&times;</button>
-                  </div>
-                  <div class="eg-ui-modal__body">
-                    <p class="eg-ui-mb-4">Great for complex table views.</p>
-                    <table class="eg-ui-table eg-ui-table--striped">
-                      <thead>
-                        <tr>
-                          <th>ID</th>
-                          <th>User</th>
-                          <th>Status</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>#001</td>
-                          <td>Alice</td>
-                          <td>Active</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="eg-ui-modal__footer"><button class="eg-ui-btn eg-ui-btn--primary"
-                      onclick="closeModal('modalXl')">Close</button></div>
-                </div>
-              </div>
+      <!-- Toast Section -->
+      <section id="toasts" class="demo-section">
+        <h2 class="eg-ui-mb-1">Toasts</h2>
+        <p class="eg-ui-text-muted eg-ui-mb-6">Temporary notifications that slide into view.</p>
 
-              <div class="eg-ui-modal eg-ui-modal--full" id="modalFull">
-                <div class="eg-ui-modal__overlay"></div>
-                <div class="eg-ui-modal__content">
-                  <div class="eg-ui-modal__header">
-                    <h3 class="eg-ui-modal__title">Full Screen View</h3>
-                    <button class="eg-ui-modal__close" onclick="closeModal('modalFull')">&times;</button>
-                  </div>
-                  <div class="eg-ui-modal__body">
-                    <div style="max-width: 800px; margin: 4rem auto;">
-                      <h2 class="eg-ui-mb-4">Immersive Experience</h2>
-                      <p class="eg-ui-text-muted">Fullscreen modals are perfect for focussed tasks.</p>
-                      <button class="eg-ui-btn eg-ui-btn--secondary eg-ui-mt-4" onclick="closeModal('modalFull')">Exit
-                        Focus</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
+        <div class="example-card">
+          <span class="example-title">Manual Interactions</span>
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <button class="eg-ui-btn eg-ui-btn--success"
+              onclick="egToast.show({ message: 'Saved!', type: 'success' })">Success</button>
+            <button class="eg-ui-btn eg-ui-btn--info"
+              onclick="egToast.show({ message: 'Update available.', type: 'info' })">Info</button>
+            <button class="eg-ui-btn eg-ui-btn--warning"
+              onclick="egToast.show({ message: 'Low space.', type: 'warning' })">Warning</button>
+            <button class="eg-ui-btn eg-ui-btn--danger"
+              onclick="egToast.show({ message: 'Error!', type: 'danger' })">Danger</button>
+            <button class="eg-ui-btn eg-ui-btn--primary"
+              onclick="egToast.show({ message: 'Stay here', type: 'info', showClose: true })">Manual
+              Close</button>
+          </div>
+        </div>
 
-            <!-- Toast Section -->
-            <section id="toasts" class="demo-section">
-              <h2 class="eg-ui-mb-1">Toasts</h2>
-              <p class="eg-ui-text-muted eg-ui-mb-6">Temporary notifications that slide into view.</p>
-
-              <div class="example-card">
-                <span class="example-title">Manual Interactions</span>
-                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-                  <button class="eg-ui-btn eg-ui-btn--success"
-                    onclick="egToast.show({ message: 'Saved!', type: 'success' })">Success</button>
-                  <button class="eg-ui-btn eg-ui-btn--info"
-                    onclick="egToast.show({ message: 'Update available.', type: 'info' })">Info</button>
-                  <button class="eg-ui-btn eg-ui-btn--warning"
-                    onclick="egToast.show({ message: 'Low space.', type: 'warning' })">Warning</button>
-                  <button class="eg-ui-btn eg-ui-btn--danger"
-                    onclick="egToast.show({ message: 'Error!', type: 'danger' })">Danger</button>
-                  <button class="eg-ui-btn eg-ui-btn--primary"
-                    onclick="egToast.show({ message: 'Stay here', type: 'info', showClose: true })">Manual
-                    Close</button>
-                </div>
-              </div>
-
-              <div class="example-card">
-                <span class="example-title">Positioning</span>
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; max-width: 450px;">
-                  <button class="eg-ui-btn eg-ui-btn--outline"
-                    onclick="egToast.show({ message: 'Top Left', position: 'top-left' })">TL</button>
-                  <button class="eg-ui-btn eg-ui-btn--outline"
-                    onclick="egToast.show({ message: 'Top Center', position: 'top-center' })">TC</button>
-                  <button class="eg-ui-btn eg-ui-btn--outline"
-                    onclick="egToast.show({ message: 'Top Right', position: 'top-right' })">TR</button>
-                  <button class="eg-ui-btn eg-ui-btn--outline"
-                    onclick="egToast.show({ message: 'Bottom Left', position: 'bottom-left' })">BL</button>
-                  <button class="eg-ui-btn eg-ui-btn--outline"
-                    onclick="egToast.show({ message: 'Bottom Center', position: 'bottom-center' })">BC</button>
-                  <button class="eg-ui-btn eg-ui-btn--outline"
-                    onclick="egToast.show({ message: 'Bottom Right', position: 'bottom-right' })">BR</button>
-                </div>
-              </div>
-            </section>
+        <div class="example-card">
+          <span class="example-title">Positioning</span>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; max-width: 450px;">
+            <button class="eg-ui-btn eg-ui-btn--outline"
+              onclick="egToast.show({ message: 'Top Left', position: 'top-left' })">TL</button>
+            <button class="eg-ui-btn eg-ui-btn--outline"
+              onclick="egToast.show({ message: 'Top Center', position: 'top-center' })">TC</button>
+            <button class="eg-ui-btn eg-ui-btn--outline"
+              onclick="egToast.show({ message: 'Top Right', position: 'top-right' })">TR</button>
+            <button class="eg-ui-btn eg-ui-btn--outline"
+              onclick="egToast.show({ message: 'Bottom Left', position: 'bottom-left' })">BL</button>
+            <button class="eg-ui-btn eg-ui-btn--outline"
+              onclick="egToast.show({ message: 'Bottom Center', position: 'bottom-center' })">BC</button>
+            <button class="eg-ui-btn eg-ui-btn--outline"
+              onclick="egToast.show({ message: 'Bottom Right', position: 'bottom-right' })">BR</button>
+          </div>
+        </div>
+      </section>
 
     </main>
 
