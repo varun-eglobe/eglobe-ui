@@ -1,22 +1,22 @@
 /* eGlobe UI Main Entry File */
 
 /* Design Tokens */
-@import url('css/eg-ui-tokens.css');
+@import url('eg-ui-tokens.css');
 
 /* Base & Reset */
-@import url('css/eg-ui-base.css');
+@import url('eg-ui-base.css');
 
 /* Utilities */
-@import url('css/eg-ui-utilities.css');
+@import url('eg-ui-utilities.css');
 
 /* Components */
-@import url('css/eg-ui-buttons.css');
-@import url('css/eg-ui-forms.css');
-@import url('css/eg-ui-modal.css');
-@import url('css/eg-ui-tables.css');
-@import url('css/eg-ui-alerts.css');
-@import url('css/eg-ui-cards.css');
-@import url('css/eg-ui-badges.css');
-@import url('css/eg-ui-navs.css');
-@import url('css/eg-ui-spinners.css');
-@import url('css/eg-ui-toasts.css');
+@import url('eg-ui-buttons.css');
+@import url('eg-ui-forms.css');
+@import url('eg-ui-modal.css');
+@import url('eg-ui-tables.css');
+@import url('eg-ui-alerts.css');
+@import url('eg-ui-cards.css');
+@import url('eg-ui-badges.css');
+@import url('eg-ui-navs.css');
+@import url('eg-ui-spinners.css');
+@import url('eg-ui-toasts.css');
