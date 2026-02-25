@@ -74,6 +74,81 @@
   transform: translateY(0);
 }
 
+/* Success Button */
+.eg-ui-btn--success {
+  color: #ffffff;
+  background-color: var(--eg-ui-success);
+  border-color: transparent;
+  box-shadow: var(--eg-ui-shadow-sm);
+}
+
+.eg-ui-btn--success:focus {
+  box-shadow: 0 0 0 2px var(--eg-ui-neutral-50), 0 0 0 4px #6ee7b7;
+}
+
+.eg-ui-btn--success:hover {
+  background-color: #059669;
+  /* Emerald 600 */
+  transform: translateY(-1px);
+  box-shadow: var(--eg-ui-shadow-md);
+}
+
+.eg-ui-btn--success:active {
+  background-color: #047857;
+  /* Emerald 700 */
+  transform: translateY(0);
+}
+
+/* Warning Button */
+.eg-ui-btn--warning {
+  color: #ffffff;
+  background-color: var(--eg-ui-warning);
+  border-color: transparent;
+  box-shadow: var(--eg-ui-shadow-sm);
+}
+
+.eg-ui-btn--warning:focus {
+  box-shadow: 0 0 0 2px var(--eg-ui-neutral-50), 0 0 0 4px #fcd34d;
+}
+
+.eg-ui-btn--warning:hover {
+  background-color: #d97706;
+  /* Amber 600 */
+  transform: translateY(-1px);
+  box-shadow: var(--eg-ui-shadow-md);
+}
+
+.eg-ui-btn--warning:active {
+  background-color: #b45309;
+  /* Amber 700 */
+  transform: translateY(0);
+}
+
+/* Info Button */
+.eg-ui-btn--info {
+  color: #ffffff;
+  background-color: var(--eg-ui-info);
+  border-color: transparent;
+  box-shadow: var(--eg-ui-shadow-sm);
+}
+
+.eg-ui-btn--info:focus {
+  box-shadow: 0 0 0 2px var(--eg-ui-neutral-50), 0 0 0 4px #93c5fd;
+}
+
+.eg-ui-btn--info:hover {
+  background-color: #2563eb;
+  /* Blue 600 */
+  transform: translateY(-1px);
+  box-shadow: var(--eg-ui-shadow-md);
+}
+
+.eg-ui-btn--info:active {
+  background-color: #1d4ed8;
+  /* Blue 700 */
+  transform: translateY(0);
+}
+
 /* Danger Button */
 .eg-ui-btn--danger {
   color: #ffffff;
@@ -95,6 +170,25 @@
 
 .eg-ui-btn--danger:active {
   background-color: #b91c1c;
+  transform: translateY(0);
+}
+
+/* Outline Button */
+.eg-ui-btn--outline {
+  color: var(--eg-ui-primary-600);
+  background-color: transparent;
+  border-color: var(--eg-ui-primary-200);
+}
+
+.eg-ui-btn--outline:hover {
+  color: var(--eg-ui-primary-700);
+  background-color: var(--eg-ui-primary-50);
+  border-color: var(--eg-ui-primary-600);
+  transform: translateY(-1px);
+}
+
+.eg-ui-btn--outline:active {
+  background-color: var(--eg-ui-primary-100);
   transform: translateY(0);
 }
 
