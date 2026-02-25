@@ -10,7 +10,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
-  
+
   /* Ensure this container handles its own box model */
   position: relative;
   width: 100%;
@@ -35,24 +35,22 @@
   line-height: var(--eg-ui-leading-tight);
 }
 
-.eg-ui-app h1 { font-size: var(--eg-ui-text-3xl); }
-.eg-ui-app h2 { font-size: var(--eg-ui-text-2xl); }
-.eg-ui-app h3 { font-size: var(--eg-ui-text-xl); }
+.eg-ui-app h1 {
+  font-size: var(--eg-ui-text-3xl);
+}
+
+.eg-ui-app h2 {
+  font-size: var(--eg-ui-text-2xl);
+}
+
+.eg-ui-app h3 {
+  font-size: var(--eg-ui-text-xl);
+}
 
 .eg-ui-app p {
   margin: 0 0 var(--eg-ui-space-4) 0;
 }
 
-.eg-ui-app a {
-  color: var(--eg-ui-primary-600);
-  text-decoration: none;
-  transition: var(--eg-ui-transition-colors);
-}
-
-.eg-ui-app a:hover {
-  color: var(--eg-ui-primary-700);
-  text-decoration: underline;
-}
 
 /* Scrollbar styling for containers within the app */
 .eg-ui-app ::-webkit-scrollbar {

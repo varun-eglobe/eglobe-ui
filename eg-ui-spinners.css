@@ -8,8 +8,8 @@
 
 .eg-ui-spinner {
     display: inline-block;
-    width: 2rem;
-    height: 2rem;
+    width: 32px;
+    height: 32px;
     vertical-align: text-bottom;
     border: 0.25em solid currentColor;
     border-right-color: transparent;
@@ -19,14 +19,14 @@
 }
 
 .eg-ui-spinner--sm {
-    width: 1rem;
-    height: 1rem;
+    width: 16px;
+    height: 16px;
     border-width: 0.2em;
 }
 
 .eg-ui-spinner--lg {
-    width: 3rem;
-    height: 3rem;
+    width: 48px;
+    height: 48px;
     border-width: 0.3em;
 }
 

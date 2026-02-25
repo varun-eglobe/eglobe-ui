@@ -10,7 +10,7 @@
 
 .eg-ui-nav-link {
     display: block;
-    padding: 0.5rem 1rem;
+    padding: 8px 16px;
     text-decoration: none;
     color: var(--eg-ui-neutral-600);
     background: transparent;

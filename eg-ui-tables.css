@@ -10,7 +10,7 @@
 
 .eg-ui-table th,
 .eg-ui-table td {
-    padding: 0.75rem 1rem;
+    padding: 12px 16px;
     vertical-align: middle;
     border-bottom: 1px solid var(--eg-ui-neutral-200);
     text-align: left;

@@ -134,9 +134,9 @@
   cursor: pointer;
   color: var(--eg-ui-neutral-400);
   transition: var(--eg-ui-transition-colors);
-  width: 2rem;
-  height: 2rem;
-  font-size: 1.5rem;
+  width: 32px;
+  height: 32px;
+  font-size: 24px;
   line-height: 1;
 }
 
@@ -165,5 +165,5 @@
 }
 
 .eg-ui-modal__footer>* {
-  margin: 0.25rem;
+  margin: 4px;
 }

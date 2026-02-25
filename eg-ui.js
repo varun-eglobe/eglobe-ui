@@ -112,9 +112,63 @@ const egToast = {
    Global Event Listeners (Tabs & Shared Behaviors)
    ========================================================================== */
 
+function checkAndAddEgUiAppClass() {
+    if (!document.body) return;
+
+    // If class already exists, no need to check again
+    if (document.body.classList.contains('eg-ui-app')) {
+        return;
+    }
+
+    // If this script is loaded, the app is definitely installed
+    // Also check for other indicators
+    const isAppInstalled =
+        // This script itself indicates the app is installed
+        true ||
+        // Check for loaded CSS files
+        Array.from(document.styleSheets).some(sheet => {
+            try {
+                return sheet.href && (
+                    sheet.href.includes('eg-ui.css') ||
+                    sheet.href.includes('mealbot') ||
+                    sheet.href.includes('eg-ui-')
+                );
+            } catch (e) {
+                return false;
+            }
+        }) ||
+        // Check for link tags
+        document.querySelector('link[href*="eg-ui.css"]') ||
+        document.querySelector('link[href*="mealbot"]') ||
+        // Check for mealbot elements
+        document.querySelector('.mealbot-modal-trigger') ||
+        document.querySelector('.mealbot-cart-selections') ||
+        document.querySelector('#mealbotOptionsModal') ||
+        document.querySelector('[class*="mealbot"]') ||
+        // Check for eg-ui elements
+        document.querySelector('.eg-ui-modal') ||
+        document.querySelector('[class*="eg-ui"]');
+
+    if (isAppInstalled) {
+        document.body.classList.add('eg-ui-app');
+    }
+}
+
+// Run immediately if body is available, otherwise wait
+if (document.body) {
+    checkAndAddEgUiAppClass();
+} else if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', checkAndAddEgUiAppClass);
+} else {
+    setTimeout(checkAndAddEgUiAppClass, 0);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Add library class to body
-    document.body.classList.add('eg-ui-app');
+    // Re-check and add class on DOMContentLoaded (in case body wasn't ready earlier)
+    checkAndAddEgUiAppClass();
+
+    // Also check after a delay to catch dynamically loaded stylesheets
+    setTimeout(checkAndAddEgUiAppClass, 100);
 
     // --- Modals ---
     const modals = document.querySelectorAll('.eg-ui-modal');
