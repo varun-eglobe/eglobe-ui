@@ -94,6 +94,6 @@
   --eg-ui-transition-all: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Z-Index */
-  --eg-ui-z-modal: 9999;
-  --eg-ui-z-overlay: 9998;
+  --eg-ui-z-modal: 2147483647;
+  --eg-ui-z-overlay: 2147483646;
 }
