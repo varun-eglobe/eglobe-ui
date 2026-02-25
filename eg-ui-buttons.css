@@ -219,3 +219,10 @@
 .eg-ui-btn--loading .eg-ui-spinner {
   display: inline-block;
 }
+
+/* Pill Variant */
+.eg-ui-btn--pill {
+  border-radius: var(--eg-ui-radius-full) !important;
+  padding-left: 24px;
+  padding-right: 24px;
+}
