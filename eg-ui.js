@@ -240,12 +240,49 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Close popovers on click outside
+    // --- Dropdowns ---
+    const dropdownTriggers = document.querySelectorAll('[data-eg-ui-toggle="dropdown"]');
+    dropdownTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const parent = trigger.closest('.eg-ui-dropdown');
+            if (!parent) return;
+
+            const isOpen = parent.classList.contains('eg-ui-dropdown--open');
+
+            // Close all other dropdowns and popovers
+            document.querySelectorAll('.eg-ui-dropdown--open').forEach(d => {
+                if (d !== parent) d.classList.remove('eg-ui-dropdown--open');
+            });
+            document.querySelectorAll('.eg-ui-popover--open').forEach(p => {
+                p.classList.remove('eg-ui-popover--open');
+            });
+
+            parent.classList.toggle('eg-ui-dropdown--open', !isOpen);
+        });
+    });
+
+    // Close on click outside or item click
     document.addEventListener('click', (e) => {
+        // Popovers
         if (!e.target.closest('.eg-ui-popover') && !e.target.closest('[data-eg-ui-toggle="popover"]')) {
             document.querySelectorAll('.eg-ui-popover--open').forEach(p => {
                 p.classList.remove('eg-ui-popover--open');
             });
+        }
+
+        // Dropdowns
+        if (!e.target.closest('.eg-ui-dropdown')) {
+            document.querySelectorAll('.eg-ui-dropdown--open').forEach(d => {
+                d.classList.remove('eg-ui-dropdown--open');
+            });
+        }
+
+        // Close dropdown when an item is clicked
+        if (e.target.classList.contains('eg-ui-dropdown-item')) {
+            const parent = e.target.closest('.eg-ui-dropdown');
+            if (parent) parent.classList.remove('eg-ui-dropdown--open');
         }
     });
 });

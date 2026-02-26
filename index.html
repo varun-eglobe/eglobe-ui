@@ -231,6 +231,7 @@
         <a href="#modals" class="sidebar-link">Modals</a>
         <a href="#toasts" class="sidebar-link">Toasts</a>
         <a href="#popovers" class="sidebar-link">Popovers</a>
+        <a href="#dropdowns" class="sidebar-link">Dropdowns</a>
       </nav>
     </aside>
 
@@ -837,7 +838,81 @@ closeModal('myModal'); // To close</code></pre>
               <div class="eg-ui-popover eg-ui-popover--right" id="popRight">
                 <div class="eg-ui-popover__arrow"></div>
                 <h4 class="eg-ui-popover__header">Right Popover</h4>
-                <div class="eg-ui-popover__body">This popover appears to the right of the trigger.</div>
+      </section>
+
+      <!-- Dropdowns Section -->
+      <section id="dropdowns" class="demo-section">
+        <h2 class="eg-ui-mb-1">Dropdowns</h2>
+        <p class="eg-ui-text-muted eg-ui-mb-6">Toggleable, contextual overlays for displaying lists of links and more.
+        </p>
+
+        <div class="example-card">
+          <span class="example-title">How to Use (Code)</span>
+          <p class="eg-ui-mb-4">Wrap your trigger and menu in a <code>.eg-ui-dropdown</code> container and use
+            <code>data-eg-ui-toggle="dropdown"</code>. Add <code>.eg-ui-dropdown-toggle</code> to the button for a caret
+            indicator.
+          </p>
+          <pre
+            style="background: #1e293b; color: #f8fafc; padding: 1.25rem; border-radius: 12px; font-size: 0.875rem; overflow-x: auto;"><code>&lt;div class="eg-ui-dropdown"&gt;
+  &lt;button class="eg-ui-btn eg-ui-btn--primary eg-ui-dropdown-toggle" data-eg-ui-toggle="dropdown"&gt;
+    Actions
+  &lt;/button&gt;
+  &lt;div class="eg-ui-dropdown-menu"&gt;
+    &lt;h6 class="eg-ui-dropdown-header"&gt;Options&lt;/h6&gt;
+    &lt;a class="eg-ui-dropdown-item" href="#"&gt;Edit Option&lt;/a&gt;
+    &lt;a class="eg-ui-dropdown-item" href="#"&gt;Delete Option&lt;/a&gt;
+    &lt;div class="eg-ui-dropdown-divider"&gt;&lt;/div&gt;
+    &lt;a class="eg-ui-dropdown-item disabled" href="#"&gt;Archive (Disabled)&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="example-card">
+          <span class="example-title">Variants & Alignment</span>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+
+            <!-- Basic Dropdown -->
+            <div class="eg-ui-dropdown">
+              <button class="eg-ui-btn eg-ui-btn--secondary eg-ui-dropdown-toggle" data-eg-ui-toggle="dropdown">Basic
+                Dropdown</button>
+              <div class="eg-ui-dropdown-menu">
+                <a class="eg-ui-dropdown-item" href="#">Action One</a>
+                <a class="eg-ui-dropdown-item" href="#">Action Two</a>
+                <a class="eg-ui-dropdown-item" href="#">Action Three</a>
+              </div>
+            </div>
+
+            <!-- Right Aligned -->
+            <div class="eg-ui-dropdown">
+              <button class="eg-ui-btn eg-ui-btn--secondary eg-ui-dropdown-toggle" data-eg-ui-toggle="dropdown">Right
+                Aligned</button>
+              <div class="eg-ui-dropdown-menu eg-ui-dropdown-menu--right">
+                <h6 class="eg-ui-dropdown-header">Menu Title</h6>
+                <a class="eg-ui-dropdown-item" href="#">Profile</a>
+                <a class="eg-ui-dropdown-item" href="#">Settings</a>
+                <div class="eg-ui-dropdown-divider"></div>
+                <a class="eg-ui-dropdown-item" href="#">Logout</a>
+              </div>
+            </div>
+
+            <!-- Dropup -->
+            <div class="eg-ui-dropdown">
+              <div class="eg-ui-dropdown-menu eg-ui-dropdown-menu--top">
+                <a class="eg-ui-dropdown-item" href="#">Going Up</a>
+                <a class="eg-ui-dropdown-item" href="#">Higher</a>
+              </div>
+              <button class="eg-ui-btn eg-ui-btn--secondary eg-ui-dropdown-toggle" data-eg-ui-toggle="dropdown">Dropup
+                Menu</button>
+            </div>
+
+            <!-- Pill Button Dropdown -->
+            <div class="eg-ui-dropdown">
+              <button class="eg-ui-btn eg-ui-btn--primary eg-ui-btn--pill eg-ui-dropdown-toggle"
+                data-eg-ui-toggle="dropdown">Pill
+                Dropdown</button>
+              <div class="eg-ui-dropdown-menu">
+                <a class="eg-ui-dropdown-item" href="#">Style 1</a>
+                <a class="eg-ui-dropdown-item" href="#">Style 2</a>
               </div>
             </div>
 
