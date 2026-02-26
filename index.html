@@ -583,6 +583,26 @@
         </p>
 
         <div class="example-card">
+          <span class="example-title">How to Use (Code)</span>
+          <p class="eg-ui-mb-4">1. Define the Modal HTML structure with a unique ID.</p>
+          <pre
+            style="background: #1e293b; color: #f8fafc; padding: 1.25rem; border-radius: 12px; font-size: 0.875rem; overflow-x: auto;"><code>&lt;div class="eg-ui-modal" id="myModal"&gt;
+  &lt;div class="eg-ui-modal__overlay"&gt;&lt;/div&gt;
+  &lt;div class="eg-ui-modal__content"&gt;
+    &lt;div class="eg-ui-modal__header"&gt;
+      &lt;h3 class="eg-ui-modal__title"&gt;Title&lt;/h3&gt;
+      &lt;button class="eg-ui-modal__close" onclick="closeModal('myModal')"&gt;&times;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="eg-ui-modal__body"&gt;Content goes here.&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          <p class="eg-ui-mt-4 eg-ui-mb-4">2. Trigger the modal using JavaScript:</p>
+          <pre
+            style="background: #1e293b; color: #f8fafc; padding: 1.25rem; border-radius: 12px; font-size: 0.875rem; overflow-x: auto;"><code>openModal('myModal'); // To open
+closeModal('myModal'); // To close</code></pre>
+        </div>
+
+        <div class="example-card">
           <span class="example-title">Modal Trigger Points</span>
           <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
             <button class="eg-ui-btn eg-ui-btn--primary" onclick="openModal('modalSm')">Small</button>
@@ -694,10 +714,25 @@
         <p class="eg-ui-text-muted eg-ui-mb-6">Temporary notifications that slide into view.</p>
 
         <div class="example-card">
+          <span class="example-title">How to Use (Code)</span>
+          <p class="eg-ui-mb-4">Display notifications programmatically using the <code>egToast</code> object.</p>
+          <pre
+            style="background: #1e293b; color: #f8fafc; padding: 1.25rem; border-radius: 12px; font-size: 0.875rem; overflow-x: auto;"><code>egToast.show({
+  message: 'Action successful!',
+  type: 'success', // 'success' | 'info' | 'warning' | 'danger'
+  position: 'top-right', // 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'
+  duration: 3000,
+  showClose: false
+});</code></pre>
+        </div>
+
+        <div class="example-card">
           <span class="example-title">Manual Interactions</span>
           <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
             <button class="eg-ui-btn eg-ui-btn--success"
               onclick="egToast.show({ message: 'Saved!', type: 'success' })">Success</button>
+            <button class="eg-ui-btn eg-ui-btn--success"
+              onclick="egToast.show({ message: 'Helloo its done!', type: 'success' })">Success</button>
             <button class="eg-ui-btn eg-ui-btn--info"
               onclick="egToast.show({ message: 'Update available.', type: 'info' })">Info</button>
             <button class="eg-ui-btn eg-ui-btn--warning"
