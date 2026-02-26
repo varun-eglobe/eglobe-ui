@@ -96,4 +96,5 @@
   /* Z-Index */
   --eg-ui-z-modal: 2147483647;
   --eg-ui-z-overlay: 2147483646;
+  --eg-ui-z-popover: 1060;
 }

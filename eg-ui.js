@@ -218,4 +218,34 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // --- Popovers ---
+    const popoverTriggers = document.querySelectorAll('[data-eg-ui-toggle="popover"]');
+    popoverTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const targetId = trigger.getAttribute('data-target') || trigger.getAttribute('href')?.substring(1);
+            const popover = document.getElementById(targetId);
+
+            if (popover) {
+                const isOpen = popover.classList.contains('eg-ui-popover--open');
+
+                // Close all other popovers first
+                document.querySelectorAll('.eg-ui-popover--open').forEach(p => {
+                    if (p !== popover) p.classList.remove('eg-ui-popover--open');
+                });
+
+                popover.classList.toggle('eg-ui-popover--open', !isOpen);
+            }
+        });
+    });
+
+    // Close popovers on click outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.eg-ui-popover') && !e.target.closest('[data-eg-ui-toggle="popover"]')) {
+            document.querySelectorAll('.eg-ui-popover--open').forEach(p => {
+                p.classList.remove('eg-ui-popover--open');
+            });
+        }
+    });
 });

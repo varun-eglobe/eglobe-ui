@@ -230,6 +230,7 @@
         <a href="#tables" class="sidebar-link">Tables</a>
         <a href="#modals" class="sidebar-link">Modals</a>
         <a href="#toasts" class="sidebar-link">Toasts</a>
+        <a href="#popovers" class="sidebar-link">Popovers</a>
       </nav>
     </aside>
 
@@ -760,6 +761,86 @@ closeModal('myModal'); // To close</code></pre>
               onclick="egToast.show({ message: 'Bottom Center', position: 'bottom-center' })">BC</button>
             <button class="eg-ui-btn eg-ui-btn--outline"
               onclick="egToast.show({ message: 'Bottom Right', position: 'bottom-right' })">BR</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Popovers Section -->
+      <section id="popovers" class="demo-section">
+        <h2 class="eg-ui-mb-1">Popovers</h2>
+        <p class="eg-ui-text-muted eg-ui-mb-6">Small overlays of content that are used to explicate on specific
+          elements.</p>
+
+        <div class="example-card">
+          <span class="example-title">How to Use (Code)</span>
+          <p class="eg-ui-mb-4">Use <code>data-eg-ui-toggle="popover"</code> and <code>data-target</code> to link a
+            trigger to a popover.</p>
+          <pre
+            style="background: #1e293b; color: #f8fafc; padding: 1.25rem; border-radius: 12px; font-size: 0.875rem; overflow-x: auto;"><code>&lt;!-- Popover Trigger --&gt;
+&lt;button class="eg-ui-btn eg-ui-btn--primary" 
+        data-eg-ui-toggle="popover" 
+        data-target="popoverId"&gt;
+  Click me
+&lt;/button&gt;
+
+&lt;!-- Popover Content --&gt;
+&lt;div class="eg-ui-popover eg-ui-popover--top" id="popoverId"&gt;
+  &lt;div class="eg-ui-popover__arrow"&gt;&lt;/div&gt;
+  &lt;h4 class="eg-ui-popover__header"&gt;Popover Title&lt;/h4&gt;
+  &lt;div class="eg-ui-popover__body"&gt;
+    And here's some amazing content. It's very engaging. Right?
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="example-card">
+          <span class="example-title">Placement Examples</span>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; padding: 4rem 0;">
+
+            <!-- Top -->
+            <div class="eg-ui-popover-wrapper">
+              <button class="eg-ui-btn eg-ui-btn--secondary" data-eg-ui-toggle="popover" data-target="popTop">Popover
+                Top</button>
+              <div class="eg-ui-popover eg-ui-popover--top" id="popTop">
+                <div class="eg-ui-popover__arrow"></div>
+                <h4 class="eg-ui-popover__header">Top Popover</h4>
+                <div class="eg-ui-popover__body">This popover appears on top of the trigger button.</div>
+              </div>
+            </div>
+
+            <!-- Bottom -->
+            <div class="eg-ui-popover-wrapper">
+              <button class="eg-ui-btn eg-ui-btn--secondary" data-eg-ui-toggle="popover" data-target="popBottom">Popover
+                Bottom</button>
+              <div class="eg-ui-popover eg-ui-popover--bottom" id="popBottom">
+                <div class="eg-ui-popover__arrow"></div>
+                <h4 class="eg-ui-popover__header">Bottom Popover</h4>
+                <div class="eg-ui-popover__body">This popover appears below the trigger button.</div>
+              </div>
+            </div>
+
+            <!-- Left -->
+            <div class="eg-ui-popover-wrapper">
+              <button class="eg-ui-btn eg-ui-btn--secondary" data-eg-ui-toggle="popover" data-target="popLeft">Popover
+                Left</button>
+              <div class="eg-ui-popover eg-ui-popover--left" id="popLeft">
+                <div class="eg-ui-popover__arrow"></div>
+                <h4 class="eg-ui-popover__header">Left Popover</h4>
+                <div class="eg-ui-popover__body">This popover appears to the left of the trigger.</div>
+              </div>
+            </div>
+
+            <!-- Right -->
+            <div class="eg-ui-popover-wrapper">
+              <button class="eg-ui-btn eg-ui-btn--secondary" data-eg-ui-toggle="popover" data-target="popRight">Popover
+                Right</button>
+              <div class="eg-ui-popover eg-ui-popover--right" id="popRight">
+                <div class="eg-ui-popover__arrow"></div>
+                <h4 class="eg-ui-popover__header">Right Popover</h4>
+                <div class="eg-ui-popover__body">This popover appears to the right of the trigger.</div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
