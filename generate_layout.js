@@ -79,9 +79,56 @@ const classes = `
 .eg-ui-h-screen { height: 100vh !important; }
 .eg-ui-h-auto { height: auto !important; }
 
+/* Flexbox Order & Shrink/Grow */
+.eg-ui-flex-shrink-0 { flex-shrink: 0 !important; }
+.eg-ui-flex-shrink { flex-shrink: 1 !important; }
+.eg-ui-flex-grow-0 { flex-grow: 0 !important; }
+.eg-ui-flex-grow { flex-grow: 1 !important; }
+.eg-ui-order-1 { order: 1 !important; }
+.eg-ui-order-2 { order: 2 !important; }
+.eg-ui-order-3 { order: 3 !important; }
+.eg-ui-order-4 { order: 4 !important; }
+.eg-ui-order-5 { order: 5 !important; }
+.eg-ui-order-6 { order: 6 !important; }
+.eg-ui-order-first { order: -9999 !important; }
+.eg-ui-order-last { order: 9999 !important; }
+
+/* Z-Index */
+.eg-ui-z-0 { z-index: 0 !important; }
+.eg-ui-z-10 { z-index: 10 !important; }
+.eg-ui-z-20 { z-index: 20 !important; }
+.eg-ui-z-30 { z-index: 30 !important; }
+.eg-ui-z-40 { z-index: 40 !important; }
+.eg-ui-z-50 { z-index: 50 !important; }
+.eg-ui-z-auto { z-index: auto !important; }
+
+/* Overflow */
+.eg-ui-overflow-auto { overflow: auto !important; }
+.eg-ui-overflow-hidden { overflow: hidden !important; }
+.eg-ui-overflow-visible { overflow: visible !important; }
+.eg-ui-overflow-scroll { overflow: scroll !important; }
+.eg-ui-overflow-x-auto { overflow-x: auto !important; }
+.eg-ui-overflow-y-auto { overflow-y: auto !important; }
+.eg-ui-overflow-x-hidden { overflow-x: hidden !important; }
+.eg-ui-overflow-y-hidden { overflow-y: hidden !important; }
+
+/* Object Fit */
+.eg-ui-object-contain { object-fit: contain !important; }
+.eg-ui-object-cover { object-fit: cover !important; }
+.eg-ui-object-fill { object-fit: fill !important; }
+.eg-ui-object-none { object-fit: none !important; }
+
+/* Text Alignment & Wrapping */
+.eg-ui-text-left { text-align: left !important; }
+.eg-ui-text-center { text-align: center !important; }
+.eg-ui-text-right { text-align: right !important; }
+.eg-ui-text-justify { text-align: justify !important; }
+.eg-ui-text-truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
 /* Legacy */
 .eg-ui-w-100 { width: 100% !important; }
 `;
+
 
 let finalCSS = '/* eGlobe UI Layout (Responsive) */\n\n' + classes;
 

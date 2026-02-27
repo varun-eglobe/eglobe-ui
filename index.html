@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>eGlobe UI - Shared System Design</title>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236c5ce7'/><text x='50' y='68' font-family='sans-serif' font-weight='bold' font-size='60' fill='white' text-anchor='middle'>Q</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -1101,24 +1103,6 @@ closeModal('myModal'); // To close</code></pre>
           </div>
         </div>
 
-        <div class="example-card">
-          <span class="example-title">Spacing & Layout</span>
-          <div class="eg-ui-p-6 eg-ui-mb-4" style="border: 1px dashed var(--eg-ui-primary-300);">
-            <div class="eg-ui-p-4 eg-ui-m-2 eg-ui-rounded-md eg-ui-inline-block"
-              style="background-color: var(--eg-ui-success); color: white;">
-              Padding 4, Margin 2</div>
-            <div class="eg-ui-px-6 eg-ui-py-2 eg-ui-m-2 eg-ui-rounded-full eg-ui-inline-block"
-              style="background-color: var(--eg-ui-danger); color: white;">
-              PX 6, PY 2, Pill</div>
-          </div>
-          <div class="eg-ui-flex eg-ui-justify-between eg-ui-items-center eg-ui-p-4"
-            style="background: var(--eg-ui-neutral-50);">
-            <span class="eg-ui-font-bold eg-ui-text-lg">Justify Between</span>
-            <span class="eg-ui-text-sm eg-ui-text-muted">Items Center</span>
-          </div>
-        </div>
-      </section>
-
       </section>
 
       <!-- Layout Cheatsheet Modal -->
@@ -1185,6 +1169,10 @@ closeModal('myModal'); // To close</code></pre>
                   <td><code>flex-direction: row / column;</code></td>
                 </tr>
                 <tr>
+                  <td><code>.eg-ui-flex-wrap</code>, <code>.eg-ui-flex-nowrap</code></td>
+                  <td><code>flex-wrap: wrap / nowrap;</code></td>
+                </tr>
+                <tr>
                   <td><code>.eg-ui-items-start|center|end|stretch</code></td>
                   <td><code>align-items: flex-start|center|flex-end|stretch;</code></td>
                 </tr>
@@ -1231,6 +1219,74 @@ closeModal('myModal'); // To close</code></pre>
                 <tr>
                   <td><code>.eg-ui-h-full</code>, <code>.eg-ui-h-screen</code></td>
                   <td><code>height: 100%;</code> / <code>100vh;</code></td>
+                </tr>
+                <tr>
+                  <td><code>.eg-ui-object-cover|contain|fill|none</code></td>
+                  <td><code>object-fit: cover|contain|fill|none;</code></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4 class="eg-ui-mb-2">Text Alignment & Overflow</h4>
+            <table class="eg-ui-table eg-ui-table--striped eg-ui-mb-6">
+              <thead>
+                <tr>
+                  <th>Class</th>
+                  <th>Properties</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>.eg-ui-text-left|center|right|justify</code></td>
+                  <td>Text alignment</td>
+                </tr>
+                <tr>
+                  <td><code>.eg-ui-text-truncate</code></td>
+                  <td>Truncates with ellipsis (<code>...</code>)</td>
+                </tr>
+                <tr>
+                  <td><code>.eg-ui-overflow-auto|hidden|visible|scroll</code></td>
+                  <td><code>overflow</code> property</td>
+                </tr>
+                <tr>
+                  <td><code>.eg-ui-overflow-x|y-auto|hidden</code></td>
+                  <td>Axis-specific overflow</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4 class="eg-ui-mb-2">Z-Index & Order</h4>
+            <table class="eg-ui-table eg-ui-table--striped">
+              <thead>
+                <tr>
+                  <th>Class</th>
+                  <th>Properties</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>.eg-ui-z-0</code> to <code>50</code> (step 10)</td>
+                  <td><code>z-index: 0, 10, 20...</code></td>
+                </tr>
+                <tr>
+                  <td><code>.eg-ui-z-auto</code></td>
+                  <td><code>z-index: auto;</code></td>
+                </tr>
+                <tr>
+                  <td><code>.eg-ui-order-1</code> to <code>6</code></td>
+                  <td>Flex/Grid <code>order</code></td>
+                </tr>
+                <tr>
+                  <td><code>.eg-ui-order-first|last</code></td>
+                  <td><code>order: -9999 | 9999</code></td>
+                </tr>
+                <tr>
+                  <td><code>.eg-ui-flex-shrink-0|shrink</code></td>
+                  <td><code>flex-shrink: 0 | 1</code></td>
+                </tr>
+                <tr>
+                  <td><code>.eg-ui-flex-grow-0|grow</code></td>
+                  <td><code>flex-grow: 0 | 1</code></td>
                 </tr>
               </tbody>
             </table>

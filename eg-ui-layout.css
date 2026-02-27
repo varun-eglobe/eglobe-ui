@@ -74,6 +74,52 @@
 .eg-ui-h-screen { height: 100vh !important; }
 .eg-ui-h-auto { height: auto !important; }
 
+/* Flexbox Order & Shrink/Grow */
+.eg-ui-flex-shrink-0 { flex-shrink: 0 !important; }
+.eg-ui-flex-shrink { flex-shrink: 1 !important; }
+.eg-ui-flex-grow-0 { flex-grow: 0 !important; }
+.eg-ui-flex-grow { flex-grow: 1 !important; }
+.eg-ui-order-1 { order: 1 !important; }
+.eg-ui-order-2 { order: 2 !important; }
+.eg-ui-order-3 { order: 3 !important; }
+.eg-ui-order-4 { order: 4 !important; }
+.eg-ui-order-5 { order: 5 !important; }
+.eg-ui-order-6 { order: 6 !important; }
+.eg-ui-order-first { order: -9999 !important; }
+.eg-ui-order-last { order: 9999 !important; }
+
+/* Z-Index */
+.eg-ui-z-0 { z-index: 0 !important; }
+.eg-ui-z-10 { z-index: 10 !important; }
+.eg-ui-z-20 { z-index: 20 !important; }
+.eg-ui-z-30 { z-index: 30 !important; }
+.eg-ui-z-40 { z-index: 40 !important; }
+.eg-ui-z-50 { z-index: 50 !important; }
+.eg-ui-z-auto { z-index: auto !important; }
+
+/* Overflow */
+.eg-ui-overflow-auto { overflow: auto !important; }
+.eg-ui-overflow-hidden { overflow: hidden !important; }
+.eg-ui-overflow-visible { overflow: visible !important; }
+.eg-ui-overflow-scroll { overflow: scroll !important; }
+.eg-ui-overflow-x-auto { overflow-x: auto !important; }
+.eg-ui-overflow-y-auto { overflow-y: auto !important; }
+.eg-ui-overflow-x-hidden { overflow-x: hidden !important; }
+.eg-ui-overflow-y-hidden { overflow-y: hidden !important; }
+
+/* Object Fit */
+.eg-ui-object-contain { object-fit: contain !important; }
+.eg-ui-object-cover { object-fit: cover !important; }
+.eg-ui-object-fill { object-fit: fill !important; }
+.eg-ui-object-none { object-fit: none !important; }
+
+/* Text Alignment & Wrapping */
+.eg-ui-text-left { text-align: left !important; }
+.eg-ui-text-center { text-align: center !important; }
+.eg-ui-text-right { text-align: right !important; }
+.eg-ui-text-justify { text-align: justify !important; }
+.eg-ui-text-truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
 /* Legacy */
 .eg-ui-w-100 { width: 100% !important; }
 
@@ -141,6 +187,47 @@
   .md\:eg-ui-h-full { height: 100% !important; }
   .md\:eg-ui-h-screen { height: 100vh !important; }
   .md\:eg-ui-h-auto { height: auto !important; }
+  /* Flexbox Order & Shrink/Grow */
+  .md\:eg-ui-flex-shrink-0 { flex-shrink: 0 !important; }
+  .md\:eg-ui-flex-shrink { flex-shrink: 1 !important; }
+  .md\:eg-ui-flex-grow-0 { flex-grow: 0 !important; }
+  .md\:eg-ui-flex-grow { flex-grow: 1 !important; }
+  .md\:eg-ui-order-1 { order: 1 !important; }
+  .md\:eg-ui-order-2 { order: 2 !important; }
+  .md\:eg-ui-order-3 { order: 3 !important; }
+  .md\:eg-ui-order-4 { order: 4 !important; }
+  .md\:eg-ui-order-5 { order: 5 !important; }
+  .md\:eg-ui-order-6 { order: 6 !important; }
+  .md\:eg-ui-order-first { order: -9999 !important; }
+  .md\:eg-ui-order-last { order: 9999 !important; }
+  /* Z-Index */
+  .md\:eg-ui-z-0 { z-index: 0 !important; }
+  .md\:eg-ui-z-10 { z-index: 10 !important; }
+  .md\:eg-ui-z-20 { z-index: 20 !important; }
+  .md\:eg-ui-z-30 { z-index: 30 !important; }
+  .md\:eg-ui-z-40 { z-index: 40 !important; }
+  .md\:eg-ui-z-50 { z-index: 50 !important; }
+  .md\:eg-ui-z-auto { z-index: auto !important; }
+  /* Overflow */
+  .md\:eg-ui-overflow-auto { overflow: auto !important; }
+  .md\:eg-ui-overflow-hidden { overflow: hidden !important; }
+  .md\:eg-ui-overflow-visible { overflow: visible !important; }
+  .md\:eg-ui-overflow-scroll { overflow: scroll !important; }
+  .md\:eg-ui-overflow-x-auto { overflow-x: auto !important; }
+  .md\:eg-ui-overflow-y-auto { overflow-y: auto !important; }
+  .md\:eg-ui-overflow-x-hidden { overflow-x: hidden !important; }
+  .md\:eg-ui-overflow-y-hidden { overflow-y: hidden !important; }
+  /* Object Fit */
+  .md\:eg-ui-object-contain { object-fit: contain !important; }
+  .md\:eg-ui-object-cover { object-fit: cover !important; }
+  .md\:eg-ui-object-fill { object-fit: fill !important; }
+  .md\:eg-ui-object-none { object-fit: none !important; }
+  /* Text Alignment & Wrapping */
+  .md\:eg-ui-text-left { text-align: left !important; }
+  .md\:eg-ui-text-center { text-align: center !important; }
+  .md\:eg-ui-text-right { text-align: right !important; }
+  .md\:eg-ui-text-justify { text-align: justify !important; }
+  .md\:eg-ui-text-truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   /* Legacy */
   .md\:eg-ui-w-100 { width: 100% !important; }
 }
@@ -209,6 +296,47 @@
   .lg\:eg-ui-h-full { height: 100% !important; }
   .lg\:eg-ui-h-screen { height: 100vh !important; }
   .lg\:eg-ui-h-auto { height: auto !important; }
+  /* Flexbox Order & Shrink/Grow */
+  .lg\:eg-ui-flex-shrink-0 { flex-shrink: 0 !important; }
+  .lg\:eg-ui-flex-shrink { flex-shrink: 1 !important; }
+  .lg\:eg-ui-flex-grow-0 { flex-grow: 0 !important; }
+  .lg\:eg-ui-flex-grow { flex-grow: 1 !important; }
+  .lg\:eg-ui-order-1 { order: 1 !important; }
+  .lg\:eg-ui-order-2 { order: 2 !important; }
+  .lg\:eg-ui-order-3 { order: 3 !important; }
+  .lg\:eg-ui-order-4 { order: 4 !important; }
+  .lg\:eg-ui-order-5 { order: 5 !important; }
+  .lg\:eg-ui-order-6 { order: 6 !important; }
+  .lg\:eg-ui-order-first { order: -9999 !important; }
+  .lg\:eg-ui-order-last { order: 9999 !important; }
+  /* Z-Index */
+  .lg\:eg-ui-z-0 { z-index: 0 !important; }
+  .lg\:eg-ui-z-10 { z-index: 10 !important; }
+  .lg\:eg-ui-z-20 { z-index: 20 !important; }
+  .lg\:eg-ui-z-30 { z-index: 30 !important; }
+  .lg\:eg-ui-z-40 { z-index: 40 !important; }
+  .lg\:eg-ui-z-50 { z-index: 50 !important; }
+  .lg\:eg-ui-z-auto { z-index: auto !important; }
+  /* Overflow */
+  .lg\:eg-ui-overflow-auto { overflow: auto !important; }
+  .lg\:eg-ui-overflow-hidden { overflow: hidden !important; }
+  .lg\:eg-ui-overflow-visible { overflow: visible !important; }
+  .lg\:eg-ui-overflow-scroll { overflow: scroll !important; }
+  .lg\:eg-ui-overflow-x-auto { overflow-x: auto !important; }
+  .lg\:eg-ui-overflow-y-auto { overflow-y: auto !important; }
+  .lg\:eg-ui-overflow-x-hidden { overflow-x: hidden !important; }
+  .lg\:eg-ui-overflow-y-hidden { overflow-y: hidden !important; }
+  /* Object Fit */
+  .lg\:eg-ui-object-contain { object-fit: contain !important; }
+  .lg\:eg-ui-object-cover { object-fit: cover !important; }
+  .lg\:eg-ui-object-fill { object-fit: fill !important; }
+  .lg\:eg-ui-object-none { object-fit: none !important; }
+  /* Text Alignment & Wrapping */
+  .lg\:eg-ui-text-left { text-align: left !important; }
+  .lg\:eg-ui-text-center { text-align: center !important; }
+  .lg\:eg-ui-text-right { text-align: right !important; }
+  .lg\:eg-ui-text-justify { text-align: justify !important; }
+  .lg\:eg-ui-text-truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   /* Legacy */
   .lg\:eg-ui-w-100 { width: 100% !important; }
 }
