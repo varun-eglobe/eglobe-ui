@@ -291,7 +291,9 @@
           <li><a href="#forms" class="sidebar-link">Form Elements</a></li>
           <li><a href="#modals" class="sidebar-link">Modals</a></li>
           <li><a href="#navs" class="sidebar-link">Navs & Tabs</a></li>
+          <li><a href="#offcanvas" class="sidebar-link">Offcanvas</a></li>
           <li><a href="#popovers" class="sidebar-link">Popovers</a></li>
+          <li><a href="#progress" class="sidebar-link">Progress</a></li>
           <li><a href="#spinners" class="sidebar-link">Spinners & Loading</a></li>
           <li><a href="#tables" class="sidebar-link">Tables</a></li>
           <li><a href="#toasts" class="sidebar-link">Toasts</a></li>
@@ -856,6 +858,124 @@ closeModal('myModal'); // To close</code></pre>
         </div>
       </section>
 
+      <!-- Offcanvas Section -->
+      <section id="offcanvas" class="demo-section">
+        <h2 class="eg-ui-mb-1">Offcanvas</h2>
+        <p class="eg-ui-text-muted eg-ui-mb-6">Build hidden sidebars into your project for navigation, shopping carts,
+          and more.</p>
+
+        <div class="example-card">
+          <span class="example-title">How to Use (Code)</span>
+          <p class="eg-ui-mb-4">Use <code>data-eg-ui-toggle="offcanvas"</code> and <code>data-target</code> to open an
+            offcanvas. Use <code>data-eg-ui-dismiss="offcanvas"</code> inside to close it.</p>
+          <pre
+            style="background: #1e293b; color: #f8fafc; padding: 1.25rem; border-radius: 12px; font-size: 0.875rem; overflow-x: auto;"><code>&lt;!-- Trigger Button --&gt;
+&lt;button class="eg-ui-btn eg-ui-btn--primary" data-eg-ui-toggle="offcanvas" data-target="offcanvasExample"&gt;
+  Open Offcanvas
+&lt;/button&gt;
+
+&lt;!-- Offcanvas Component --&gt;
+&lt;div class="eg-ui-offcanvas eg-ui-offcanvas-start" id="offcanvasExample" tabindex="-1"&gt;
+  &lt;div class="eg-ui-offcanvas-header"&gt;
+    &lt;h5 class="eg-ui-offcanvas-title"&gt;Offcanvas Title&lt;/h5&gt;
+    &lt;button type="button" class="eg-ui-offcanvas-close" data-eg-ui-dismiss="offcanvas" aria-label="Close"&gt;
+      &lt;svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"&gt;&lt;path d="M1 1l12 12M13 1L1 13"/&gt;&lt;/svg&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="eg-ui-offcanvas-body"&gt;
+    &lt;p&gt;Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="example-card">
+          <span class="example-title">Placement Examples</span>
+          <div class="eg-ui-flex eg-ui-gap-4 eg-ui-flex-wrap">
+            <button class="eg-ui-btn eg-ui-btn--outline" data-eg-ui-toggle="offcanvas" data-target="offcanvasTop">Toggle
+              Top</button>
+            <button class="eg-ui-btn eg-ui-btn--primary" data-eg-ui-toggle="offcanvas"
+              data-target="offcanvasRight">Toggle Right</button>
+            <button class="eg-ui-btn eg-ui-btn--secondary" data-eg-ui-toggle="offcanvas"
+              data-target="offcanvasBottom">Toggle Bottom</button>
+            <button class="eg-ui-btn eg-ui-btn--outline" data-eg-ui-toggle="offcanvas"
+              data-target="offcanvasLeft">Toggle Left</button>
+          </div>
+
+          <!-- Top Offcanvas -->
+          <div class="eg-ui-offcanvas eg-ui-offcanvas-top" id="offcanvasTop" tabindex="-1">
+            <div class="eg-ui-offcanvas-header">
+              <h5 class="eg-ui-offcanvas-title">Offcanvas Top</h5>
+              <button type="button" class="eg-ui-offcanvas-close" data-eg-ui-dismiss="offcanvas" aria-label="Close">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 1l12 12M13 1L1 13" />
+                </svg>
+              </button>
+            </div>
+            <div class="eg-ui-offcanvas-body">
+              <p>This offcanvas slides down from the top edge of the viewport.</p>
+            </div>
+          </div>
+
+          <!-- Right Offcanvas -->
+          <div class="eg-ui-offcanvas eg-ui-offcanvas-end" id="offcanvasRight" tabindex="-1">
+            <div class="eg-ui-offcanvas-header">
+              <h5 class="eg-ui-offcanvas-title">Offcanvas Right</h5>
+              <button type="button" class="eg-ui-offcanvas-close" data-eg-ui-dismiss="offcanvas" aria-label="Close">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 1l12 12M13 1L1 13" />
+                </svg>
+              </button>
+            </div>
+            <div class="eg-ui-offcanvas-body">
+              <p>This offcanvas slides in from the right edge of the viewport.</p>
+              <div class="eg-ui-mt-6">
+                <!-- Example list group -->
+                <ul class="eg-ui-nav eg-ui-nav-vertical"
+                  style="border: 1px solid var(--eg-ui-neutral-200); border-radius: var(--eg-ui-radius-md); padding: 0.5rem;">
+                  <li class="eg-ui-nav-item"><a class="eg-ui-nav-link active" href="#">Home</a></li>
+                  <li class="eg-ui-nav-item"><a class="eg-ui-nav-link" href="#">Profile</a></li>
+                  <li class="eg-ui-nav-item"><a class="eg-ui-nav-link" href="#">Messages</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Offcanvas -->
+          <div class="eg-ui-offcanvas eg-ui-offcanvas-bottom" id="offcanvasBottom" tabindex="-1">
+            <div class="eg-ui-offcanvas-header">
+              <h5 class="eg-ui-offcanvas-title">Offcanvas Bottom</h5>
+              <button type="button" class="eg-ui-offcanvas-close" data-eg-ui-dismiss="offcanvas" aria-label="Close">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 1l12 12M13 1L1 13" />
+                </svg>
+              </button>
+            </div>
+            <div class="eg-ui-offcanvas-body">
+              <p>This offcanvas slides up from the bottom edge of the viewport.</p>
+            </div>
+          </div>
+
+          <!-- Left Offcanvas -->
+          <div class="eg-ui-offcanvas eg-ui-offcanvas-start" id="offcanvasLeft" tabindex="-1">
+            <div class="eg-ui-offcanvas-header">
+              <h5 class="eg-ui-offcanvas-title">Offcanvas Left</h5>
+              <button type="button" class="eg-ui-offcanvas-close" data-eg-ui-dismiss="offcanvas" aria-label="Close">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 1l12 12M13 1L1 13" />
+                </svg>
+              </button>
+            </div>
+            <div class="eg-ui-offcanvas-body">
+              <p>This offcanvas slides in from the left edge of the viewport.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Popovers Section -->
       <section id="popovers" class="demo-section">
         <h2 class="eg-ui-mb-1">Popovers</h2>
@@ -929,6 +1049,76 @@ closeModal('myModal'); // To close</code></pre>
                 <div class="eg-ui-popover__arrow"></div>
                 <h4 class="eg-ui-popover__header">Right Popover</h4>
                 <div class="eg-ui-popover__body">This popover appears to the right of the trigger button.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Progress Section -->
+      <section id="progress" class="demo-section">
+        <h2 class="eg-ui-mb-1">Progress</h2>
+        <p class="eg-ui-text-muted eg-ui-mb-6">Indicate the completion status of a task or process.</p>
+
+        <div class="component-grid">
+          <div class="example-card">
+            <span class="example-title">Basic Examples</span>
+            <div class="eg-ui-flex eg-ui-flex-col eg-ui-gap-4">
+              <div class="eg-ui-progress">
+                <div class="eg-ui-progress-bar" role="progressbar" style="width: 25%">25%</div>
+              </div>
+              <div class="eg-ui-progress">
+                <div class="eg-ui-progress-bar" role="progressbar" style="width: 50%">50%</div>
+              </div>
+              <div class="eg-ui-progress">
+                <div class="eg-ui-progress-bar" role="progressbar" style="width: 75%">75%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="example-card">
+            <span class="example-title">Sizes</span>
+            <div class="eg-ui-flex eg-ui-flex-col eg-ui-gap-4">
+              <div class="eg-ui-progress eg-ui-progress--sm">
+                <div class="eg-ui-progress-bar" role="progressbar" style="width: 25%"></div>
+              </div>
+              <div class="eg-ui-progress eg-ui-progress--md">
+                <div class="eg-ui-progress-bar" role="progressbar" style="width: 50%"></div>
+              </div>
+              <div class="eg-ui-progress eg-ui-progress--lg">
+                <div class="eg-ui-progress-bar" role="progressbar" style="width: 75%">75%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="example-card">
+            <span class="example-title">Colors</span>
+            <div class="eg-ui-flex eg-ui-flex-col eg-ui-gap-4">
+              <div class="eg-ui-progress">
+                <div class="eg-ui-progress-bar eg-ui-progress-bar--success" role="progressbar" style="width: 25%"></div>
+              </div>
+              <div class="eg-ui-progress">
+                <div class="eg-ui-progress-bar eg-ui-progress-bar--info" role="progressbar" style="width: 50%"></div>
+              </div>
+              <div class="eg-ui-progress">
+                <div class="eg-ui-progress-bar eg-ui-progress-bar--warning" role="progressbar" style="width: 75%"></div>
+              </div>
+              <div class="eg-ui-progress">
+                <div class="eg-ui-progress-bar eg-ui-progress-bar--danger" role="progressbar" style="width: 100%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="example-card">
+            <span class="example-title">Striped & Animated</span>
+            <div class="eg-ui-flex eg-ui-flex-col eg-ui-gap-4">
+              <div class="eg-ui-progress">
+                <div class="eg-ui-progress-bar eg-ui-progress-bar--striped" role="progressbar" style="width: 60%"></div>
+              </div>
+              <div class="eg-ui-progress">
+                <div
+                  class="eg-ui-progress-bar eg-ui-progress-bar--striped eg-ui-progress-bar--animated eg-ui-progress-bar--success"
+                  role="progressbar" style="width: 100%">Processing...</div>
               </div>
             </div>
           </div>

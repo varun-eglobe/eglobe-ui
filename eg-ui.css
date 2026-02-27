@@ -11,16 +11,18 @@
 @import url('eg-ui-layout.css');
 
 /* Components */
+@import url('eg-ui-accordion.css');
+@import url('eg-ui-alerts.css');
+@import url('eg-ui-badges.css');
 @import url('eg-ui-buttons.css');
+@import url('eg-ui-cards.css');
+@import url('eg-ui-dropdown.css');
 @import url('eg-ui-forms.css');
 @import url('eg-ui-modal.css');
-@import url('eg-ui-tables.css');
-@import url('eg-ui-alerts.css');
-@import url('eg-ui-cards.css');
-@import url('eg-ui-badges.css');
 @import url('eg-ui-navs.css');
-@import url('eg-ui-spinners.css');
-@import url('eg-ui-toasts.css');
+@import url('eg-ui-offcanvas.css');
 @import url('eg-ui-popover.css');
-@import url('eg-ui-dropdown.css');
-@import url('eg-ui-accordion.css');
+@import url('eg-ui-progress.css');
+@import url('eg-ui-spinners.css');
+@import url('eg-ui-tables.css');
+@import url('eg-ui-toasts.css');

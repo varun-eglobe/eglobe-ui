@@ -1,0 +1,119 @@
+/* eGlobe UI Offcanvas */
+
+.eg-ui-offcanvas {
+    position: fixed;
+    bottom: 0;
+    z-index: 1045;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    visibility: hidden;
+    background-color: #fff;
+    background-clip: padding-box;
+    outline: 0;
+    transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.eg-ui-offcanvas.show {
+    visibility: visible;
+    transform: none;
+}
+
+/* Backdrop */
+.eg-ui-offcanvas-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1040;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.eg-ui-offcanvas-backdrop.show {
+    opacity: 0.5;
+    visibility: visible;
+}
+
+/* Placements */
+.eg-ui-offcanvas-start {
+    top: 0;
+    left: 0;
+    width: 400px;
+    border-right: 1px solid var(--eg-ui-neutral-200);
+    transform: translateX(-100%);
+}
+
+.eg-ui-offcanvas-end {
+    top: 0;
+    right: 0;
+    width: 400px;
+    border-left: 1px solid var(--eg-ui-neutral-200);
+    transform: translateX(100%);
+}
+
+.eg-ui-offcanvas-top {
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 30vh;
+    max-height: 100%;
+    border-bottom: 1px solid var(--eg-ui-neutral-200);
+    transform: translateY(-100%);
+}
+
+.eg-ui-offcanvas-bottom {
+    right: 0;
+    left: 0;
+    height: 30vh;
+    max-height: 100%;
+    border-top: 1px solid var(--eg-ui-neutral-200);
+    transform: translateY(100%);
+}
+
+/* Structural Elements */
+.eg-ui-offcanvas-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--eg-ui-neutral-200);
+}
+
+.eg-ui-offcanvas-title {
+    margin-bottom: 0;
+    line-height: var(--eg-ui-line-height-base);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--eg-ui-neutral-800);
+}
+
+.eg-ui-offcanvas-body {
+    flex-grow: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+.eg-ui-offcanvas-close {
+    box-sizing: content-box;
+    width: 1em;
+    height: 1em;
+    padding: 0.25em 0.25em;
+    color: var(--eg-ui-neutral-500);
+    background: transparent;
+    border: 0;
+    border-radius: var(--eg-ui-radius-sm);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+}
+
+.eg-ui-offcanvas-close:hover {
+    color: var(--eg-ui-neutral-800);
+    background-color: var(--eg-ui-neutral-100);
+}

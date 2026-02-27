@@ -324,3 +324,86 @@ document.addEventListener('DOMContentLoaded', () => {
         collapse.style.height = collapse.scrollHeight + 'px';
     });
 });
+
+/* ==========================================================================
+   Offcanvas (Drawer)
+   ========================================================================== */
+
+function openOffcanvas(offcanvasId) {
+    const offcanvas = document.getElementById(offcanvasId);
+    if (!offcanvas) return;
+
+    // Create backdrop if it doesn't exist
+    let backdrop = document.querySelector('.eg-ui-offcanvas-backdrop');
+    if (!backdrop) {
+        backdrop = document.createElement('div');
+        backdrop.className = 'eg-ui-offcanvas-backdrop';
+        document.body.appendChild(backdrop);
+
+        // Close offcanvas when backdrop is clicked
+        backdrop.addEventListener('click', () => {
+            const openOffcanvasEl = document.querySelector('.eg-ui-offcanvas.show');
+            if (openOffcanvasEl) {
+                closeOffcanvas(openOffcanvasEl.id);
+            }
+        });
+    }
+
+    // Show backdrop
+    backdrop.classList.add('show');
+
+    // Show offcanvas
+    offcanvas.classList.add('show');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+}
+
+function closeOffcanvas(offcanvasId) {
+    const offcanvas = document.getElementById(offcanvasId);
+    if (!offcanvas) return;
+
+    // Hide offcanvas
+    offcanvas.classList.remove('show');
+
+    // Hide backdrop
+    const backdrop = document.querySelector('.eg-ui-offcanvas-backdrop');
+    if (backdrop) {
+        backdrop.classList.remove('show');
+        // Optional: remove backdrop from DOM after transition
+        setTimeout(() => {
+            if (!document.querySelector('.eg-ui-offcanvas.show') && backdrop.parentNode) {
+                backdrop.parentNode.removeChild(backdrop);
+            }
+        }, 300); // matches transition time
+    }
+
+    document.body.style.overflow = ''; // Restore scrolling
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Add Esc key listener for Offcanvas
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const openOffcanvasEls = document.querySelectorAll('.eg-ui-offcanvas.show');
+            openOffcanvasEls.forEach(el => closeOffcanvas(el.id));
+        }
+    });
+
+    // Add click listeners for offcanvas dismiss buttons
+    document.addEventListener('click', (e) => {
+        const dismissBtn = e.target.closest('[data-eg-ui-dismiss="offcanvas"]');
+        if (dismissBtn) {
+            const offcanvas = dismissBtn.closest('.eg-ui-offcanvas');
+            if (offcanvas) {
+                closeOffcanvas(offcanvas.id);
+            }
+        }
+
+        const toggleBtn = e.target.closest('[data-eg-ui-toggle="offcanvas"]');
+        if (toggleBtn) {
+            const targetId = toggleBtn.getAttribute('data-target');
+            if (targetId) {
+                openOffcanvas(targetId);
+            }
+        }
+    });
+});
