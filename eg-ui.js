@@ -286,3 +286,41 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// --- Accordions ---
+document.addEventListener('DOMContentLoaded', () => {
+    const accordionHeaders = document.querySelectorAll('.eg-ui-accordion-header');
+
+    accordionHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const item = header.closest('.eg-ui-accordion-item');
+            const accordion = header.closest('.eg-ui-accordion');
+            const collapse = item.querySelector('.eg-ui-accordion-collapse');
+            const isActive = item.classList.contains('eg-ui-accordion-item--active');
+
+            // Handle mutual exclusivity (standard accordion behavior)
+            if (!isActive && accordion && !accordion.hasAttribute('data-eg-ui-always-open')) {
+                const activeItems = accordion.querySelectorAll('.eg-ui-accordion-item--active');
+                activeItems.forEach(activeItem => {
+                    activeItem.classList.remove('eg-ui-accordion-item--active');
+                    const activeCollapse = activeItem.querySelector('.eg-ui-accordion-collapse');
+                    if (activeCollapse) activeCollapse.style.height = '0px';
+                });
+            }
+
+            // Toggle current item
+            if (isActive) {
+                item.classList.remove('eg-ui-accordion-item--active');
+                collapse.style.height = '0px';
+            } else {
+                item.classList.add('eg-ui-accordion-item--active');
+                collapse.style.height = collapse.scrollHeight + 'px';
+            }
+        });
+    });
+
+    // Handle initial state for active items (if any)
+    document.querySelectorAll('.eg-ui-accordion-item--active .eg-ui-accordion-collapse').forEach(collapse => {
+        collapse.style.height = collapse.scrollHeight + 'px';
+    });
+});

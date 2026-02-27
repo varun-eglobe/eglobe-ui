@@ -8,6 +8,7 @@
 
 /* Utilities */
 @import url('eg-ui-utilities.css');
+@import url('eg-ui-layout.css');
 
 /* Components */
 @import url('eg-ui-buttons.css');
@@ -22,3 +23,4 @@
 @import url('eg-ui-toasts.css');
 @import url('eg-ui-popover.css');
 @import url('eg-ui-dropdown.css');
+@import url('eg-ui-accordion.css');

@@ -4,197 +4,249 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>eGlobe UI Library Demo</title>
-
-  <!-- CSS Library (Timestamp updated automatically via 'npm run dev') -->
-  <link rel="stylesheet" href="eg-ui.css?v=1772022411461">
-
-  <!-- Demo-specific styles (just for presentation layout) -->
+  <title>eGlobe UI - Shared System Design</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="eg-ui.css">
   <style>
+    :root {
+      --sidebar-width: 260px;
+    }
+
+    html {
+      box-sizing: border-box;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: inherit;
+    }
+
     body {
       margin: 0;
+      padding: 0;
       background-color: #f8fafc;
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      color: #1e293b;
+      color: var(--eg-ui-neutral-800);
+      font-family: 'Outfit', sans-serif;
     }
 
     .demo-wrapper {
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 0;
-      border-radius: 16px;
-      background: white;
-      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-      overflow: hidden;
+      display: flex;
+      min-height: 100vh;
     }
 
-    .demo-section {
-      padding: 48px;
-      border-bottom: 1px solid #f1f5f9;
-    }
-
-    .demo-section:last-child {
-      border-bottom: none;
-    }
-
-    .example-card {
+    /* Sidebar Styling */
+    .sidebar {
+      width: var(--sidebar-width);
       background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 32px;
-      margin-top: 24px;
-      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+      border-right: 1px solid #e2e8f0;
+      padding: 1.5rem;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 1000;
+      transition: transform 0.3s ease;
     }
 
-    .example-title {
-      font-size: 14px;
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+      padding-left: 0.5rem;
+    }
+
+    .sidebar-brand img {
+      width: 32px;
+      height: 32px;
+    }
+
+    .sidebar-brand span {
       font-weight: 600;
+      font-size: 1.125rem;
+      color: var(--eg-ui-primary-700);
+      letter-spacing: -0.025em;
+    }
+
+    .sidebar-nav {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar-subtitle {
+      font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      color: #64748b;
-      margin-bottom: 16px;
-      display: block;
+      color: #94a3b8;
+      margin: 1.5rem 0 0.75rem 0.5rem;
+      font-weight: 600;
     }
 
     .sidebar-link {
       display: flex;
       align-items: center;
-      padding: 10px 16px;
+      padding: 0.625rem 0.75rem;
       color: #64748b;
       text-decoration: none;
       border-radius: 8px;
-      transition: all 0.2s;
-      font-size: 15px;
+      font-size: 0.875rem;
       font-weight: 500;
+      transition: all 0.2s ease;
+      margin-bottom: 0.25rem;
     }
 
     .sidebar-link:hover {
-      background-color: #f1f5f9;
-      color: #4f46e5;
+      background: #f1f5f9;
+      color: var(--eg-ui-primary-600);
     }
 
     .sidebar-link.active {
-      background-color: #eef2ff;
-      color: #4f46e5;
+      background: #eff6ff;
+      color: var(--eg-ui-primary-600);
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      margin-left: var(--sidebar-width);
+      padding: 3rem 4rem;
+      max-width: 1200px;
+      min-width: 0;
+    }
+
+    .demo-section {
+      margin-bottom: 5rem;
+    }
+
+    .demo-section h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+    }
+
+    /* Example Cards */
+    .example-card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .example-title {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #94a3b8;
+      margin-bottom: 1.25rem;
+      font-weight: 600;
     }
 
     .component-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+      gap: 1.5rem;
     }
 
-    @media (min-width: 992px) {
-      .component-grid--2col {
-        grid-template-columns: repeat(2, 1fr) !important;
-      }
+    .component-grid--2col {
+      grid-template-columns: repeat(2, 1fr);
     }
 
-    /* Responsive Transitions */
-    aside,
-    main {
-      transition: all 0.3s ease;
-    }
-
-    /* Mobile Header */
-    .mobile-header {
+    /* Mobile Toggle */
+    /* Mobile Toggle (hidden by default on desktop) */
+    .mobile-nav-toggle {
       display: none;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: #fff;
-      border-bottom: 1px solid #e2e8f0;
-      padding: 12px 24px;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .menu-toggle {
-      background: none;
-      border: none;
-      font-size: 24px;
-      color: #0f172a;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 8px;
-      margin-right: -8px;
     }
 
     .sidebar-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 1001;
-      backdrop-filter: blur(2px);
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 900;
     }
 
     @media (max-width: 991px) {
-      .mobile-header {
-        display: flex;
+      .sidebar {
+        transform: translateX(-100%);
       }
 
-      .eg-ui-app {
-        flex-direction: column;
+      .sidebar .sidebar-brand {
+        display: none;
       }
 
-      aside {
-        position: fixed !important;
-        left: -260px;
-        z-index: 1002;
-        box-shadow: 10px 0 15px -3px rgba(0, 0, 0, 0.1);
-      }
-
-      aside.active {
-        left: 0;
+      .sidebar.active {
+        transform: translateX(0);
       }
 
       .sidebar-overlay.active {
         display: block;
       }
 
-      main {
-        padding: 24px 24px !important;
+      .main-content {
+        margin-left: 0;
+        padding: 2rem;
       }
 
-      .demo-section {
-        padding: 32px 0 !important;
+      .mobile-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 1.5rem;
+        background: white;
+        border-bottom: 1px solid #e2e8f0;
+        position: sticky;
+        top: 0;
+        z-index: 950;
+        width: 100%;
+        box-sizing: border-box;
       }
 
-      .component-grid {
+      .mobile-nav-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        color: var(--eg-ui-neutral-800);
+        border: none;
+        box-shadow: none;
+        position: static;
+        width: auto;
+        height: auto;
+        padding: 0;
+        cursor: pointer;
+      }
+
+      .component-grid--2col {
         grid-template-columns: 1fr;
-      }
-
-      .example-card {
-        padding: 24px;
       }
     }
 
-    code {
-      background: #f1f5f9;
-      padding: 3px 6px;
-      border-radius: 4px;
-      font-size: 14px;
-      color: #ef4444;
+    /* Hide mobile header on desktop */
+    @media (min-width: 992px) {
+      .mobile-header {
+        display: none;
+      }
     }
   </style>
 </head>
 
-<body class="eg-ui-app">
+<body>
 
-  <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-  <header class="mobile-header">
-    <div style="display: flex; align-items: center; gap: 12px;">
+  <header class="mobile-header" id="mobileHeader">
+    <div class="sidebar-brand" style="margin-bottom: 0; padding-left: 0;">
       <div
-        style="width: 28px; height: 28px; background: #6366f1; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px;">
+        style="background: var(--eg-ui-primary-600); color: white; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 6px; font-weight: bold; font-size: 18px;">
         Q</div>
-      <h2 style="font-size: 1.1rem; font-weight: 700; margin: 0; color: #0f172a; letter-spacing: -0.01em;">eGlobe UI
-      </h2>
+      <span>eGlobe UI</span>
     </div>
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+    <button class="mobile-nav-toggle" id="menuToggle">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
         stroke-linecap="round" stroke-linejoin="round">
         <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -204,39 +256,46 @@
     </button>
   </header>
 
-  <div class="eg-ui-app" style="display: flex; min-height: 100vh;">
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
+  <div class="demo-wrapper">
     <!-- Sidebar Navigation -->
-    <aside id="sidebarNav"
-      style="width: 260px; background: #fff; border-right: 1px solid #e2e8f0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 2.5rem 1.5rem; flex-shrink: 0;">
-      <div class="sidebar-desktop-header"
-        style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2.5rem;">
+    <aside class="sidebar" id="sidebarNav">
+      <div class="sidebar-brand">
         <div
-          style="width: 32px; height: 32px; background: #6366f1; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem;">
+          style="background: var(--eg-ui-primary-600); color: white; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 6px; font-weight: bold; font-size: 18px;">
           Q</div>
-        <h2 style="font-size: 1.25rem; font-weight: 700; margin: 0; color: #0f172a; letter-spacing: -0.02em;">eGlobe UI
-        </h2>
+        <span>eGlobe UI Library</span>
       </div>
 
-      <nav style="display: flex; flex-direction: column; gap: 0.25rem;">
-        <a href="#intro" class="sidebar-link active">Introduction</a>
-        <a href="#getting-started" class="sidebar-link">Getting Started</a>
-        <a href="#alerts" class="sidebar-link">Alerts</a>
-        <a href="#spinners" class="sidebar-link">Spinners</a>
-        <a href="#buttons" class="sidebar-link">Buttons & Badges</a>
-        <a href="#cards" class="sidebar-link">Cards</a>
-        <a href="#navs" class="sidebar-link">Navs & Tabs</a>
-        <a href="#forms" class="sidebar-link">Form Elements</a>
-        <a href="#tables" class="sidebar-link">Tables</a>
-        <a href="#modals" class="sidebar-link">Modals</a>
-        <a href="#toasts" class="sidebar-link">Toasts</a>
-        <a href="#popovers" class="sidebar-link">Popovers</a>
-        <a href="#dropdowns" class="sidebar-link">Dropdowns</a>
+      <nav>
+        <div class="sidebar-subtitle">General</div>
+        <ul class="sidebar-nav">
+          <li><a href="#intro" class="sidebar-link active">Introduction</a></li>
+          <li><a href="#getting-started" class="sidebar-link">Getting Started</a></li>
+        </ul>
+
+        <div class="sidebar-subtitle">Components</div>
+        <ul class="sidebar-nav">
+          <li><a href="#accordion" class="sidebar-link">Accordion</a></li>
+          <li><a href="#alerts" class="sidebar-link">Alerts</a></li>
+          <li><a href="#buttons" class="sidebar-link">Buttons & Badges</a></li>
+          <li><a href="#cards" class="sidebar-link">Cards</a></li>
+          <li><a href="#dropdowns" class="sidebar-link">Dropdowns</a></li>
+          <li><a href="#forms" class="sidebar-link">Form Elements</a></li>
+          <li><a href="#modals" class="sidebar-link">Modals</a></li>
+          <li><a href="#navs" class="sidebar-link">Navs & Tabs</a></li>
+          <li><a href="#popovers" class="sidebar-link">Popovers</a></li>
+          <li><a href="#spinners" class="sidebar-link">Spinners & Loading</a></li>
+          <li><a href="#tables" class="sidebar-link">Tables</a></li>
+          <li><a href="#toasts" class="sidebar-link">Toasts</a></li>
+          <li><a href="#utilities" class="sidebar-link">Utilities</a></li>
+        </ul>
       </nav>
     </aside>
 
     <!-- Main Content -->
-    <main style="flex: 1; padding: 2rem 3rem; overflow-y: auto; scroll-behavior: smooth;">
+    <main class="main-content">
 
       <div id="intro" class="demo-section eg-ui-mb-8" style="padding-top: 0.5rem;">
         <h1 class="eg-ui-mb-2">eGlobe UI System</h1>
@@ -244,8 +303,6 @@
         </p>
         <span class="eg-ui-badge eg-ui-badge--primary">v1.3.1</span>
         <span class="eg-ui-badge eg-ui-badge--success eg-ui-badge--pill">Responsive</span>
-
-
       </div>
 
       <!-- Getting Started Section -->
@@ -265,6 +322,104 @@
           <p class="eg-ui-mb-4">For interactive features like Modals, Tabs, or Toasts, include the library JS file.</p>
           <pre
             style="background: #1e293b; color: #f8fafc; padding: 1.25rem; border-radius: 12px; font-size: 0.875rem; overflow-x: auto;"><code>&lt;script src="path/to/eg-ui.js"&gt;&lt;/script&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Accordion Section -->
+      <section id="accordion" class="demo-section">
+        <h2 class="eg-ui-mb-1">Accordion</h2>
+        <p class="eg-ui-text-muted eg-ui-mb-6">Build vertically collapsing accordions in combination with the Collapse
+          JavaScript plugin.</p>
+
+        <div class="example-card">
+          <span class="example-title">Basic Example</span>
+          <div class="eg-ui-accordion">
+            <div class="eg-ui-accordion-item">
+              <button class="eg-ui-accordion-header" type="button">
+                Accordion Item #1
+              </button>
+              <div class="eg-ui-accordion-collapse">
+                <div class="eg-ui-accordion-body">
+                  <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse
+                  plugin adds the appropriate classes that we use to style each element.
+                </div>
+              </div>
+            </div>
+            <div class="eg-ui-accordion-item">
+              <button class="eg-ui-accordion-header" type="button">
+                Accordion Item #2
+              </button>
+              <div class="eg-ui-accordion-collapse">
+                <div class="eg-ui-accordion-body">
+                  <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse
+                  plugin adds the appropriate classes that we use to style each element.
+                </div>
+              </div>
+            </div>
+            <div class="eg-ui-accordion-item">
+              <button class="eg-ui-accordion-header" type="button">
+                Accordion Item #3
+              </button>
+              <div class="eg-ui-accordion-collapse">
+                <div class="eg-ui-accordion-body">
+                  <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse
+                  plugin adds the appropriate classes that we use to style each element.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-card">
+          <span class="example-title">Flush Variant</span>
+          <p class="eg-ui-mb-4">Add <code>.eg-ui-accordion--flush</code> to remove the default background-color, some
+            borders, and some rounded corners.</p>
+          <div class="eg-ui-accordion eg-ui-accordion--flush">
+            <div class="eg-ui-accordion-item">
+              <button class="eg-ui-accordion-header" type="button">
+                Flush Item #1
+              </button>
+              <div class="eg-ui-accordion-collapse">
+                <div class="eg-ui-accordion-body">Placeholder content for this accordion, which is intended to
+                  demonstrate the <code>.eg-ui-accordion--flush</code> class.</div>
+              </div>
+            </div>
+            <div class="eg-ui-accordion-item">
+              <button class="eg-ui-accordion-header" type="button">
+                Flush Item #2
+              </button>
+              <div class="eg-ui-accordion-collapse">
+                <div class="eg-ui-accordion-body">Placeholder content for this accordion, which is intended to
+                  demonstrate the <code>.eg-ui-accordion--flush</code> class.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-card">
+          <span class="example-title">Always Open</span>
+          <p class="eg-ui-mb-4">Add <code>data-eg-ui-always-open</code> to keep items open when another item is opened.
+          </p>
+          <div class="eg-ui-accordion" data-eg-ui-always-open>
+            <div class="eg-ui-accordion-item">
+              <button class="eg-ui-accordion-header" type="button">
+                Independent Item #1
+              </button>
+              <div class="eg-ui-accordion-collapse">
+                <div class="eg-ui-accordion-body">This item will stay open even if you open the one below.</div>
+              </div>
+            </div>
+            <div class="eg-ui-accordion-item">
+              <button class="eg-ui-accordion-header" type="button">
+                Independent Item #2
+              </button>
+              <div class="eg-ui-accordion-collapse">
+                <div class="eg-ui-accordion-body">This item acts independently because of the
+                  <code>data-eg-ui-always-open</code> attribute.
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -341,40 +496,6 @@
         </div>
       </section>
 
-      <!-- Spinners Section -->
-      <section id="spinners" class="demo-section">
-        <h2 class="eg-ui-mb-1">Spinners & Loading</h2>
-        <p class="eg-ui-text-muted eg-ui-mb-6">Indicate a loading state for a component or page.</p>
-
-        <div class="component-grid">
-          <div class="example-card">
-            <span class="example-title">Spinner Variants</span>
-            <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
-              <span class="eg-ui-spinner eg-ui-spinner--sm eg-ui-spinner--primary"></span>
-              <span class="eg-ui-spinner eg-ui-spinner--primary"></span>
-              <span class="eg-ui-spinner eg-ui-spinner--lg eg-ui-spinner--primary"></span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 1.5rem;">
-              <span class="eg-ui-spinner eg-ui-spinner--secondary"></span>
-              <span class="eg-ui-spinner eg-ui-spinner--success"></span>
-              <span class="eg-ui-spinner eg-ui-spinner--danger"></span>
-            </div>
-          </div>
-
-          <div class="example-card">
-            <span class="example-title">Button Loading</span>
-            <div style="display: flex; flex-direction: column; gap: 1rem;">
-              <button class="eg-ui-btn eg-ui-btn--primary">
-                Loading <span class="eg-ui-spinner eg-ui-spinner--sm eg-ui-spinner--white"></span>
-              </button>
-              <button class="eg-ui-btn eg-ui-btn--secondary eg-ui-btn--loading">
-                Please wait <span class="eg-ui-spinner eg-ui-spinner--sm eg-ui-spinner--secondary"></span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- Cards Section -->
       <section id="cards" class="demo-section">
         <h2 class="eg-ui-mb-1">Cards</h2>
@@ -396,83 +517,62 @@
         </div>
       </section>
 
-      <!-- Navs & Tabs Section -->
-      <section id="navs" class="demo-section">
-        <h2 class="eg-ui-mb-1">Navs & Tabs</h2>
-        <p class="eg-ui-text-muted eg-ui-mb-6">Navigation components for switching between views or sections.</p>
+      <!-- Dropdowns Section -->
+      <section id="dropdowns" class="demo-section">
+        <h2 class="eg-ui-mb-1">Dropdowns</h2>
+        <p class="eg-ui-text-muted eg-ui-mb-6">Toggleable, contextual overlays for displaying lists of links and more.
+        </p>
 
-        <div class="component-grid component-grid--2col">
-          <div class="example-card">
-            <span class="example-title">Tabbed Navigation</span>
-            <ul class="eg-ui-nav eg-ui-nav-tabs">
-              <li class="eg-ui-nav-item"><a class="eg-ui-nav-link active" href="#tab1" data-eg-ui-toggle="tab">Home</a>
-              </li>
-              <li class="eg-ui-nav-item"><a class="eg-ui-nav-link" href="#tab2" data-eg-ui-toggle="tab">Profile</a></li>
-            </ul>
-            <div class="eg-ui-tab-content eg-ui-mt-4">
-              <div class="eg-ui-tab-pane active" id="tab1">
-                <p class="eg-ui-text-muted">Home content area.</p>
-              </div>
-              <div class="eg-ui-tab-pane" id="tab2">
-                <p class="eg-ui-text-muted">Profile content area.</p>
+
+        <div class="example-card">
+          <span class="example-title">Variants & Alignment</span>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+
+            <!-- Basic Dropdown -->
+            <div class="eg-ui-dropdown">
+              <button class="eg-ui-btn eg-ui-btn--secondary eg-ui-dropdown-toggle" data-eg-ui-toggle="dropdown">Basic
+                Dropdown</button>
+              <div class="eg-ui-dropdown-menu">
+                <a class="eg-ui-dropdown-item" href="#">Action One</a>
+                <a class="eg-ui-dropdown-item" href="#">Action Two</a>
+                <a class="eg-ui-dropdown-item" href="#">Action Three</a>
               </div>
             </div>
-          </div>
 
-          <div class="example-card">
-            <span class="example-title">Capsule Tabs</span>
-            <ul class="eg-ui-nav eg-ui-nav-tabs eg-ui-nav-capsule">
-              <li class="eg-ui-nav-item"><a class="eg-ui-nav-link active" href="#cap1"
-                  data-eg-ui-toggle="tab">Overview</a></li>
-              <li class="eg-ui-nav-item"><a class="eg-ui-nav-link" href="#cap2" data-eg-ui-toggle="tab">Settings</a>
-              </li>
-              <li class="eg-ui-nav-item"><a class="eg-ui-nav-link" href="#cap3" data-eg-ui-toggle="tab">Logs</a></li>
-            </ul>
-            <div class="eg-ui-tab-content eg-ui-mt-4">
-              <div class="eg-ui-tab-pane active" id="cap1">
-                <p class="eg-ui-text-muted">Overview content area with capsule style.</p>
-              </div>
-              <div class="eg-ui-tab-pane" id="cap2">
-                <p class="eg-ui-text-muted">Settings content area with capsule style.</p>
-              </div>
-              <div class="eg-ui-tab-pane" id="cap3">
-                <p class="eg-ui-text-muted">Logs content area with capsule style.</p>
+            <!-- Right Aligned -->
+            <div class="eg-ui-dropdown">
+              <button class="eg-ui-btn eg-ui-btn--secondary eg-ui-dropdown-toggle" data-eg-ui-toggle="dropdown">Right
+                Aligned</button>
+              <div class="eg-ui-dropdown-menu eg-ui-dropdown-menu--right">
+                <h6 class="eg-ui-dropdown-header">Menu Title</h6>
+                <a class="eg-ui-dropdown-item" href="#">Profile</a>
+                <a class="eg-ui-dropdown-item" href="#">Settings</a>
+                <div class="eg-ui-dropdown-divider"></div>
+                <a class="eg-ui-dropdown-item" href="#">Logout</a>
               </div>
             </div>
-          </div>
 
-          <div class="example-card">
-            <span class="example-title">Vertical Tabs</span>
-            <div style="display: flex; gap: 2rem; align-items: flex-start;">
-              <ul class="eg-ui-nav eg-ui-nav-tabs eg-ui-nav-vertical" style="width: 150px;">
-                <li class="eg-ui-nav-item"><a class="eg-ui-nav-link active" href="#vtab1"
-                    data-eg-ui-toggle="tab">General</a></li>
-                <li class="eg-ui-nav-item"><a class="eg-ui-nav-link" href="#vtab2" data-eg-ui-toggle="tab">Security</a>
-                </li>
-                <li class="eg-ui-nav-item"><a class="eg-ui-nav-link" href="#vtab3" data-eg-ui-toggle="tab">Billing</a>
-                </li>
-              </ul>
-              <div class="eg-ui-tab-content"
-                style="flex: 1; margin-top: 0; padding: 1rem; border: 1px solid var(--eg-ui-neutral-200); border-radius: 0 var(--eg-ui-radius-md) var(--eg-ui-radius-md) 0; margin-left: -1px;">
-                <div class="eg-ui-tab-pane active" id="vtab1">
-                  <p class="eg-ui-text-muted">General settings content area.</p>
-                </div>
-                <div class="eg-ui-tab-pane" id="vtab2">
-                  <p class="eg-ui-text-muted">Security options for your account.</p>
-                </div>
-                <div class="eg-ui-tab-pane" id="vtab3">
-                  <p class="eg-ui-text-muted">Subscription and billing history.</p>
-                </div>
+            <!-- Dropup -->
+            <div class="eg-ui-dropdown">
+              <div class="eg-ui-dropdown-menu eg-ui-dropdown-menu--top">
+                <a class="eg-ui-dropdown-item" href="#">Going Up</a>
+                <a class="eg-ui-dropdown-item" href="#">Higher</a>
+              </div>
+              <button class="eg-ui-btn eg-ui-btn--secondary eg-ui-dropdown-toggle" data-eg-ui-toggle="dropdown">Dropup
+                Menu</button>
+            </div>
+
+            <!-- Pill Button Dropdown -->
+            <div class="eg-ui-dropdown">
+              <button class="eg-ui-btn eg-ui-btn--primary eg-ui-btn--pill eg-ui-dropdown-toggle"
+                data-eg-ui-toggle="dropdown">Pill
+                Dropdown</button>
+              <div class="eg-ui-dropdown-menu">
+                <a class="eg-ui-dropdown-item" href="#">Style 1</a>
+                <a class="eg-ui-dropdown-item" href="#">Style 2</a>
               </div>
             </div>
-          </div>
 
-          <div class="example-card">
-            <span class="example-title">Pill Navigation</span>
-            <ul class="eg-ui-nav eg-ui-nav-pills">
-              <li class="eg-ui-nav-item"><a class="eg-ui-nav-link active" href="#">Active</a></li>
-              <li class="eg-ui-nav-item"><a class="eg-ui-nav-link" href="#">Link</a></li>
-            </ul>
           </div>
         </div>
       </section>
@@ -533,47 +633,6 @@
                 <label class="eg-ui-check-label" for="radio3">Disabled Option</label>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Tables Section -->
-      <section id="tables" class="demo-section">
-        <h2 class="eg-ui-mb-1">Tables</h2>
-        <p class="eg-ui-text-muted eg-ui-mb-6">Responsive, clean table designs for displaying structured data.</p>
-
-        <div class="example-card" style="padding: 0; overflow: hidden;">
-          <div class="eg-ui-table-cover">
-            <table class="eg-ui-table eg-ui-table--striped eg-ui-table--hover">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Role</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>#101</td>
-                  <td>John Doe</td>
-                  <td>Admin</td>
-                  <td><span class="eg-ui-badge eg-ui-badge--success">Active</span></td>
-                </tr>
-                <tr>
-                  <td>#102</td>
-                  <td>Jane Smith</td>
-                  <td>Editor</td>
-                  <td><span class="eg-ui-badge eg-ui-badge--warning">Pending</span></td>
-                </tr>
-                <tr>
-                  <td>#103</td>
-                  <td>Bob Johnson</td>
-                  <td>Viewer</td>
-                  <td><span class="eg-ui-badge eg-ui-badge--danger">Inactive</span></td>
-                </tr>
-              </tbody>
-            </table>
           </div>
         </div>
       </section>
@@ -710,58 +769,83 @@ closeModal('myModal'); // To close</code></pre>
         </div>
       </section>
 
-      <!-- Toast Section -->
-      <section id="toasts" class="demo-section">
-        <h2 class="eg-ui-mb-1">Toasts</h2>
-        <p class="eg-ui-text-muted eg-ui-mb-6">Temporary notifications that slide into view.</p>
+      <!-- Navs & Tabs Section -->
+      <section id="navs" class="demo-section">
+        <h2 class="eg-ui-mb-1">Navs & Tabs</h2>
+        <p class="eg-ui-text-muted eg-ui-mb-6">Navigation components for switching between views or sections.</p>
 
-        <div class="example-card">
-          <span class="example-title">How to Use (Code)</span>
-          <p class="eg-ui-mb-4">Display notifications programmatically using the <code>egToast</code> object.</p>
-          <pre
-            style="background: #1e293b; color: #f8fafc; padding: 1.25rem; border-radius: 12px; font-size: 0.875rem; overflow-x: auto;"><code>egToast.show({
-  message: 'Action successful!',
-  type: 'success', // 'success' | 'info' | 'warning' | 'danger'
-  position: 'top-right', // 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'
-  duration: 3000,
-  showClose: false
-});</code></pre>
-        </div>
-
-        <div class="example-card">
-          <span class="example-title">Manual Interactions</span>
-          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-            <button class="eg-ui-btn eg-ui-btn--success"
-              onclick="egToast.show({ message: 'Saved!', type: 'success' })">Success</button>
-            <button class="eg-ui-btn eg-ui-btn--success"
-              onclick="egToast.show({ message: 'Helloo its done!', type: 'success' })">Success</button>
-            <button class="eg-ui-btn eg-ui-btn--info"
-              onclick="egToast.show({ message: 'Update available.', type: 'info' })">Info</button>
-            <button class="eg-ui-btn eg-ui-btn--warning"
-              onclick="egToast.show({ message: 'Low space.', type: 'warning' })">Warning</button>
-            <button class="eg-ui-btn eg-ui-btn--danger"
-              onclick="egToast.show({ message: 'Error!', type: 'danger' })">Danger</button>
-            <button class="eg-ui-btn eg-ui-btn--primary"
-              onclick="egToast.show({ message: 'Stay here', type: 'info', showClose: true })">Manual
-              Close</button>
+        <div class="component-grid component-grid--2col">
+          <div class="example-card">
+            <span class="example-title">Tabbed Navigation</span>
+            <ul class="eg-ui-nav eg-ui-nav-tabs">
+              <li class="eg-ui-nav-item"><a class="eg-ui-nav-link active" href="#tab1" data-eg-ui-toggle="tab">Home</a>
+              </li>
+              <li class="eg-ui-nav-item"><a class="eg-ui-nav-link" href="#tab2" data-eg-ui-toggle="tab">Profile</a></li>
+            </ul>
+            <div class="eg-ui-tab-content eg-ui-mt-4">
+              <div class="eg-ui-tab-pane active" id="tab1">
+                <p class="eg-ui-text-muted">Home content area.</p>
+              </div>
+              <div class="eg-ui-tab-pane" id="tab2">
+                <p class="eg-ui-text-muted">Profile content area.</p>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div class="example-card">
-          <span class="example-title">Positioning</span>
-          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; max-width: 450px;">
-            <button class="eg-ui-btn eg-ui-btn--outline"
-              onclick="egToast.show({ message: 'Top Left', position: 'top-left' })">TL</button>
-            <button class="eg-ui-btn eg-ui-btn--outline"
-              onclick="egToast.show({ message: 'Top Center', position: 'top-center' })">TC</button>
-            <button class="eg-ui-btn eg-ui-btn--outline"
-              onclick="egToast.show({ message: 'Top Right', position: 'top-right' })">TR</button>
-            <button class="eg-ui-btn eg-ui-btn--outline"
-              onclick="egToast.show({ message: 'Bottom Left', position: 'bottom-left' })">BL</button>
-            <button class="eg-ui-btn eg-ui-btn--outline"
-              onclick="egToast.show({ message: 'Bottom Center', position: 'bottom-center' })">BC</button>
-            <button class="eg-ui-btn eg-ui-btn--outline"
-              onclick="egToast.show({ message: 'Bottom Right', position: 'bottom-right' })">BR</button>
+          <div class="example-card">
+            <span class="example-title">Capsule Tabs</span>
+            <ul class="eg-ui-nav eg-ui-nav-tabs eg-ui-nav-capsule">
+              <li class="eg-ui-nav-item"><a class="eg-ui-nav-link active" href="#cap1"
+                  data-eg-ui-toggle="tab">Overview</a></li>
+              <li class="eg-ui-nav-item"><a class="eg-ui-nav-link" href="#cap2" data-eg-ui-toggle="tab">Settings</a>
+              </li>
+              <li class="eg-ui-nav-item"><a class="eg-ui-nav-link" href="#cap3" data-eg-ui-toggle="tab">Logs</a></li>
+            </ul>
+            <div class="eg-ui-tab-content eg-ui-mt-4">
+              <div class="eg-ui-tab-pane active" id="cap1">
+                <p class="eg-ui-text-muted">Overview content area with capsule style.</p>
+              </div>
+              <div class="eg-ui-tab-pane" id="cap2">
+                <p class="eg-ui-text-muted">Settings content area with capsule style.</p>
+              </div>
+              <div class="eg-ui-tab-pane" id="cap3">
+                <p class="eg-ui-text-muted">Logs content area with capsule style.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="example-card">
+            <span class="example-title">Vertical Tabs</span>
+            <div style="display: flex; gap: 2rem; align-items: flex-start;">
+              <ul class="eg-ui-nav eg-ui-nav-tabs eg-ui-nav-vertical" style="width: 150px;">
+                <li class="eg-ui-nav-item"><a class="eg-ui-nav-link active" href="#vtab1"
+                    data-eg-ui-toggle="tab">General</a></li>
+                <li class="eg-ui-nav-item"><a class="eg-ui-nav-link" href="#vtab2" data-eg-ui-toggle="tab">Security</a>
+                </li>
+                <li class="eg-ui-nav-item"><a class="eg-ui-nav-link" href="#vtab3" data-eg-ui-toggle="tab">Billing</a>
+                </li>
+              </ul>
+              <div class="eg-ui-tab-content"
+                style="flex: 1; margin-top: 0; padding: 1rem; border: 1px solid var(--eg-ui-neutral-200); border-radius: 0 var(--eg-ui-radius-md) var(--eg-ui-radius-md) 0; margin-left: -1px;">
+                <div class="eg-ui-tab-pane active" id="vtab1">
+                  <p class="eg-ui-text-muted">General settings content area.</p>
+                </div>
+                <div class="eg-ui-tab-pane" id="vtab2">
+                  <p class="eg-ui-text-muted">Security options for your account.</p>
+                </div>
+                <div class="eg-ui-tab-pane" id="vtab3">
+                  <p class="eg-ui-text-muted">Subscription and billing history.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="example-card">
+            <span class="example-title">Pill Navigation</span>
+            <ul class="eg-ui-nav eg-ui-nav-pills">
+              <li class="eg-ui-nav-item"><a class="eg-ui-nav-link active" href="#">Active</a></li>
+              <li class="eg-ui-nav-item"><a class="eg-ui-nav-link" href="#">Link</a></li>
+            </ul>
           </div>
         </div>
       </section>
@@ -838,87 +922,320 @@ closeModal('myModal'); // To close</code></pre>
               <div class="eg-ui-popover eg-ui-popover--right" id="popRight">
                 <div class="eg-ui-popover__arrow"></div>
                 <h4 class="eg-ui-popover__header">Right Popover</h4>
-      </section>
-
-      <!-- Dropdowns Section -->
-      <section id="dropdowns" class="demo-section">
-        <h2 class="eg-ui-mb-1">Dropdowns</h2>
-        <p class="eg-ui-text-muted eg-ui-mb-6">Toggleable, contextual overlays for displaying lists of links and more.
-        </p>
-
-        <div class="example-card">
-          <span class="example-title">How to Use (Code)</span>
-          <p class="eg-ui-mb-4">Wrap your trigger and menu in a <code>.eg-ui-dropdown</code> container and use
-            <code>data-eg-ui-toggle="dropdown"</code>. Add <code>.eg-ui-dropdown-toggle</code> to the button for a caret
-            indicator.
-          </p>
-          <pre
-            style="background: #1e293b; color: #f8fafc; padding: 1.25rem; border-radius: 12px; font-size: 0.875rem; overflow-x: auto;"><code>&lt;div class="eg-ui-dropdown"&gt;
-  &lt;button class="eg-ui-btn eg-ui-btn--primary eg-ui-dropdown-toggle" data-eg-ui-toggle="dropdown"&gt;
-    Actions
-  &lt;/button&gt;
-  &lt;div class="eg-ui-dropdown-menu"&gt;
-    &lt;h6 class="eg-ui-dropdown-header"&gt;Options&lt;/h6&gt;
-    &lt;a class="eg-ui-dropdown-item" href="#"&gt;Edit Option&lt;/a&gt;
-    &lt;a class="eg-ui-dropdown-item" href="#"&gt;Delete Option&lt;/a&gt;
-    &lt;div class="eg-ui-dropdown-divider"&gt;&lt;/div&gt;
-    &lt;a class="eg-ui-dropdown-item disabled" href="#"&gt;Archive (Disabled)&lt;/a&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-        </div>
-
-        <div class="example-card">
-          <span class="example-title">Variants & Alignment</span>
-          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-
-            <!-- Basic Dropdown -->
-            <div class="eg-ui-dropdown">
-              <button class="eg-ui-btn eg-ui-btn--secondary eg-ui-dropdown-toggle" data-eg-ui-toggle="dropdown">Basic
-                Dropdown</button>
-              <div class="eg-ui-dropdown-menu">
-                <a class="eg-ui-dropdown-item" href="#">Action One</a>
-                <a class="eg-ui-dropdown-item" href="#">Action Two</a>
-                <a class="eg-ui-dropdown-item" href="#">Action Three</a>
+                <div class="eg-ui-popover__body">This popover appears to the right of the trigger button.</div>
               </div>
             </div>
-
-            <!-- Right Aligned -->
-            <div class="eg-ui-dropdown">
-              <button class="eg-ui-btn eg-ui-btn--secondary eg-ui-dropdown-toggle" data-eg-ui-toggle="dropdown">Right
-                Aligned</button>
-              <div class="eg-ui-dropdown-menu eg-ui-dropdown-menu--right">
-                <h6 class="eg-ui-dropdown-header">Menu Title</h6>
-                <a class="eg-ui-dropdown-item" href="#">Profile</a>
-                <a class="eg-ui-dropdown-item" href="#">Settings</a>
-                <div class="eg-ui-dropdown-divider"></div>
-                <a class="eg-ui-dropdown-item" href="#">Logout</a>
-              </div>
-            </div>
-
-            <!-- Dropup -->
-            <div class="eg-ui-dropdown">
-              <div class="eg-ui-dropdown-menu eg-ui-dropdown-menu--top">
-                <a class="eg-ui-dropdown-item" href="#">Going Up</a>
-                <a class="eg-ui-dropdown-item" href="#">Higher</a>
-              </div>
-              <button class="eg-ui-btn eg-ui-btn--secondary eg-ui-dropdown-toggle" data-eg-ui-toggle="dropdown">Dropup
-                Menu</button>
-            </div>
-
-            <!-- Pill Button Dropdown -->
-            <div class="eg-ui-dropdown">
-              <button class="eg-ui-btn eg-ui-btn--primary eg-ui-btn--pill eg-ui-dropdown-toggle"
-                data-eg-ui-toggle="dropdown">Pill
-                Dropdown</button>
-              <div class="eg-ui-dropdown-menu">
-                <a class="eg-ui-dropdown-item" href="#">Style 1</a>
-                <a class="eg-ui-dropdown-item" href="#">Style 2</a>
-              </div>
-            </div>
-
           </div>
         </div>
       </section>
+
+      <!-- Spinners Section -->
+      <section id="spinners" class="demo-section">
+        <h2 class="eg-ui-mb-1">Spinners & Loading</h2>
+        <p class="eg-ui-text-muted eg-ui-mb-6">Indicate a loading state for a component or page.</p>
+
+        <div class="component-grid">
+          <div class="example-card">
+            <span class="example-title">Spinner Variants</span>
+            <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
+              <span class="eg-ui-spinner eg-ui-spinner--sm eg-ui-spinner--primary"></span>
+              <span class="eg-ui-spinner eg-ui-spinner--primary"></span>
+              <span class="eg-ui-spinner eg-ui-spinner--lg eg-ui-spinner--primary"></span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 1.5rem;">
+              <span class="eg-ui-spinner eg-ui-spinner--secondary"></span>
+              <span class="eg-ui-spinner eg-ui-spinner--success"></span>
+              <span class="eg-ui-spinner eg-ui-spinner--danger"></span>
+            </div>
+          </div>
+
+          <div class="example-card">
+            <span class="example-title">Button Loading</span>
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              <button class="eg-ui-btn eg-ui-btn--primary">
+                Loading <span class="eg-ui-spinner eg-ui-spinner--sm eg-ui-spinner--white"></span>
+              </button>
+              <button class="eg-ui-btn eg-ui-btn--secondary eg-ui-btn--loading">
+                Please wait <span class="eg-ui-spinner eg-ui-spinner--sm eg-ui-spinner--secondary"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tables Section -->
+      <section id="tables" class="demo-section">
+        <h2 class="eg-ui-mb-1">Tables</h2>
+        <p class="eg-ui-text-muted eg-ui-mb-6">Responsive, clean table designs for displaying structured data.</p>
+
+        <div class="example-card" style="padding: 0; overflow: hidden;">
+          <div class="eg-ui-table-cover">
+            <table class="eg-ui-table eg-ui-table--striped eg-ui-table--hover">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#101</td>
+                  <td>John Doe</td>
+                  <td>Admin</td>
+                  <td><span class="eg-ui-badge eg-ui-badge--success">Active</span></td>
+                </tr>
+                <tr>
+                  <td>#102</td>
+                  <td>Jane Smith</td>
+                  <td>Editor</td>
+                  <td><span class="eg-ui-badge eg-ui-badge--warning">Pending</span></td>
+                </tr>
+                <tr>
+                  <td>#103</td>
+                  <td>Bob Johnson</td>
+                  <td>Viewer</td>
+                  <td><span class="eg-ui-badge eg-ui-badge--danger">Inactive</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Toast Section -->
+      <section id="toasts" class="demo-section">
+        <h2 class="eg-ui-mb-1">Toasts</h2>
+        <p class="eg-ui-text-muted eg-ui-mb-6">Temporary notifications that slide into view.</p>
+
+        <div class="example-card">
+          <span class="example-title">How to Use (Code)</span>
+          <p class="eg-ui-mb-4">Display notifications programmatically using the <code>egToast</code> object.</p>
+          <pre
+            style="background: #1e293b; color: #f8fafc; padding: 1.25rem; border-radius: 12px; font-size: 0.875rem; overflow-x: auto;"><code>egToast.show({
+  message: 'Action successful!',
+  type: 'success', // 'success' | 'info' | 'warning' | 'danger'
+  position: 'top-right', // 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'
+  duration: 3000,
+  showClose: false
+});</code></pre>
+        </div>
+
+        <div class="example-card">
+          <span class="example-title">Manual Interactions</span>
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <button class="eg-ui-btn eg-ui-btn--success"
+              onclick="egToast.show({ message: 'Saved!', type: 'success' })">Success</button>
+            <button class="eg-ui-btn eg-ui-btn--success"
+              onclick="egToast.show({ message: 'Helloo its done!', type: 'success' })">Success</button>
+            <button class="eg-ui-btn eg-ui-btn--info"
+              onclick="egToast.show({ message: 'Update available.', type: 'info' })">Info</button>
+            <button class="eg-ui-btn eg-ui-btn--warning"
+              onclick="egToast.show({ message: 'Low space.', type: 'warning' })">Warning</button>
+            <button class="eg-ui-btn eg-ui-btn--danger"
+              onclick="egToast.show({ message: 'Error!', type: 'danger' })">Danger</button>
+            <button class="eg-ui-btn eg-ui-btn--primary"
+              onclick="egToast.show({ message: 'Stay here', type: 'info', showClose: true })">Manual
+              Close</button>
+          </div>
+        </div>
+
+        <div class="example-card">
+          <span class="example-title">Positioning</span>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; max-width: 450px;">
+            <button class="eg-ui-btn eg-ui-btn--outline"
+              onclick="egToast.show({ message: 'Top Left', position: 'top-left' })">TL</button>
+            <button class="eg-ui-btn eg-ui-btn--outline"
+              onclick="egToast.show({ message: 'Top Center', position: 'top-center' })">TC</button>
+            <button class="eg-ui-btn eg-ui-btn--outline"
+              onclick="egToast.show({ message: 'Top Right', position: 'top-right' })">TR</button>
+            <button class="eg-ui-btn eg-ui-btn--outline"
+              onclick="egToast.show({ message: 'Bottom Left', position: 'bottom-left' })">BL</button>
+            <button class="eg-ui-btn eg-ui-btn--outline"
+              onclick="egToast.show({ message: 'Bottom Center', position: 'bottom-center' })">BC</button>
+            <button class="eg-ui-btn eg-ui-btn--outline"
+              onclick="egToast.show({ message: 'Bottom Right', position: 'bottom-right' })">BR</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Utilities Section -->
+      <section id="utilities" class="demo-section">
+        <h2 class="eg-ui-mb-1">Utilities (Tailwind-like)</h2>
+        <div class="eg-ui-flex eg-ui-justify-between eg-ui-items-center eg-ui-mb-6">
+          <p class="eg-ui-text-muted eg-ui-mb-0">Utility-first responsive layout and spacing classes.</p>
+          <button class="eg-ui-btn eg-ui-btn--outline" onclick="openModal('modalLayoutCheatsheet')">
+            <svg style="width:16px;height:16px;margin-right:6px;vertical-align:text-bottom" fill="none"
+              stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            View Cheatsheet
+          </button>
+        </div>
+
+        <div class="example-card">
+          <span class="example-title">Flexbox & Grid</span>
+          <div class="eg-ui-flex eg-ui-flex-col md:eg-ui-flex-row eg-ui-gap-4 eg-ui-mb-6">
+            <div class="eg-ui-p-4 eg-ui-rounded-lg eg-ui-w-full eg-ui-text-center"
+              style="background-color: var(--eg-ui-primary-100);">Flex Item 1
+            </div>
+            <div class="eg-ui-p-4 eg-ui-rounded-lg eg-ui-w-full eg-ui-text-center"
+              style="background-color: var(--eg-ui-primary-100);">Flex Item 2
+            </div>
+            <div class="eg-ui-p-4 eg-ui-rounded-lg eg-ui-w-full eg-ui-text-center"
+              style="background-color: var(--eg-ui-primary-100);">Flex Item 3
+            </div>
+          </div>
+
+          <div class="eg-ui-grid eg-ui-grid-cols-1 md:eg-ui-grid-cols-2 eg-ui-gap-4">
+            <div class="eg-ui-p-4 eg-ui-rounded-md" style="background-color: var(--eg-ui-neutral-100);">Grid Col 1</div>
+            <div class="eg-ui-p-4 eg-ui-rounded-md" style="background-color: var(--eg-ui-neutral-100);">Grid Col 2</div>
+            <div class="eg-ui-p-4 eg-ui-rounded-md" style="background-color: var(--eg-ui-neutral-100);">Grid Col 3</div>
+            <div class="eg-ui-p-4 eg-ui-rounded-md" style="background-color: var(--eg-ui-neutral-100);">Grid Col 4</div>
+          </div>
+        </div>
+
+        <div class="example-card">
+          <span class="example-title">Spacing & Layout</span>
+          <div class="eg-ui-p-6 eg-ui-mb-4" style="border: 1px dashed var(--eg-ui-primary-300);">
+            <div class="eg-ui-p-4 eg-ui-m-2 eg-ui-rounded-md eg-ui-inline-block"
+              style="background-color: var(--eg-ui-success); color: white;">
+              Padding 4, Margin 2</div>
+            <div class="eg-ui-px-6 eg-ui-py-2 eg-ui-m-2 eg-ui-rounded-full eg-ui-inline-block"
+              style="background-color: var(--eg-ui-danger); color: white;">
+              PX 6, PY 2, Pill</div>
+          </div>
+          <div class="eg-ui-flex eg-ui-justify-between eg-ui-items-center eg-ui-p-4"
+            style="background: var(--eg-ui-neutral-50);">
+            <span class="eg-ui-font-bold eg-ui-text-lg">Justify Between</span>
+            <span class="eg-ui-text-sm eg-ui-text-muted">Items Center</span>
+          </div>
+        </div>
+      </section>
+
+      </section>
+
+      <!-- Layout Cheatsheet Modal -->
+      <div class="eg-ui-modal eg-ui-modal--xl" id="modalLayoutCheatsheet">
+        <div class="eg-ui-modal__overlay"></div>
+        <div class="eg-ui-modal__content">
+          <div class="eg-ui-modal__header">
+            <h3 class="eg-ui-modal__title">Utilities Cheatsheet</h3>
+            <button class="eg-ui-modal__close" onclick="closeModal('modalLayoutCheatsheet')">&times;</button>
+          </div>
+          <div class="eg-ui-modal__body" style="max-height: 70vh; overflow-y: auto;">
+            <p class="eg-ui-text-muted eg-ui-mb-4">Layout classes have responsive <code>md:</code> and <code>lg:</code>
+              variants (e.g., <code>md:eg-ui-flex</code>, <code>lg:eg-ui-grid-cols-2</code>).</p>
+
+            <h4 class="eg-ui-mb-2">Display & Position</h4>
+            <table class="eg-ui-table eg-ui-table--striped eg-ui-mb-6">
+              <thead>
+                <tr>
+                  <th>Class</th>
+                  <th>Properties</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>.eg-ui-block</code></td>
+                  <td><code>display: block;</code></td>
+                </tr>
+                <tr>
+                  <td><code>.eg-ui-inline-block</code></td>
+                  <td><code>display: inline-block;</code></td>
+                </tr>
+                <tr>
+                  <td><code>.eg-ui-flex</code></td>
+                  <td><code>display: flex;</code></td>
+                </tr>
+                <tr>
+                  <td><code>.eg-ui-grid</code></td>
+                  <td><code>display: grid;</code></td>
+                </tr>
+                <tr>
+                  <td><code>.eg-ui-hidden</code></td>
+                  <td><code>display: none;</code></td>
+                </tr>
+                <tr>
+                  <td><code>.eg-ui-relative</code>, <code>.eg-ui-absolute</code>, <code>.eg-ui-fixed</code>,
+                    <code>.eg-ui-sticky</code>
+                  </td>
+                  <td><code>position: relative/absolute/fixed/sticky;</code></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4 class="eg-ui-mb-2">Flexbox & Grid</h4>
+            <table class="eg-ui-table eg-ui-table--striped eg-ui-mb-6">
+              <thead>
+                <tr>
+                  <th>Class</th>
+                  <th>Properties</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>.eg-ui-flex-row</code>, <code>.eg-ui-flex-col</code></td>
+                  <td><code>flex-direction: row / column;</code></td>
+                </tr>
+                <tr>
+                  <td><code>.eg-ui-items-start|center|end|stretch</code></td>
+                  <td><code>align-items: flex-start|center|flex-end|stretch;</code></td>
+                </tr>
+                <tr>
+                  <td><code>.eg-ui-justify-start|center|end|between|around</code></td>
+                  <td><code>justify-content: ...;</code></td>
+                </tr>
+                <tr>
+                  <td><code>.eg-ui-gap-0</code> to <code>.eg-ui-gap-12</code></td>
+                  <td><code>gap</code> mapped to spacing tokens</td>
+                </tr>
+                <tr>
+                  <td><code>.eg-ui-grid-cols-1</code> to <code>12</code></td>
+                  <td><code>grid-template-columns: repeat(N, minmax(0, 1fr));</code></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4 class="eg-ui-mb-2">Spacing & Sizing</h4>
+            <table class="eg-ui-table eg-ui-table--striped">
+              <thead>
+                <tr>
+                  <th>Class</th>
+                  <th>Properties</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>.eg-ui-m-{0-12}</code>, <code>.eg-ui-p-{0-12}</code></td>
+                  <td>Margin/Padding all sides</td>
+                </tr>
+                <tr>
+                  <td><code>.eg-ui-mx-{N}</code>, <code>.eg-ui-my-{N}</code></td>
+                  <td>Margin X (left/right) / Y (top/bottom)</td>
+                </tr>
+                <tr>
+                  <td><code>.eg-ui-mt-{N}</code>, <code>.eg-ui-mr-{N}</code>, etc.</td>
+                  <td>Margin Top/Right/Bottom/Left</td>
+                </tr>
+                <tr>
+                  <td><code>.eg-ui-w-full</code>, <code>.eg-ui-w-auto</code></td>
+                  <td><code>width: 100%;</code> / <code>auto;</code></td>
+                </tr>
+                <tr>
+                  <td><code>.eg-ui-h-full</code>, <code>.eg-ui-h-screen</code></td>
+                  <td><code>height: 100%;</code> / <code>100vh;</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="eg-ui-modal__footer">
+            <button class="eg-ui-btn eg-ui-btn--primary" onclick="closeModal('modalLayoutCheatsheet')">Got it</button>
+          </div>
+        </div>
+      </div>
 
     </main>
 
