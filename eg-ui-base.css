@@ -1,14 +1,6 @@
 /* eGlobe UI Base Styles */
 
-/* Scoped Reset */
 .eg-ui-app {
-  font-family: var(--eg-ui-font-sans);
-  font-size: var(--eg-ui-text-base);
-  line-height: var(--eg-ui-leading-normal);
-  color: var(--eg-ui-neutral-800);
-  background-color: var(--eg-ui-neutral-50);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
 
   /* Ensure this container handles its own box model */
@@ -22,34 +14,7 @@
   box-sizing: inherit;
 }
 
-/* Typography Defaults */
-.eg-ui-app h1,
-.eg-ui-app h2,
-.eg-ui-app h3,
-.eg-ui-app h4,
-.eg-ui-app h5,
-.eg-ui-app h6 {
-  margin: 0;
-  font-weight: 700;
-  color: var(--eg-ui-neutral-900);
-  line-height: var(--eg-ui-leading-tight);
-}
 
-.eg-ui-app h1 {
-  font-size: var(--eg-ui-text-3xl);
-}
-
-.eg-ui-app h2 {
-  font-size: var(--eg-ui-text-2xl);
-}
-
-.eg-ui-app h3 {
-  font-size: var(--eg-ui-text-xl);
-}
-
-.eg-ui-app p {
-  margin: 0 0 var(--eg-ui-space-4) 0;
-}
 
 
 /* Scrollbar styling for containers within the app */
