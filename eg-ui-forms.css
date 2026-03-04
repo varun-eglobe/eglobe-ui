@@ -81,6 +81,31 @@
   display: block;
 }
 
+/* Success State */
+.eg-ui-input.eg-ui-is-valid,
+.eg-ui-textarea.eg-ui-is-valid,
+.eg-ui-select.eg-ui-is-valid {
+  border-color: var(--eg-ui-success);
+}
+
+.eg-ui-input.eg-ui-is-valid:focus,
+.eg-ui-textarea.eg-ui-is-valid:focus,
+.eg-ui-select.eg-ui-is-valid:focus {
+  box-shadow: 0 0 0 3px #dcfce7;
+}
+
+.eg-ui-valid-feedback {
+  display: none;
+  width: 100%;
+  margin-top: 4px;
+  font-size: var(--eg-ui-text-xs);
+  color: var(--eg-ui-success);
+}
+
+.eg-ui-is-valid~.eg-ui-valid-feedback {
+  display: block;
+}
+
 /* Checkboxes & Radio Buttons */
 .eg-ui-check {
   display: flex;
