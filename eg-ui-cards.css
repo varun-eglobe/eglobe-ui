@@ -15,6 +15,7 @@
 
 .eg-ui-card__header {
     padding: var(--eg-ui-space-4) var(--eg-ui-space-5);
+    margin-top: 0;
     margin-bottom: 0;
     background-color: #ffffff;
     border-bottom: 1px solid var(--eg-ui-neutral-100);

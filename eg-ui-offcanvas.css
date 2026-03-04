@@ -84,6 +84,7 @@
 }
 
 .eg-ui-offcanvas-title {
+    margin-top: 0;
     margin-bottom: 0;
     line-height: var(--eg-ui-line-height-base);
     font-size: 1.25rem;

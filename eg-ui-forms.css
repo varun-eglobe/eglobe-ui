@@ -56,6 +56,19 @@
   cursor: not-allowed;
 }
 
+/* Feedback base */
+.eg-ui-feedback {
+  display: none;
+  width: 100%;
+  margin-top: 4px;
+  font-size: var(--eg-ui-text-xs);
+}
+
+.eg-ui-is-invalid~.eg-ui-feedback,
+.eg-ui-is-valid~.eg-ui-feedback {
+  display: block;
+}
+
 /* Error State */
 .eg-ui-input.eg-ui-is-invalid,
 .eg-ui-textarea.eg-ui-is-invalid,
@@ -69,16 +82,8 @@
   box-shadow: 0 0 0 3px #fee2e2;
 }
 
-.eg-ui-invalid-feedback {
-  display: none;
-  width: 100%;
-  margin-top: 4px;
-  font-size: var(--eg-ui-text-xs);
+.eg-ui-feedback--invalid {
   color: var(--eg-ui-danger);
-}
-
-.eg-ui-is-invalid~.eg-ui-invalid-feedback {
-  display: block;
 }
 
 /* Success State */
@@ -94,16 +99,8 @@
   box-shadow: 0 0 0 3px #dcfce7;
 }
 
-.eg-ui-valid-feedback {
-  display: none;
-  width: 100%;
-  margin-top: 4px;
-  font-size: var(--eg-ui-text-xs);
+.eg-ui-feedback--valid {
   color: var(--eg-ui-success);
-}
-
-.eg-ui-is-valid~.eg-ui-valid-feedback {
-  display: block;
 }
 
 /* Checkboxes & Radio Buttons */

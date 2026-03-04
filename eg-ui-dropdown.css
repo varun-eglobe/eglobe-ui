@@ -132,6 +132,7 @@
 .eg-ui-dropdown-header {
     display: block;
     padding: 0.25rem 0.75rem;
+    margin-top: 0;
     margin-bottom: 0;
     font-size: 11px;
     font-weight: 700;
