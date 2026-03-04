@@ -37,3 +37,74 @@
     border-bottom-right-radius: var(--eg-ui-radius-lg);
     border-bottom-left-radius: var(--eg-ui-radius-lg);
 }
+
+/* Card Variants */
+
+/* 1. Feature Card */
+.eg-ui-card--feature {
+    text-align: center;
+    padding: var(--eg-ui-space-6) var(--eg-ui-space-5);
+    background-color: var(--eg-ui-neutral-50);
+}
+
+.eg-ui-card--feature .eg-ui-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--eg-ui-radius-full);
+    background-color: var(--eg-ui-primary-100);
+    color: var(--eg-ui-primary-600);
+    margin-bottom: var(--eg-ui-space-4);
+}
+
+/* 2. Interactive Card */
+.eg-ui-card--interactive {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.eg-ui-card--interactive:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--eg-ui-shadow-md);
+    border-color: var(--eg-ui-primary-200);
+}
+
+/* 3. Horizontal Card */
+.eg-ui-card--horizontal {
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.eg-ui-card--horizontal .eg-ui-card__image {
+    width: 30%;
+    min-width: 120px;
+    background-color: var(--eg-ui-neutral-100);
+    border-top-left-radius: var(--eg-ui-radius-lg);
+    border-bottom-left-radius: var(--eg-ui-radius-lg);
+    object-fit: cover;
+}
+
+.eg-ui-card--horizontal .eg-ui-card__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.eg-ui-card--horizontal .eg-ui-card__body {
+    padding: var(--eg-ui-space-4) var(--eg-ui-space-5);
+}
+
+@media (max-width: 575px) {
+    .eg-ui-card--horizontal {
+        flex-direction: column;
+    }
+
+    .eg-ui-card--horizontal .eg-ui-card__image {
+        width: 100%;
+        height: 180px;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: var(--eg-ui-radius-lg);
+    }
+}
