@@ -3,8 +3,6 @@
 /* Design Tokens */
 @import url('eg-ui-tokens.css');
 
-/* Base & Reset */
-@import url('eg-ui-base.css');
 
 /* Utilities */
 @import url('eg-ui-utilities.css');
